@@ -37,4 +37,41 @@ public class ArticleDao {
 		return articles;
 	}
 
+	public Article getForPrintArticle(int id) {
+		SecSql sql = new SecSql();
+		sql.append("SELECT A.*");
+		sql.append(", M.nickname AS extra__writer");
+		sql.append(", B.name AS extra__boardName");
+		sql.append(", B.code AS extra__boardCode");
+		sql.append("FROM article AS A");
+		sql.append("INNER JOIN `member` AS M");
+		sql.append("ON A.memberId = M.id");
+		sql.append("INNER JOIN `board` AS B");
+		sql.append("ON A.boardId = B.id");
+		sql.append("WHERE A.id = ?", id);
+		sql.append("ORDER BY A.id DESC");
+		Map<String, Object> articleMap = MysqlUtil.selectRow(sql);
+
+		if (articleMap.isEmpty()) {
+			return null;
+		}
+
+		return new Article(articleMap);
+	}
+
+	public int add(int memberId, String title, String body, int boardId) {
+		SecSql sql = new SecSql();
+
+		sql.append("INSERT INTO article");
+		sql.append(" SET regDate = NOW()");
+		sql.append(", updateDate = NOW()");
+		sql.append(", boardId = ?", boardId);
+		sql.append(", memberId = ?", memberId);
+		sql.append(", title = ?", title);
+		sql.append(", body = ?", body);
+
+		return MysqlUtil.insert(sql);
+
+	}
+
 }

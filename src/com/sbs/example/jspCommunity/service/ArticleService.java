@@ -18,4 +18,12 @@ public class ArticleService {
 
 	}
 
+	public Article getForPrintArticle(int id) {
+		return articleDao.getForPrintArticle(id);
+	}
+
+	public int doWrite(int memberId, String title, String body, int boardId) {
+		return articleDao.add(memberId, title, body, boardId);
+	}
+
 }
