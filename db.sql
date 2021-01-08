@@ -117,3 +117,6 @@ memberId = 2,
 boardId = 1,
 title = '제목5',
 `body` = '내용5'; 
+
+# adminLevel 칼럼이름을 authLevel 로 변경
+ALTER TABLE `member` CHANGE `adminLevel` `authLevel` TINYINT(1) UNSIGNED DEFAULT 2 NOT NULL COMMENT '0=탈퇴/1=로그인정지/2=일반/3=인증된,4=관리자';

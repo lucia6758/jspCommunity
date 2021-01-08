@@ -10,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sbs.example.jspCommunity.container.Container;
-import com.sbs.example.jspCommunity.dto.Article;
-import com.sbs.example.jspCommunity.service.ArticleService;
 import com.sbs.example.mysqlutil.MysqlUtil;
 
 @WebServlet("/usr/article/doWrite")
@@ -45,8 +43,7 @@ public class ArticleWriteServlet extends HttpServlet {
 
 		MysqlUtil.setDBInfo("localhost", "sbsst", "sbs123414", "jspCommunity");
 
-		ArticleService articleService = Container.articleService;
-		int id = articleService.doWrite(memberId, title, body, boardId);
+		int id = Container.articleService.doWrite(memberId, title, body, boardId);
 
 		MysqlUtil.closeConnection();
 

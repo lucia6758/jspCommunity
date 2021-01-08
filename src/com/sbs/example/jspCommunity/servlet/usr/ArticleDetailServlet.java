@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dto.Article;
-import com.sbs.example.jspCommunity.service.ArticleService;
 import com.sbs.example.mysqlutil.MysqlUtil;
 
 @WebServlet("/usr/article/detail")
@@ -30,8 +29,7 @@ public class ArticleDetailServlet extends HttpServlet {
 
 		MysqlUtil.setDBInfo("localhost", "sbsst", "sbs123414", "jspCommunity");
 
-		ArticleService articleService = Container.articleService;
-		Article article = articleService.getForPrintArticle(id);
+		Article article = Container.articleService.getForPrintArticle(id);
 
 		MysqlUtil.closeConnection();
 
