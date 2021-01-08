@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sbs.example.mysqlTextBoard.mysqlutil.MysqlUtil;
-import com.sbs.example.mysqlTextBoard.mysqlutil.SecSql;
+import com.sbs.example.mysqlutil.MysqlUtil;
+import com.sbs.example.mysqlutil.SecSql;
 
 @WebServlet("/usr/member/list")
 public class MemberListServlet extends HttpServlet {
