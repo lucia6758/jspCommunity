@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.mysqlutil.MysqlUtil;
 
-@WebServlet("/usr/article/write")
-public class ArticleWriteServlet extends HttpServlet {
+@WebServlet("/usr/article/modify")
+public class ArticleModifyServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
@@ -24,22 +24,22 @@ public class ArticleWriteServlet extends HttpServlet {
 			return;
 		}
 		
-		if (req.getParameter("boardId") == null) {
-			resp.getWriter().append("boardId를 입력해주세요.");
+		if (req.getParameter("id") == null) {
+			resp.getWriter().append("articleId를 입력해주세요.");
 			return;
 		}
 
 		int memberId = Integer.parseInt(req.getParameter("memberId"));
-		int boardId = Integer.parseInt(req.getParameter("boardId"));
+		int id = Integer.parseInt(req.getParameter("id"));
 
 		MysqlUtil.setDBInfo("localhost", "sbsst", "sbs123414", "jspCommunity");
 
 		MysqlUtil.closeConnection();
 
 		req.setAttribute("memberId", memberId);
-		req.setAttribute("boardId", boardId);
+		req.setAttribute("id", id);
 
-		RequestDispatcher rd = req.getRequestDispatcher("/jsp/usr/article/write.jsp");
+		RequestDispatcher rd = req.getRequestDispatcher("/jsp/usr/article/modify.jsp");
 		rd.forward(req, resp);
 	}
 

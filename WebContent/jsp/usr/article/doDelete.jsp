@@ -7,13 +7,13 @@ int id = (int) request.getAttribute("id");
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
-<title>게시물 작성</title>
+<title>게시물 삭제</title>
 </head>
 <body>
-	<h1>게시물 작성</h1>
+	<h1>게시물 삭제</h1>
 	
 	<div>
-		<%=id %>번 글이 작성되었습니다.
+		<%=id %>번 글이 삭제되었습니다.
 		<hr />
 	</div>
 	

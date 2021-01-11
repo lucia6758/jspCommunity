@@ -26,4 +26,12 @@ public class ArticleService {
 		return articleDao.add(memberId, title, body, boardId);
 	}
 
+	public int doModify(int memberId, int id, String title, String body) {
+		return articleDao.modify(memberId, id, title, body);	
+	}
+
+	public int delete(int id) {
+		return articleDao.delete(id);
+	}
+
 }

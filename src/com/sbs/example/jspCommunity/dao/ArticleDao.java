@@ -74,4 +74,25 @@ public class ArticleDao {
 
 	}
 
+	public int modify(int memberId, int id, String title, String body) {
+		SecSql sql = new SecSql();
+
+		sql.append("UPDATE article");
+		sql.append("SET updateDate = NOW()");
+		sql.append(", title = ?", title);
+		sql.append(", body = ?", body);
+		sql.append("WHERE id = ?", id);
+
+		return MysqlUtil.update(sql);
+	}
+
+	public int delete(int id) {
+		SecSql sql = new SecSql();
+		sql.append("DELETE");
+		sql.append("FROM article");
+		sql.append("WHERE id = ?", id);
+
+		return MysqlUtil.delete(sql);		
+	}
+
 }
