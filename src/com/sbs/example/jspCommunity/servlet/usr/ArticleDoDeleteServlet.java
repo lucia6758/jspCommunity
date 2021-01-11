@@ -21,11 +21,16 @@ public class ArticleDoDeleteServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html; charset=UTF-8");
 
+		if (req.getParameter("memberId") == null) {
+			resp.getWriter().append("memberId를 입력해주세요.");
+			return;
+		}
 		if (req.getParameter("id") == null) {
 			resp.getWriter().append("삭제할 게시물의 id를 입력해주세요.");
 			return;
 		}
 
+		int memberId = Integer.parseInt(req.getParameter("memberId"));
 		int id = Integer.parseInt(req.getParameter("id"));
 
 		MysqlUtil.setDBInfo("localhost", "sbsst", "sbs123414", "jspCommunity");
