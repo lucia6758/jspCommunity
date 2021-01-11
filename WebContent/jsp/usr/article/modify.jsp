@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="com.sbs.example.jspCommunity.dto.Article"%>
 <%
 int memberId = (int) request.getAttribute("memberId");
 int id = (int) request.getAttribute("id");
+Article article = (Article) request.getAttribute("article");
 %>
 <!doctype html>
 <html lang="ko">
@@ -16,11 +18,11 @@ int id = (int) request.getAttribute("id");
 	<form action="/jspCommunity/usr/article/doModify">
 		<input type="hidden" name="memberId" value=<%=memberId %>>
 		<input type="hidden" name="id" value=<%=id %>>
-		<input type="text" name="title" placeholder="수정할 제목을 입력해주세요" maxlength="100">
+		<input type="text" name="title" value=<%=article.title %> maxlength="100">
 		<hr />
-		<textarea name="body" placeholder="내용을 입력해주세요" maxlength="1000"></textarea>
+		<textarea name="body" maxlength="1000"><%=article.body %></textarea>
 		<br>
-		<input type="submit" value="전송">
+		<input type="submit" value="수정">
 	</form>
 </body>
 </html>

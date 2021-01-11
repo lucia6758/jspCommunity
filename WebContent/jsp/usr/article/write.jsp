@@ -20,7 +20,7 @@ int boardId = (int) request.getAttribute("boardId");
 		<hr />
 		<textarea name="body" placeholder="내용을 입력해주세요" maxlength="1000"></textarea>
 		<br>
-		<input type="submit" value="전송">
+		<input type="submit" value="작성">
 	</form>
 </body>
 </html>
