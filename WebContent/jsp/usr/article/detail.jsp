@@ -39,7 +39,12 @@ Article article = (Article) request.getAttribute("article");
 		<br />
 		내용 :
 		<%=article.body%>
-		<hr />
+	</div>
+	<hr />
+	<div>
+		<a href="list?boardId=<%=article.boardId%>">목록</a>
+		<a href="modify?memberId=1&id=<%=article.id%>">수정</a>
+		<a href="delete?memberId=1&id=<%=article.id%>">삭제</a>
 	</div>
 	
 </body>

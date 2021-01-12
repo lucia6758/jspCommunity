@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.sbs.example.jspCommunity.dto.Article;
+import com.sbs.example.jspCommunity.dto.Board;
 import com.sbs.example.mysqlutil.MysqlUtil;
 import com.sbs.example.mysqlutil.SecSql;
 
@@ -59,7 +60,7 @@ public class ArticleDao {
 		return new Article(articleMap);
 	}
 
-	public int add(int memberId, String title, String body, int boardId) {
+	public int write(int memberId, String title, String body, int boardId) {
 		SecSql sql = new SecSql();
 
 		sql.append("INSERT INTO article");
@@ -92,7 +93,22 @@ public class ArticleDao {
 		sql.append("FROM article");
 		sql.append("WHERE id = ?", id);
 
-		return MysqlUtil.delete(sql);		
+		return MysqlUtil.delete(sql);
+	}
+
+	public Board getBoardById(int boardId) {
+		SecSql sql = new SecSql();
+		sql.append("SELECT *");
+		sql.append("FROM board");
+		sql.append("WHERE id = ?", boardId);
+
+		Map<String, Object> map = MysqlUtil.selectRow(sql);
+
+		if (map.isEmpty()) {
+			return null;
+		}
+
+		return new Board(map);
 	}
 
 }

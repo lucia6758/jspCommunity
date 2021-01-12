@@ -15,7 +15,7 @@ Article article = (Article) request.getAttribute("article");
 <body>
 	<h1>게시물 수정</h1>
 
-	<form action="/jspCommunity/usr/article/doModify">
+	<form action="doModify" method="POST">
 		<input type="hidden" name="memberId" value=<%=memberId %>>
 		<input type="hidden" name="id" value=<%=id %>>
 		<input type="text" name="title" value=<%=article.title %> maxlength="100">
