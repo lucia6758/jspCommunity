@@ -9,14 +9,16 @@ Board board = (Board) request.getAttribute("board");
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
-<title><%=board.name%>게시물 작성</title>
+<title><%=board.getName()%> 게시물 작성
+</title>
 </head>
 <body>
-	<h1><%=board.name%>게시물 작성</h1>
+	<h1><%=board.getName()%> 게시물 작성
+	</h1>
 
 	<form action="doWrite" method="POST">
 		<input type="hidden" name="memberId" value=<%=memberId%>>
-		<input type="hidden" name="boardId" value=<%=board.id%>>
+		<input type="hidden" name="boardId" value=<%=board.getId()%>>
 		<div>
 			<div>
 				<input type="text" name="title" placeholder="제목을 입력해주세요"

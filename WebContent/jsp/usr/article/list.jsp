@@ -11,11 +11,11 @@ List<Article> articles = (List<Article>) request.getAttribute("articles");
 <html lang="ko">
 <head>
 <meta charset="UTF-8" />
-<title><%=board.name%> 게시물 리스트
+<title><%=board.getName()%> 게시물 리스트
 </title>
 </head>
 <body>
-	<h1><%=board.name%> 게시물 리스트</h1>
+	<h1><%=board.getName()%> 게시물 리스트</h1>
 	<div>
 		<a href="write?memberId=1&boardId=<%=request.getParameter("boardId")%>">글쓰기</a>
 	</div>
@@ -24,19 +24,19 @@ List<Article> articles = (List<Article>) request.getAttribute("articles");
 	%>
 	<div>
 		번호 :
-		<%=article.id%>
+		<%=article.getId()%>
 		<br />
 		작성날짜 :
-		<%=article.regDate%>
+		<%=article.getRegDate()%>
 		<br />
 		수정날짜 :
-		<%=article.updateDate%>
+		<%=article.getUpdateDate()%>
 		<br />
 		작성자 :
-		<%=article.extra__writer%>
+		<%=article.getExtra__writer()%>
 		<br />
 		제목 :
-		<a href="detail?id=<%=article.id%>"><%=article.title%></a>
+		<a href="detail?id=<%=article.getId()%>"><%=article.getTitle()%></a>
 		<hr />
 	</div>
 	<%

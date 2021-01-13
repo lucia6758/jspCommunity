@@ -16,11 +16,12 @@ Article article = (Article) request.getAttribute("article");
 	<h1>게시물 수정</h1>
 
 	<form action="doModify" method="POST">
-		<input type="hidden" name="memberId" value=<%=memberId %>>
-		<input type="hidden" name="id" value=<%=id %>>
-		<input type="text" name="title" value=<%=article.title %> maxlength="100">
+		<input type="hidden" name="memberId" value=<%=memberId%>>
+		<input type="hidden" name="id" value=<%=id%>>
+		<input type="text" name="title" value=<%=article.getTitle()%>
+			maxlength="100">
 		<hr />
-		<textarea name="body" maxlength="1000"><%=article.body %></textarea>
+		<textarea name="body" maxlength="1000"><%=article.getBody()%></textarea>
 		<br>
 		<input type="submit" value="수정">
 	</form>

@@ -17,34 +17,34 @@ Article article = (Article) request.getAttribute("article");
 	
 	<div>
 		번호 :
-		<%=article.id%>
+		<%=article.getId()%>
 		<br />
 		작성날짜 :
-		<%=article.regDate%>
+		<%=article.getRegDate()%>
 		<br />
 		수정날짜 :
-		<%=article.updateDate%>
+		<%=article.getUpdateDate()%>
 		<br />
 		게시판 :
-		<%=article.extra__boardName%>
+		<%=article.getExtra__boardName()%>
 		<br />
 		작성자 :
-		<%=article.extra__writer%>
+		<%=article.getExtra__writer()%>
 		<br />
 		조회수 :
-		<%=article.hitsCount%>
+		<%=article.getHitsCount()%>
 		<br />
 		제목 :
-		<%=article.title%>
+		<%=article.getTitle()%>
 		<br />
 		내용 :
-		<%=article.body%>
+		<%=article.getBody()%>
 	</div>
 	<hr />
 	<div>
-		<a href="list?boardId=<%=article.boardId%>">목록</a>
-		<a href="modify?memberId=1&id=<%=article.id%>">수정</a>
-		<a href="delete?memberId=1&id=<%=article.id%>">삭제</a>
+		<a href="list?boardId=<%=article.getBoardId()%>">목록</a>
+		<a href="modify?memberId=1&id=<%=article.getId()%>">수정</a>
+		<a href="delete?memberId=1&id=<%=article.getId()%>">삭제</a>
 	</div>
 	
 </body>

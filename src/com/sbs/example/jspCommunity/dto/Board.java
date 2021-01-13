@@ -2,12 +2,15 @@ package com.sbs.example.jspCommunity.dto;
 
 import java.util.Map;
 
+import lombok.Data;
+
+@Data
 public class Board {
-	public int id;
-	public String regDate;
-	public String updateDate;
-	public String name;
-	public String code;
+	private int id;
+	private String regDate;
+	private String updateDate;
+	private String name;
+	private String code;
 
 	public Board(Map<String, Object> map) {
 		this.id = (int) map.get("id");
@@ -15,12 +18,6 @@ public class Board {
 		this.updateDate = (String) map.get("updateDate");
 		this.name = (String) map.get("name");
 		this.code = (String) map.get("code");
-	}
-
-	@Override
-	public String toString() {
-		return "Board [id=" + id + ", regDate=" + regDate + ", updateDate=" + updateDate + ", name=" + name + ", code="
-				+ code + "]";
 	}
 
 }
