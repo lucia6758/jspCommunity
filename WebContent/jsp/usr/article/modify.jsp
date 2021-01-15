@@ -5,15 +5,10 @@
 int memberId = (int) request.getAttribute("memberId");
 int id = (int) request.getAttribute("id");
 Article article = (Article) request.getAttribute("article");
+String pageTitle = "게시물 수정";
 %>
-<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<title>게시물 수정</title>
-</head>
-<body>
-	<h1>게시물 수정</h1>
+<%@ include file="../../part/head.jspf" %>
+	<h1><%=pageTitle%></h1>
 
 	<form action="doModify" method="POST">
 		<input type="hidden" name="memberId" value=<%=memberId%>>
@@ -24,6 +19,6 @@ Article article = (Article) request.getAttribute("article");
 		<textarea name="body" maxlength="1000"><%=article.getBody()%></textarea>
 		<br>
 		<input type="submit" value="수정">
+		<botton type="button" onclick="history.back()">뒤로가기</botton>
 	</form>
-</body>
-</html>
+<%@ include file="../../part/foot.jspf" %>

@@ -1,19 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.Map"%>
-<%@ page import="java.util.List"%>
 <%@ page import="com.sbs.example.jspCommunity.dto.Article"%>
 <%
 Article article = (Article) request.getAttribute("article");
+String pageTitle = "게시물 상세페이지";
 %>
-<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<title>게시물 상세</title>
-</head>
-<body>
-	<h1>게시물 상세</h1>
+<%@ include file="../../part/head.jspf" %>
+	<h1><%=pageTitle%></h1>
 	
 	<div>
 		번호 :
@@ -46,6 +40,5 @@ Article article = (Article) request.getAttribute("article");
 		<a href="modify?memberId=1&id=<%=article.getId()%>">수정</a>
 		<a onclick="if (confirm('정말 삭제하시겠습니까?') == false) {return false;}" href="doDelete?memberId=1&id=<%=article.getId()%>">삭제</a>
 	</div>
+	<%@ include file="../../part/foot.jspf" %>
 	
-</body>
-</html>

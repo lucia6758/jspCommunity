@@ -4,17 +4,10 @@
 <%
 int memberId = (int) request.getAttribute("memberId");
 Board board = (Board) request.getAttribute("board");
+String pageTitle = board.getName() + " 게시물 작성";
 %>
-<!doctype html>
-<html lang="ko">
-<head>
-<meta charset="UTF-8" />
-<title><%=board.getName()%> 게시물 작성
-</title>
-</head>
-<body>
-	<h1><%=board.getName()%> 게시물 작성
-	</h1>
+<%@ include file="../../part/head.jspf" %>
+	<h1>게시물 작성</h1>
 
 	<form action="doWrite" method="POST">
 		<input type="hidden" name="memberId" value=<%=memberId%>>
@@ -36,5 +29,4 @@ Board board = (Board) request.getAttribute("board");
 
 		</div>
 	</form>
-</body>
-</html>
+<%@ include file="../../part/foot.jspf" %>
