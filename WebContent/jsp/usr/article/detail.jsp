@@ -44,7 +44,7 @@ Article article = (Article) request.getAttribute("article");
 	<div>
 		<a href="list?boardId=<%=article.getBoardId()%>">목록</a>
 		<a href="modify?memberId=1&id=<%=article.getId()%>">수정</a>
-		<a href="delete?memberId=1&id=<%=article.getId()%>">삭제</a>
+		<a onclick="if (confirm('정말 삭제하시겠습니까?') == false) {return false;}" href="doDelete?memberId=1&id=<%=article.getId()%>">삭제</a>
 	</div>
 	
 </body>
