@@ -79,6 +79,12 @@ public class ArticleController {
 
 		Article article = articleService.getForPrintArticle(id);
 
+		if (article == null) {
+			req.setAttribute("alertMsg", id + "번 게시물이 존재하지 않습니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
+		}
+
 		req.setAttribute("memberId", memberId);
 		req.setAttribute("id", id);
 		req.setAttribute("article", article);
@@ -91,6 +97,20 @@ public class ArticleController {
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
 		int id = Integer.parseInt(req.getParameter("id"));
+
+		Article article = articleService.getForPrintArticle(id);
+
+		if (article == null) {
+			req.setAttribute("alertMsg", id + "번 게시물이 존재하지 않습니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
+		}
+		
+		if (article.getMemberId() != memberId) {
+			req.setAttribute("alertMsg", id + "번 게시물을 수정할 권한이 없습니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
+		}
 
 		articleService.doModify(memberId, id, title, body);
 

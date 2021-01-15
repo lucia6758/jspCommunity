@@ -24,7 +24,7 @@ String pageTitle = board.getName() + " 게시물 작성";
 			<br>
 			<div>
 				<input type="submit" value="작성">
-				<botton type="button" onclick="history.back();">취소</botton>
+				<button type="button" onclick="history.back();">취소</button>
 			</div>
 
 		</div>

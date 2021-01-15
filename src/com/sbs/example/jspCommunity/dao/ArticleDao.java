@@ -80,8 +80,21 @@ public class ArticleDao {
 
 		sql.append("UPDATE article");
 		sql.append("SET updateDate = NOW()");
-		sql.append(", title = ?", title);
-		sql.append(", body = ?", body);
+
+		boolean needToUpdate = false;
+
+		if (title != null) {
+			needToUpdate = true;
+			sql.append(", title = ?", title);
+		}
+		if (body != null) {
+			needToUpdate = true;
+			sql.append(", body = ?", body);
+		}
+		if (needToUpdate == false) {
+			return 0;
+		}
+
 		sql.append("WHERE id = ?", id);
 
 		return MysqlUtil.update(sql);

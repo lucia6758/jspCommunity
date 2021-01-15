@@ -13,12 +13,12 @@ String pageTitle = "게시물 수정";
 	<form action="doModify" method="POST">
 		<input type="hidden" name="memberId" value=<%=memberId%>>
 		<input type="hidden" name="id" value=<%=id%>>
-		<input type="text" name="title" value=<%=article.getTitle()%>
-			maxlength="100">
+		<input type="text" name="title" placeholder="제목을 입력해주세요" value=<%=article.getTitle()%>
+			maxlength="50">
 		<hr />
-		<textarea name="body" maxlength="1000"><%=article.getBody()%></textarea>
+		<textarea name="body" placeholder="내용을 입력해주세요" maxlength="1000"><%=article.getBody()%></textarea>
 		<br>
 		<input type="submit" value="수정">
-		<botton type="button" onclick="history.back()">뒤로가기</botton>
+		<button type="button" onclick="history.back();">뒤로가기</button>
 	</form>
 <%@ include file="../../part/foot.jspf" %>
