@@ -5,7 +5,7 @@
 <%@ include file="../../part/head.jspf"%>
 <h1>${pageTitle}</h1>
 
-<form action="doJoin" method="POST">
+<form name="join" action="doJoin" method="POST" onsubmit="return checkForm();">
 	<div>
 		<div>아이디</div>
 		<div>
@@ -48,3 +48,34 @@
 	</div>
 </form>
 <%@ include file="../../part/foot.jspf"%>
+
+<script>
+function checkForm(){
+  if(join.loginId.value==""){
+    alert("아이디를 입력해주세요");
+    join.loginId.focus();
+    return false;
+  }
+  else if(join.loginPw.value==""){
+    alert("비밀번호를 입력해주세요");
+    join.loginPw.focus();
+    return false;
+  }
+  else if(join.name.value==""){
+    alert("이름을 입력해주세요");
+    join.name.focus();
+    return false;
+  }
+  else if(join.nickname.value==""){
+    alert("별명을 입력해주세요");
+    join.nickname.focus();
+    return false;
+  }
+  else if(join.email.value==""){
+    alert("이메일을 입력해주세요");
+    join.email.focus();
+    return false;
+  }
+  return true;
+}
+</script>
