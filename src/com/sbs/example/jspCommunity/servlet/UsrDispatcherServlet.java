@@ -10,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.sbs.example.jspCommunity.container.Container;
-import com.sbs.example.jspCommunity.controller.usr.ArticleController;
-import com.sbs.example.jspCommunity.controller.usr.MemberController;
+import com.sbs.example.jspCommunity.controller.UsrArticleController;
+import com.sbs.example.jspCommunity.controller.UsrMemberController;
 import com.sbs.example.mysqlutil.MysqlUtil;
 
 @WebServlet("/usr/*")
-public class DispatcherServlet extends HttpServlet {
+public class UsrDispatcherServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
@@ -35,13 +35,13 @@ public class DispatcherServlet extends HttpServlet {
 		MysqlUtil.setDBInfo("localhost", "sbsst", "sbs123414", "jspCommunity");
 
 		if (controllerName.equals("member")) {
-			MemberController memberController = Container.memberController;
+			UsrMemberController memberController = Container.memberController;
 
 			if (actionMethodName.equals("list")) {
 				jspPath = memberController.showList(req, resp);
 			}
 		} else if (controllerName.equals("article")) {
-			ArticleController articleController = Container.articleController;
+			UsrArticleController articleController = Container.articleController;
 
 			if (actionMethodName.equals("list")) {
 				jspPath = articleController.showList(req, resp);
