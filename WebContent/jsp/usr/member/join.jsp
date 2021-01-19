@@ -59,6 +59,13 @@
 	    form.email.focus();
 	    return;
 	  }
+	  
+	  form.cellphoneNo.value = form.cellphoneNo.value.trim();
+	  if (form.cellphoneNo.value == "") {
+	    alert("핸드폰 번호를 입력해주세요");
+	    form.cellphoneNo.focus();
+	    return;
+	  }
 	  form.submit();
 	  checkJoinForm_submited = true;
 	}
@@ -102,6 +109,13 @@
 			<div>
 				<input type="email" name="email" placeholder="E-Mail address"
 					maxlength="100">
+			</div>
+		</div>
+		<div>
+			<div>핸드폰 번호</div>
+			<div>
+				<input type="number" name="cellphoneNo" placeholder="cellphone Number"
+					maxlength="20">
 			</div>
 		</div>
 		<hr>
