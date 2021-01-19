@@ -11,7 +11,6 @@
 <div>
 	<a href="../article/list?boardId=1">공지사항</a>
 	<c:if test="${sessionScope.loginedMemberId > 0 }">
-		<a href="../article/write?boardId=1">공지사항 글쓰기</a>
 		<a href="../member/doLogout">로그아웃</a>
 	</c:if>
 	<c:if test="${sessionScope.loginedMemberId == null }">

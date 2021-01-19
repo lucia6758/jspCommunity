@@ -23,8 +23,10 @@
 <hr />
 <div>
 	<a href="list?boardId=${article.boardId}">목록</a>
-	<a href="modify?memberId=1&id=${article.id}">수정</a>
-	<a onclick="if (confirm('정말 삭제하시겠습니까?') == false) {return false;}"
+	<c:if test="${sessionScope.loginedMemberId == article.memberId }">
+		<a href="modify?memberId=1&id=${article.id}">수정</a>
+		<a onclick="if (confirm('정말 삭제하시겠습니까?') == false) {return false;}"
 		href="doDelete?memberId=1&id=${article.id}">삭제</a>
+	</c:if>
 </div>
 <%@ include file="../../part/foot.jspf"%>
