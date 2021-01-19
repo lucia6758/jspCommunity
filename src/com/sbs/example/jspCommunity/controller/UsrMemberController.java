@@ -38,6 +38,14 @@ public class UsrMemberController {
 		String email = req.getParameter("email");
 		String cellphoneNo = req.getParameter("cellphoneNo");
 
+		Member oldMember = memberService.getMemberByLoginId(loginId);
+
+		if (oldMember != null) {
+			req.setAttribute("alertMsg", "이미 사용중인 아이디입니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
+		}
+
 		Map<String, Object> joinArgs = new HashMap<>();
 		joinArgs.put("loginId", loginId);
 		joinArgs.put("loginPw", loginPw);
