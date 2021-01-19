@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.controller.UsrArticleController;
+import com.sbs.example.jspCommunity.controller.UsrHomeController;
 import com.sbs.example.jspCommunity.controller.UsrMemberController;
 
 @WebServlet("/usr/*")
@@ -16,7 +17,13 @@ public class UsrDispatcherServlet extends DispatcherServlet {
 			String actionMethodName) {
 		String jspPath = null;
 
-		if (controllerName.equals("member")) {
+		if (controllerName.equals("home")) {
+			UsrHomeController homeController = Container.homeController;
+
+			if (actionMethodName.equals("main")) {
+				jspPath = homeController.showMain(req, resp);
+			}
+		} else if (controllerName.equals("member")) {
 			UsrMemberController memberController = Container.memberController;
 
 			if (actionMethodName.equals("list")) {
