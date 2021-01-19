@@ -4,78 +4,113 @@
 <c:set var="pageTitle" value="회원가입" />
 <%@ include file="../../part/head.jspf"%>
 <h1>${pageTitle}</h1>
-
-<form name="join" action="doJoin" method="POST" onsubmit="return checkForm();">
-	<div>
-		<div>아이디</div>
+<div>
+	<script>
+	let checkJoinForm_submited = false;
+	function checkJoinForm_submit(form) {
+	  if (checkJoinForm_submited) {
+	    alert("처리중입니다.");
+	    return;
+	  }
+	
+	  form.loginId.value = form.loginId.value.trim();
+	  if (form.loginId.value == "") {
+	    alert("아이디를 입력해주세요");
+	    form.loginId.focus();
+	    return;
+	  }
+	
+	  form.loginPw.value = form.loginPw.value.trim();
+	  if (form.loginPw.value == "") {
+	    alert("비밀번호를 입력해주세요");
+	    form.loginPw.focus();
+	    return;
+	  }
+	
+	  form.loginPwConfirm.value = form.loginPwConfirm.value.trim();
+	  if (form.loginPwConfirm.value == "") {
+	    alert("비밀번호 확인을 입력해주세요");
+	    form.loginPwConfirm.focus();
+	    return;
+	  }
+	  if (form.loginPw.value != form.loginPwConfirm.value) {
+	    alert("비밀번호가 일치하지 않습니다");
+	    form.loginPwConfirm.focus();
+	    return;
+	  }
+	
+	  form.name.value = form.name.value.trim();
+	  if (form.name.value == "") {
+	    alert("이름을 입력해주세요");
+	    form.name.focus();
+	    return;
+	  }
+	
+	  form.nickname.value = form.nickname.value.trim();
+	  if (form.nickname.value == "") {
+	    alert("별명을 입력해주세요");
+	    form.nickname.focus();
+	    return;
+	  }
+	
+	  form.email.value = form.email.value.trim();
+	  if (form.email.value == "") {
+	    alert("이메일을 입력해주세요");
+	    form.email.focus();
+	    return;
+	  }
+	  form.submit();
+	  checkJoinForm_submited = true;
+	}
+	</script>
+	<form action="doJoin" method="POST" onsubmit="checkJoinForm_submit(this); return false;">
 		<div>
-			<input type="text" name="loginId" placeholder="ID" maxlength="30">
+			<div>아이디</div>
+			<div>
+				<input type="text" name="loginId" placeholder="ID" maxlength="30">
+			</div>
 		</div>
-	</div>
-	<div>
-		<div>비밀번호</div>
 		<div>
-			<input type="password" name="loginPw" placeholder="Password"
-				maxlength="50">
+			<div>비밀번호</div>
+			<div>
+				<input type="password" name="loginPw" placeholder="Password"
+					maxlength="50">
+			</div>
 		</div>
-	</div>
-	<div>
-		<div>이름</div>
 		<div>
-			<input type="text" name="name" placeholder="Name" maxlength="50">
+			<div>비밀번호 확인</div>
+			<div>
+				<input type="password" name="loginPwConfirm"
+					placeholder="Password Confirm" maxlength="50">
+			</div>
 		</div>
-	</div>
-	<div>
-		<div>별명</div>
 		<div>
-			<input type="text" name="nickname" placeholder="Nickname"
-				maxlength="50">
+			<div>이름</div>
+			<div>
+				<input type="text" name="name" placeholder="Name" maxlength="50">
+			</div>
 		</div>
-	</div>
-	<div>
-		<div>이메일</div>
 		<div>
-			<input type="email" name="email" placeholder="E-Mail address"
-				maxlength="100">
+			<div>별명</div>
+			<div>
+				<input type="text" name="nickname" placeholder="Nickname"
+					maxlength="50">
+			</div>
 		</div>
-	</div>
-	<hr>
-	<div>
 		<div>
-			<input type="submit" value="가입" />
-			<button type="button" onclick="history.back();">뒤로가기</button>
+			<div>이메일</div>
+			<div>
+				<input type="email" name="email" placeholder="E-Mail address"
+					maxlength="100">
+			</div>
 		</div>
-	</div>
-</form>
+		<hr>
+		<div>
+			<div>
+				<input type="submit" value="가입" />
+				<button type="button" onclick="history.back();">뒤로가기</button>
+			</div>
+		</div>
+	</form>
+</div>
 <%@ include file="../../part/foot.jspf"%>
-
-<script>
-function checkForm(){
-  if(join.loginId.value==""){
-    alert("아이디를 입력해주세요");
-    join.loginId.focus();
-    return false;
-  }
-  else if(join.loginPw.value==""){
-    alert("비밀번호를 입력해주세요");
-    join.loginPw.focus();
-    return false;
-  }
-  else if(join.name.value==""){
-    alert("이름을 입력해주세요");
-    join.name.focus();
-    return false;
-  }
-  else if(join.nickname.value==""){
-    alert("별명을 입력해주세요");
-    join.nickname.focus();
-    return false;
-  }
-  else if(join.email.value==""){
-    alert("이메일을 입력해주세요");
-    join.email.focus();
-    return false;
-  }
-  return true;
-}
-</script>
