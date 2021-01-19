@@ -6,8 +6,7 @@
 	<h1>${pageTitle}</h1>
 
 	<form action="doModify" method="POST">
-		<input type="hidden" name="memberId" value="${memberId}">
-		<input type="hidden" name="id" value="1">
+		<input type="hidden" name="id" value="${article.id}">
 		<input type="text" name="title" placeholder="제목을 입력해주세요" value="${article.title}"
 			maxlength="50">
 		<hr />

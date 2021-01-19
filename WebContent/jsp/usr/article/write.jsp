@@ -6,7 +6,6 @@
 	<h1>${pageTitle}</h1>
 
 	<form action="doWrite" method="POST">
-		<input type="hidden" name="memberId" value="1">
 		<input type="hidden" name="boardId" value="${board.id}">
 		<div>
 			<div>

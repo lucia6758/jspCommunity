@@ -75,7 +75,7 @@ public class ArticleDao {
 
 	}
 
-	public int modify(int memberId, int id, String title, String body) {
+	public int modify(Map<String, Object> args) {
 		SecSql sql = new SecSql();
 
 		sql.append("UPDATE article");
@@ -83,19 +83,19 @@ public class ArticleDao {
 
 		boolean needToUpdate = false;
 
-		if (title != null) {
+		if (args.get("title") != null) {
 			needToUpdate = true;
-			sql.append(", title = ?", title);
+			sql.append(", title = ?", args.get("title"));
 		}
-		if (body != null) {
+		if (args.get("body") != null) {
 			needToUpdate = true;
-			sql.append(", body = ?", body);
+			sql.append(", body = ?", args.get("body"));
 		}
 		if (needToUpdate == false) {
 			return 0;
 		}
 
-		sql.append("WHERE id = ?", id);
+		sql.append("WHERE id = ?", args.get("id"));
 
 		return MysqlUtil.update(sql);
 	}
