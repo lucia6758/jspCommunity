@@ -5,7 +5,7 @@
 <%@ include file="../../part/head.jspf" %>
 	<h1>${pageTitle}</h1>
 	<div>
-		<a href="write?memberId=1&boardId=<%=request.getParameter("boardId")%>">글쓰기</a>
+		<a href="write?memberId=1&boardId=${param.boardId}">글쓰기</a>
 	</div>
 	<c:forEach items="${articles}" var="article">
 	<div>

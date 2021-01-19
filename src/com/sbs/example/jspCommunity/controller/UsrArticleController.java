@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dto.Article;
@@ -48,6 +49,15 @@ public class UsrArticleController {
 	}
 
 	public String write(HttpServletRequest req, HttpServletResponse resp) {
+
+		HttpSession session = req.getSession();
+
+		if (session.getAttribute("loginedMemberId") == null) {
+			req.setAttribute("alertMsg", "로그인 후에 이용할 수 있습니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
+		}
+
 		int memberId = Integer.parseInt(req.getParameter("memberId"));
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
 
@@ -60,6 +70,14 @@ public class UsrArticleController {
 	}
 
 	public String doWrite(HttpServletRequest req, HttpServletResponse resp) {
+		HttpSession session = req.getSession();
+
+		if (session.getAttribute("loginedMemberId") == null) {
+			req.setAttribute("alertMsg", "로그인 후에 이용할 수 있습니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
+		}
+
 		int memberId = Integer.parseInt(req.getParameter("memberId"));
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
@@ -74,6 +92,13 @@ public class UsrArticleController {
 	}
 
 	public String modify(HttpServletRequest req, HttpServletResponse resp) {
+		HttpSession session = req.getSession();
+
+		if (session.getAttribute("loginedMemberId") == null) {
+			req.setAttribute("alertMsg", "로그인 후에 이용할 수 있습니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
+		}
 		int memberId = Integer.parseInt(req.getParameter("memberId"));
 		int id = Integer.parseInt(req.getParameter("id"));
 
@@ -93,6 +118,15 @@ public class UsrArticleController {
 	}
 
 	public String doModify(HttpServletRequest req, HttpServletResponse resp) {
+
+		HttpSession session = req.getSession();
+
+		if (session.getAttribute("loginedMemberId") == null) {
+			req.setAttribute("alertMsg", "로그인 후에 이용할 수 있습니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
+		}
+
 		int memberId = Integer.parseInt(req.getParameter("memberId"));
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
@@ -105,7 +139,7 @@ public class UsrArticleController {
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
 		}
-		
+
 		if (article.getMemberId() != memberId) {
 			req.setAttribute("alertMsg", id + "번 게시물을 수정할 권한이 없습니다.");
 			req.setAttribute("historyBack", true);
@@ -121,6 +155,14 @@ public class UsrArticleController {
 	}
 
 	public String doDelete(HttpServletRequest req, HttpServletResponse resp) {
+		HttpSession session = req.getSession();
+
+		if (session.getAttribute("loginedMemberId") == null) {
+			req.setAttribute("alertMsg", "로그인 후에 이용할 수 있습니다.");
+			req.setAttribute("historyBack", true);
+			return "common/redirect";
+		}
+
 		int memberId = Integer.parseInt(req.getParameter("memberId"));
 		int id = Integer.parseInt(req.getParameter("id"));
 
