@@ -34,6 +34,7 @@ public abstract class DispatcherServlet extends HttpServlet {
 				(String) doBeforeActionRs.get("actionMethodName"));
 
 		if (jspPath == null) {
+			resp.getWriter().append("jsp 정보가 없습니다.");
 			return;
 		}
 
