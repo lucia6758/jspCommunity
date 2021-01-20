@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="pageTitle" value="회원가입" />
 <%@ include file="../../part/head.jspf"%>
-<h1>${pageTitle}</h1>
+<section class="pageTitle">
+	<h1>${pageTitle}</h1>
+</section>
 <div>
 	<script>
 	let checkJoinForm_submited = false;
@@ -70,7 +72,8 @@
 	  checkJoinForm_submited = true;
 	}
 	</script>
-	<form action="doJoin" method="POST" onsubmit="checkJoinForm_submit(this); return false;">
+	<form action="doJoin" method="POST"
+		onsubmit="checkJoinForm_submit(this); return false;">
 		<div>
 			<div>아이디</div>
 			<div>
@@ -114,8 +117,8 @@
 		<div>
 			<div>핸드폰 번호</div>
 			<div>
-				<input type="number" name="cellphoneNo" placeholder="cellphone Number"
-					maxlength="20">
+				<input type="number" name="cellphoneNo"
+					placeholder="cellphone Number" maxlength="20">
 			</div>
 		</div>
 		<hr>

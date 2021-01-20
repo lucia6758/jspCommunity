@@ -5,16 +5,55 @@
 <head>
 <meta charset="UTF-8" />
 <title>${pageTitle}</title>
+
+<!-- 제이쿼리 불러오기 -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- 폰트어썸 불러오기 -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/static/common.css" />
+<script src="${pageContext.request.contextPath}/static/common.js" defer></script>
 </head>
 <body>
 
-<div>
-	<a href="../article/list?boardId=1">공지사항</a>
-	<c:if test="${sessionScope.loginedMemberId > 0 }">
-		<a href="../member/doLogout">로그아웃</a>
-	</c:if>
-	<c:if test="${sessionScope.loginedMemberId == null }">
-		<a href="../member/login">로그인</a>
-		<a href="../member/join">회원가입</a>
-	</c:if>
-</div>
+	<header class="con-min-width">
+		<div class="con">
+			<nav class="top-bar-member">
+				<ul class="flex flex-jc-e">
+					<c:if test="${sessionScope.loginedMemberId > 0 }">
+						<li>
+							<a href="../member/doLogout">로그아웃</a>
+						</li>
+					</c:if>
+					<c:if test="${sessionScope.loginedMemberId == null }">
+						<li>
+							<a href="../member/login">로그인</a>
+						</li>
+						<li>
+							<a href="../member/join">회원가입</a>
+						</li>
+					</c:if>
+				</ul>
+			</nav>
+		</div>
+
+		<div class="top-bar">
+			<div class="con flex flex-jc-sb height-100p">
+				<a href="${pageContext.request.contextPath}/usr/home/main" class="logo flex flex-ai-c">
+					<i class="fab fa-fort-awesome-alt"></i>
+				</a>
+
+				<nav class="menu-box-1">
+					<ul class="flex height-100p">
+						<li>
+							<a href="../article/list?boardId=1" class="flex height-100p flex-ai-c">공지사항</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+
+	<main class="con">

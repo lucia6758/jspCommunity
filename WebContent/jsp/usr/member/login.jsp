@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="pageTitle" value="회원가입" />
+<c:set var="pageTitle" value="로그인" />
 <%@ include file="../../part/head.jspf"%>
-<h1>${pageTitle}</h1>
+<section class="pageTitle">
+	<h1>${pageTitle}</h1>
+</section>
 <div>
 	<script>
 	let checkLoginForm_submited = false;
@@ -31,7 +33,8 @@
 	  checkLoginForm_submited = true;
 	}
 	</script>
-	<form action="doLogin" method="POST" onsubmit="checkLoginForm_submit(this); return false;">
+	<form action="doLogin" method="POST"
+		onsubmit="checkLoginForm_submit(this); return false;">
 		<div>
 			<div>아이디</div>
 			<div>
@@ -45,7 +48,7 @@
 					maxlength="50">
 			</div>
 		</div>
-		<hr/>
+		<hr />
 		<div>
 			<div>
 				<input type="submit" value="로그인" />

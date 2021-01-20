@@ -3,7 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="pageTitle" value="${board.name} 게시물 상세페이지" />
 <%@ include file="../../part/head.jspf"%>
-<h1>${pageTitle}</h1>
+<section class="pageTitle">
+	<h1>${pageTitle}</h1>
+</section>
 
 <div>
 	번호 : ${article.id}
@@ -26,7 +28,7 @@
 	<c:if test="${sessionScope.loginedMemberId == article.memberId }">
 		<a href="modify?memberId=1&id=${article.id}">수정</a>
 		<a onclick="if (confirm('정말 삭제하시겠습니까?') == false) {return false;}"
-		href="doDelete?memberId=1&id=${article.id}">삭제</a>
+			href="doDelete?memberId=1&id=${article.id}">삭제</a>
 	</c:if>
 </div>
 <%@ include file="../../part/foot.jspf"%>
