@@ -9,6 +9,30 @@
 <div>
 	<script>
 	let checkJoinForm_submited = false;
+	let checkJoinForm_checkedLoginId = "";
+	
+	function checkJoinForm_checkLoginIdDup(el){
+		const from = $(el).closest('form').get(0);
+		const loginId = from.loginId.value;
+		
+		$.get(
+			"getLoginIdDup",
+			{
+				loginId
+			},
+			function(data) {
+				if ( data == "YES" ) {
+					alert("해당 로그인 아이디는 사용가능합니다.");
+					checkJoinForm_checkedLoginId = loginId;
+				}
+				else {
+					alert("해당 로그인 아이디는 이미 사용중 입니다.");
+				}
+			},
+			"html"
+		); 
+	}
+	
 	function checkJoinForm_submit(form) {
 	  if (checkJoinForm_submited) {
 	    alert("처리중입니다.");
@@ -21,6 +45,12 @@
 	    form.loginId.focus();
 	    return;
 	  }
+	  
+	  if ( form.loginId.value != checkJoinForm_checkedLoginId ) {
+			alert('아이디 중복확인을 해주세요.');
+			form.btnLoginIdDupCheck.focus();
+			return false;
+		}
 	
 	  form.loginPw.value = form.loginPw.value.trim();
 	  if (form.loginPw.value == "") {
@@ -78,6 +108,7 @@
 			<div>아이디</div>
 			<div>
 				<input type="text" name="loginId" placeholder="ID" maxlength="30">
+				<button type="button" name="btnLoginIdDupCheck" onclick="checkJoinForm_checkLoginIdDup(this);">중복확인</button>
 			</div>
 		</div>
 		<div>

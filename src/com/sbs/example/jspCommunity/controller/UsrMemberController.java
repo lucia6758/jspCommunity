@@ -142,4 +142,22 @@ public class UsrMemberController {
 		return "common/redirect";
 	}
 
+	public String getLoginIdDup(HttpServletRequest req, HttpServletResponse resp) {
+		String loginId = req.getParameter("loginId");
+
+		Member member = memberService.getMemberByLoginId(loginId);
+
+		String data = "";
+
+		if ( member != null ) {
+			data = "NO";
+		}
+		else {
+			data = "YES";
+		}
+
+		req.setAttribute("data", data);
+		return "common/pure";
+	}
+
 }
