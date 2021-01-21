@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dto.Member;
 import com.sbs.example.jspCommunity.service.MemberService;
+import com.sbs.example.jspCommunity.util.Util;
 
 public class UsrMemberController {
 	private MemberService memberService;
@@ -147,15 +148,24 @@ public class UsrMemberController {
 
 		Member member = memberService.getMemberByLoginId(loginId);
 
-		String data = "";
+		Map<String, Object> rs = new HashMap<>();
+
+		String resultCode = null;
+		String msg = null;
 
 		if (member != null) {
-			data = "NO";
+			resultCode = "F-1";
+			msg = "이미 사용중인 아이디입니다.";
 		} else {
-			data = "YES";
+			resultCode = "S-1";
+			msg = "사용가능한 아이디입니다.";
 		}
 
-		req.setAttribute("data", data);
+		rs.put("resultCode", resultCode);
+		rs.put("msg", msg);
+		rs.put("loginId", loginId);
+
+		req.setAttribute("data", Util.getJasonText(rs));
 		return "common/pure";
 	}
 
