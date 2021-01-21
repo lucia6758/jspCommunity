@@ -35,20 +35,25 @@
 							<a href="../member/join">회원가입</a>
 						</li>
 					</c:if>
+					<li>
+						<a href="../member/myPage">마이페이지</a>
+					</li>
 				</ul>
 			</nav>
 		</div>
 
 		<div class="top-bar">
 			<div class="con flex flex-jc-sb height-100p">
-				<a href="${pageContext.request.contextPath}/usr/home/main" class="logo flex flex-ai-c">
+				<a href="${pageContext.request.contextPath}/usr/home/main"
+					class="logo flex flex-ai-c">
 					<i class="fab fa-fort-awesome-alt"></i>
 				</a>
 
 				<nav class="menu-box-1">
 					<ul class="flex height-100p">
 						<li>
-							<a href="../article/list?boardId=1" class="flex height-100p flex-ai-c">공지사항</a>
+							<a href="../article/list?boardId=1"
+								class="flex height-100p flex-ai-c">공지사항</a>
 						</li>
 					</ul>
 				</nav>

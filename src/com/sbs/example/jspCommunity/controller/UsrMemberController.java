@@ -149,15 +149,32 @@ public class UsrMemberController {
 
 		String data = "";
 
-		if ( member != null ) {
+		if (member != null) {
 			data = "NO";
-		}
-		else {
+		} else {
 			data = "YES";
 		}
 
 		req.setAttribute("data", data);
 		return "common/pure";
+	}
+
+	public String myPage(HttpServletRequest req, HttpServletResponse resp) {
+		HttpSession session = req.getSession();
+
+		if (session.getAttribute("loginedMemberId") == null) {
+			req.setAttribute("alertMsg", "로그인 후 이용할 수 있습니다.");
+			req.setAttribute("replaceUrl", "login");
+			return "common/redirect";
+		}
+
+		int memberId = (int) session.getAttribute("loginedMemberId");
+
+		Member member = memberService.getMemberById(memberId);
+
+		req.setAttribute("member", member);
+
+		return "usr/member/myPage";
 	}
 
 }
