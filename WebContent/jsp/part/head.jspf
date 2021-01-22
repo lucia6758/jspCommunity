@@ -22,19 +22,19 @@
 		<div class="con">
 			<nav class="top-bar-member">
 				<ul class="flex flex-jc-e">
-					<c:if test="${sessionScope.loginedMemberId > 0 }">
+					<c:if test="${isLogined}">
 						<li>
 							<a href="../member/doLogout">로그아웃</a>
 						</li>
 					</c:if>
-					<c:if test="${sessionScope.loginedMemberId == null }">
+					<c:if test="${isLogined == false}">
 						<li>
 							<a href="../member/login">로그인</a>
 						</li>
-						<li>
-							<a href="../member/join">회원가입</a>
-						</li>
 					</c:if>
+					<li>
+						<a href="../member/join">회원가입</a>
+					</li>
 					<li>
 						<a href="../member/myPage">마이페이지</a>
 					</li>

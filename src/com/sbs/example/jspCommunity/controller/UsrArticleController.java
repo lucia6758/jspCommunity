@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dto.Article;
@@ -51,15 +50,6 @@ public class UsrArticleController {
 	}
 
 	public String write(HttpServletRequest req, HttpServletResponse resp) {
-
-		HttpSession session = req.getSession();
-
-		if (session.getAttribute("loginedMemberId") == null) {
-			req.setAttribute("alertMsg", "로그인 후에 이용할 수 있습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
-		}
-
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
 
 		Board board = articleService.getBoardById(boardId);
@@ -70,20 +60,12 @@ public class UsrArticleController {
 	}
 
 	public String doWrite(HttpServletRequest req, HttpServletResponse resp) {
-		HttpSession session = req.getSession();
-
-		if (session.getAttribute("loginedMemberId") == null) {
-			req.setAttribute("alertMsg", "로그인 후에 이용할 수 있습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
-		}
-
-		int memberId = (int) session.getAttribute("loginedMemberId");
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
 
-		int id = articleService.doWrite(memberId, title, body, boardId);
+		int id = articleService.doWrite(loginedMemberId, title, body, boardId);
 
 		req.setAttribute("alertMsg", id + "번 게시물이 생성되었습니다.");
 		req.setAttribute("replaceUrl", String.format("detail?id=%d", id));
@@ -92,14 +74,6 @@ public class UsrArticleController {
 	}
 
 	public String modify(HttpServletRequest req, HttpServletResponse resp) {
-		HttpSession session = req.getSession();
-
-		if (session.getAttribute("loginedMemberId") == null) {
-			req.setAttribute("alertMsg", "로그인 후에 이용할 수 있습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
-		}
-
 		int id = Integer.parseInt(req.getParameter("id"));
 
 		Article article = articleService.getForPrintArticle(id);
@@ -110,7 +84,7 @@ public class UsrArticleController {
 			return "common/redirect";
 		}
 
-		int loginedMemberId = (int) session.getAttribute("loginedMemberId");
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
 		if (article.getMemberId() != loginedMemberId) {
 			req.setAttribute("alertMsg", "수정할 권한이 없습니다.");
@@ -124,15 +98,6 @@ public class UsrArticleController {
 	}
 
 	public String doModify(HttpServletRequest req, HttpServletResponse resp) {
-
-		HttpSession session = req.getSession();
-
-		if (session.getAttribute("loginedMemberId") == null) {
-			req.setAttribute("alertMsg", "로그인 후에 이용할 수 있습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
-		}
-
 		int id = Integer.parseInt(req.getParameter("id"));
 
 		Article article = articleService.getForPrintArticle(id);
@@ -143,7 +108,7 @@ public class UsrArticleController {
 			return "common/redirect";
 		}
 
-		int loginedMemberId = (int) session.getAttribute("loginedMemberId");
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
 		if (article.getMemberId() != loginedMemberId) {
 			req.setAttribute("alertMsg", "수정할 권한이 없습니다.");
@@ -168,14 +133,6 @@ public class UsrArticleController {
 	}
 
 	public String doDelete(HttpServletRequest req, HttpServletResponse resp) {
-		HttpSession session = req.getSession();
-
-		if (session.getAttribute("loginedMemberId") == null) {
-			req.setAttribute("alertMsg", "로그인 후에 이용할 수 있습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
-		}
-
 		int id = Integer.parseInt(req.getParameter("id"));
 
 		Article article = Container.articleService.getForPrintArticle(id);
@@ -186,7 +143,7 @@ public class UsrArticleController {
 			return "common/redirect";
 		}
 
-		int loginedMemberId = (int) session.getAttribute("loginedMemberId");
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
 		if (article.getMemberId() != loginedMemberId) {
 			req.setAttribute("alertMsg", "삭제할 권한이 없습니다.");

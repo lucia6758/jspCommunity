@@ -29,25 +29,10 @@ public class UsrMemberController {
 	}
 
 	public String join(HttpServletRequest req, HttpServletResponse resp) {
-		HttpSession session = req.getSession();
-
-		if (session.getAttribute("loginedMemberId") != null) {
-			req.setAttribute("alertMsg", "로그아웃 후에 이용할 수 있습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
-		}
-
 		return "usr/member/join";
 	}
 
 	public String doJoin(HttpServletRequest req, HttpServletResponse resp) {
-		HttpSession session = req.getSession();
-
-		if (session.getAttribute("loginedMemberId") != null) {
-			req.setAttribute("alertMsg", "로그아웃 후에 이용할 수 있습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
-		}
 
 		String loginId = req.getParameter("loginId");
 		String loginPw = req.getParameter("loginPw");
@@ -81,25 +66,12 @@ public class UsrMemberController {
 	}
 
 	public String login(HttpServletRequest req, HttpServletResponse resp) {
-		HttpSession session = req.getSession();
-
-		if (session.getAttribute("loginedMemberId") != null) {
-			req.setAttribute("alertMsg", "이미 로그인되어있습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
-		}
 
 		return "usr/member/login";
 	}
 
 	public String doLogin(HttpServletRequest req, HttpServletResponse resp) {
 		HttpSession session = req.getSession();
-
-		if (session.getAttribute("loginedMemberId") != null) {
-			req.setAttribute("alertMsg", "이미 로그인되어있습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
-		}
 
 		String loginId = req.getParameter("loginId");
 		String loginPw = req.getParameter("loginPw");
@@ -128,13 +100,6 @@ public class UsrMemberController {
 
 	public String doLogout(HttpServletRequest req, HttpServletResponse resp) {
 		HttpSession session = req.getSession();
-
-		if (session.getAttribute("loginedMemberId") == null) {
-			req.setAttribute("alertMsg", "이미 로그아웃 상태입니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
-		}
-
 		session.removeAttribute("loginedMemberId");
 
 		req.setAttribute("alertMsg", "로그아웃되었습니다.");
@@ -170,17 +135,10 @@ public class UsrMemberController {
 	}
 
 	public String myPage(HttpServletRequest req, HttpServletResponse resp) {
-		HttpSession session = req.getSession();
 
-		if (session.getAttribute("loginedMemberId") == null) {
-			req.setAttribute("alertMsg", "로그인 후 이용할 수 있습니다.");
-			req.setAttribute("replaceUrl", "login");
-			return "common/redirect";
-		}
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
-		int memberId = (int) session.getAttribute("loginedMemberId");
-
-		Member member = memberService.getMemberById(memberId);
+		Member member = memberService.getMemberById(loginedMemberId);
 
 		req.setAttribute("member", member);
 

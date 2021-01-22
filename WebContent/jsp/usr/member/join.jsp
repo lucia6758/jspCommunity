@@ -15,6 +15,13 @@
 		const from = $(el).closest('form').get(0);
 		const loginId = from.loginId.value;
 		
+		from.loginId.value = from.loginId.value.trim();
+	  if (from.loginId.value == "") {
+	    alert("아이디를 입력해주세요");
+	    from.loginId.focus();
+	    return;
+	  }
+		
 		$.get(
 			"getLoginIdDup",
 			{
