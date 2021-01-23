@@ -6,13 +6,15 @@ import java.util.Map;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.service.EmailService;
 import com.sbs.example.jspCommunity.util.Util;
 
-public abstract class ConfigServlet extends HttpServlet {
+@WebServlet(name = "loadAppConfig", urlPatterns = { "/loadConfig" }, loadOnStartup = 1)
+public class ConfigServlet extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);

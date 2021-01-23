@@ -130,7 +130,7 @@ public class UsrMemberController {
 		rs.put("msg", msg);
 		rs.put("loginId", loginId);
 
-		req.setAttribute("data", Util.getJasonText(rs));
+		req.setAttribute("data", Util.getJsonText(rs));
 		return "common/pure";
 	}
 
