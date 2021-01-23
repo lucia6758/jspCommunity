@@ -24,6 +24,9 @@
 				<ul class="flex flex-jc-e">
 					<c:if test="${isLogined}">
 						<li>
+							<a><b>${loginedMember.nickname}</b> 회원님 환영합니다.</a>
+						</li>
+						<li>
 							<a href="../member/doLogout">로그아웃</a>
 						</li>
 					</c:if>
@@ -61,4 +64,4 @@
 		</div>
 	</header>
 
-	<main class="con">
+	<main>

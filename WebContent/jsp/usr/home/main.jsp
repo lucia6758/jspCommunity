@@ -3,8 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="pageTitle" value="메인" />
 <%@ include file="../../part/head.jspf"%>
-<section class="pageTitle">
-	<h1>${pageTitle}</h1>
+<section class="pageTitle con-min-width">
+	<h1 class="con">${pageTitle}</h1>
 </section>
 
 <%@ include file="../../part/foot.jspf"%>
