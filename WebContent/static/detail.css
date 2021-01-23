@@ -87,65 +87,37 @@ a {
 }
 /* 커스텀 끝 */
 
-/* 탑바 시작 */
-.top-bar-member {
-  background-color:white;
+/* 페이지 타이틀 */
+.pageTitle {
+  margin:20px 0;
 }
+/* 페이지 타이틀 끝 */
 
-.top-bar-member ul li{
-  padding:1px;
-  margin:0px 3px;
-}
-.top-bar {
-  height:70px;
-  background-color:black;
-  color:white;
-}
-
-.top-bar .logo {
-  font-size:3rem;
-  padding:0 30px;
-}
-
-.top-bar .menu-box-1 > ul > li > a {
-  padding:0 20px;
+/* 게시글 상세 */
+.detail-title {
+  font-size:1.5rem;
   font-weight:bold;
-  font-size:1.2rem;
+  padding:2px;
+  margin:5px 0;
 }
 
-.top-bar .menu-box-1 > ul > li:hover > a {
-  background-color:white;
-  color:black;
+.detail-info {
+  border-bottom:2px solid black;
 }
 
-.top-bar .menu-box-1 ul > li {
-  position:relative;
+.detail-info > div {
+  padding:2px;
+  margin-right:5px;
 }
 
-.top-bar .menu-box-1 > ul ul {
-  display:none;
-  color:black;
-  background-color:white;
-  position:absolute;
-  top:100%;
-  left:-10px;
-  width:100%;
-  border:10px solid black;
-  border-top-width:0;
+.detail-body {
+  margin-top:10px;
+  padding-bottom:10px;
+  border-bottom:2px solid black;
 }
 
-.top-bar .menu-box-1 ul > li:hover > ul {
-  display:block;
+.detail-btn {
+  margin-top:10px;
 }
 
-.top-bar .menu-box-1 > ul ul > li > a {
-  font-weight:bold;
-  text-align:center;
-  padding:30px 0;
-}
-
-.top-bar .menu-box-1 > ul ul > li:hover > a {
-  background-color:black;
-  color:white;
-}
-/* 탑바 끝 */
+/* 게시글 상세 끝 */

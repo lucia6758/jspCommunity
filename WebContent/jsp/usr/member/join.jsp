@@ -3,10 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="pageTitle" value="회원가입" />
 <%@ include file="../../part/head.jspf"%>
-<section class="pageTitle">
-	<h1>${pageTitle}</h1>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/static/join.css" />
+<section class="pageTitle con-min-width">
+	<h1 class="con">${pageTitle}</h1>
 </section>
-<div>
+<section class="member-join con-min-width">
 	<script>
 	let checkJoinForm_submited = false;
 	let checkJoinForm_checkedLoginId = "";
@@ -108,64 +110,66 @@
 	  checkJoinForm_submited = true;
 	}
 	</script>
-	<form action="doJoin" method="POST"
-		onsubmit="checkJoinForm_submit(this); return false;">
-		<div>
-			<div>아이디</div>
+	<div class="con">
+		<form action="doJoin" method="POST"
+			onsubmit="checkJoinForm_submit(this); return false;">
 			<div>
-				<input type="text" name="loginId" placeholder="ID" maxlength="30">
-				<button type="button" name="btnLoginIdDupCheck"
-					onclick="checkJoinForm_checkLoginIdDup(this);">중복확인</button>
+				<div>아이디</div>
+				<div>
+					<input type="text" name="loginId" placeholder="ID" maxlength="30">
+					<button type="button" name="btnLoginIdDupCheck"
+						onclick="checkJoinForm_checkLoginIdDup(this);">중복확인</button>
+				</div>
 			</div>
-		</div>
-		<div>
-			<div>비밀번호</div>
 			<div>
-				<input type="password" name="loginPw" placeholder="Password"
-					maxlength="50">
+				<div>비밀번호</div>
+				<div>
+					<input type="password" name="loginPw" placeholder="Password"
+						maxlength="50">
+				</div>
 			</div>
-		</div>
-		<div>
-			<div>비밀번호 확인</div>
 			<div>
-				<input type="password" name="loginPwConfirm"
-					placeholder="Password Confirm" maxlength="50">
+				<div>비밀번호 확인</div>
+				<div>
+					<input type="password" name="loginPwConfirm"
+						placeholder="Password Confirm" maxlength="50">
+				</div>
 			</div>
-		</div>
-		<div>
-			<div>이름</div>
 			<div>
-				<input type="text" name="name" placeholder="Name" maxlength="50">
+				<div>이름</div>
+				<div>
+					<input type="text" name="name" placeholder="Name" maxlength="50">
+				</div>
 			</div>
-		</div>
-		<div>
-			<div>별명</div>
 			<div>
-				<input type="text" name="nickname" placeholder="Nickname"
-					maxlength="50">
+				<div>별명</div>
+				<div>
+					<input type="text" name="nickname" placeholder="Nickname"
+						maxlength="50">
+				</div>
 			</div>
-		</div>
-		<div>
-			<div>이메일</div>
 			<div>
-				<input type="email" name="email" placeholder="E-Mail address"
-					maxlength="100">
+				<div>이메일</div>
+				<div>
+					<input type="email" name="email" placeholder="E-Mail address"
+						maxlength="100">
+				</div>
 			</div>
-		</div>
-		<div>
-			<div>핸드폰 번호</div>
 			<div>
-				<input type="number" name="cellphoneNo"
-					placeholder="cellphone Number" maxlength="20">
+				<div>핸드폰 번호</div>
+				<div>
+					<input type="number" name="cellphoneNo"
+						placeholder="cellphone Number" maxlength="20">
+				</div>
 			</div>
-		</div>
-		<hr>
-		<div>
+			<hr>
 			<div>
-				<input type="submit" value="가입" />
-				<button type="button" onclick="history.back();">뒤로가기</button>
+				<div>
+					<input class="submit" type="submit" value="가입" />
+					<button type="button" onclick="history.back();">뒤로가기</button>
+				</div>
 			</div>
-		</div>
-	</form>
-</div>
+		</form>
+	</div>
+</section>
 <%@ include file="../../part/foot.jspf"%>
