@@ -1,5 +1,9 @@
 package com.sbs.example.jspCommunity.util;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Map;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -14,6 +18,17 @@ public class Util {
 			e.printStackTrace();
 		}
 		return rs;
+	}
+
+	public static Map getJsonMapFromFile(InputStream is) {
+		ObjectMapper mapper = new ObjectMapper();
+
+		try {
+			return mapper.readValue(is, Map.class);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
