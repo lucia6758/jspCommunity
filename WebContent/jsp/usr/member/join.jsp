@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="pageTitle" value="회원가입" />
 <%@ include file="../../part/head.jspf"%>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/join.css" />
 <section class="pageTitle con-min-width">
@@ -106,6 +107,11 @@
 	    form.cellphoneNo.focus();
 	    return;
 	  }
+	  
+	  form.loginPwReal.value = sha256(form.loginPw.value);
+	  form.loginPw.value = "";
+	  form.loginPwConfirm.value = "";
+	  
 	  form.submit();
 	  checkJoinForm_submited = true;
 	}
@@ -113,6 +119,7 @@
 	<div class="con">
 		<form action="doJoin" method="POST"
 			onsubmit="checkJoinForm_submit(this); return false;">
+			<input type="hidden" name="loginPwReal"/>
 			<div>
 				<div>아이디</div>
 				<div>
@@ -158,8 +165,8 @@
 			<div>
 				<div>핸드폰 번호</div>
 				<div>
-					<input type="number" name="cellphoneNo"
-						placeholder="cellphone Number" maxlength="20">
+					<input type="tel" name="cellphoneNo" placeholder="Cellphone Number"
+						maxlength="20">
 				</div>
 			</div>
 			<hr>
