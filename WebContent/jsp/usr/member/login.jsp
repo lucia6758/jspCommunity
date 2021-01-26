@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="pageTitle" value="로그인" />
 <%@ include file="../../part/head.jspf"%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/login.css" />
 <section class="pageTitle con-min-width">
@@ -42,7 +43,7 @@
 	<div class="con">
 		<form action="doLogin" method="POST"
 			onsubmit="checkLoginForm_submit(this); return false;">
-			<input type="hidden" name="loginPwReal"/>
+			<input type="hidden" name="loginPwReal" />
 			<div>
 				<div>아이디</div>
 				<div>
@@ -60,6 +61,11 @@
 				<div class="login-btn">
 					<input class="submit" type="submit" value="로그인" />
 					<button type="button" onclick="history.back();">뒤로가기</button>
+				</div>
+			</div>
+			<div>
+				<div class="forget">
+					<a href="findLoginId">아이디 찾기</a>
 				</div>
 			</div>
 		</form>
