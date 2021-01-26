@@ -310,4 +310,14 @@ public class MysqlUtil {
 		return id;
 	}
 
+	public static int selectRowIntValue(SecSql sql) {
+		Map<String, Object> row = selectRow(sql);
+
+		for (String key : row.keySet()) {
+			return (int) row.get(key);
+		}
+
+		return -1;
+	}
+
 }

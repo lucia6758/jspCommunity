@@ -20,14 +20,19 @@ public class UsrArticleController {
 	}
 
 	public String showList(HttpServletRequest req, HttpServletResponse resp) {
+		String searchKeyword = req.getParameter("searchKeyword");
+		String searchKeywordType = req.getParameter("searchKeywordType");
+
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
 
 		Board board = articleService.getBoardById(boardId);
 
-		List<Article> articles = articleService.getForPrintArticlesByBoardId(boardId);
+		int totalCount = articleService.getArticlesCountByBoardId(boardId, searchKeyword, searchKeywordType);
+		List<Article> articles = articleService.getForPrintArticlesByBoardId(boardId, searchKeyword, searchKeywordType);
 
 		req.setAttribute("board", board);
 		req.setAttribute("articles", articles);
+		req.setAttribute("totalCount", totalCount);
 
 		return "usr/article/list";
 

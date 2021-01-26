@@ -11,6 +11,46 @@
 
 <section class="article-list con-min-width">
 	<div class="con">
+		<div class="articlesCount">게시물 수 : ${totalCount}</div>
+		<div>
+			<script>
+			let checkSearchForm_submited = false;
+			function checkSearchForm_submit(form) {
+			  if (checkSearchForm_submited) {
+			    alert("처리중입니다.");
+			    return;
+			  }
+			
+			  form.searchKeyword.value = form.searchKeyword.value.trim();
+			  if (form.searchKeyword.value == "") {
+			    alert("검색어를 입력해주세요");
+			    form.searchKeyword.focus();
+			    return;
+			  }
+			  
+			  form.submit();
+			  checkSearchForm_submited = true;
+			}
+			</script>
+			<form action="" onsubmit="checkSearchForm_submit(this); return false">
+				<input type="hidden" name="boardId" value="${param.boardId}" />
+				<select name="searchKeywordType">
+					<option value="title">제목</option>
+					<option value="body">본문</option>
+					<option value="titleAndBody">제목+본문</option>
+				</select>
+				<script>
+				const param_searchKeywordType = '${param.searchKeywordType}';
+				
+				if(param_searchKeywordType) {
+				$('select[name="searchKeywordType"]').val(param_searchKeywordType);
+				}
+				</script>
+				<input type="text" value="${param_searchKeyword}"
+					name="searchKeyword" placeholder="검색어를 입력해주세요" />
+				<input type="submit" value="검색" />
+			</form>
+		</div>
 		<ul class="list_top flex">
 			<li class="list_id">번호</li>
 			<li class="list_title">제목</li>
