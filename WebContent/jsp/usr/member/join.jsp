@@ -34,7 +34,7 @@
 				if ( data.msg ) {
 					alert(data.msg);
 				}
-				if ( data.resultCode.substr(0,2) == "S-" ) {
+				if ( data.sucess ) {
 					checkJoinForm_checkedLoginId = data.loginId;
 				}
 			},

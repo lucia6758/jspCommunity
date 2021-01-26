@@ -8,6 +8,7 @@ import com.sbs.example.jspCommunity.App;
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dao.MemberDao;
 import com.sbs.example.jspCommunity.dto.Member;
+import com.sbs.example.jspCommunity.dto.ResultData;
 import com.sbs.example.jspCommunity.util.Util;
 
 public class MemberService {
@@ -40,7 +41,7 @@ public class MemberService {
 		return memberDao.getMemberByNameAndEmail(name, email);
 	}
 
-	public Map<String, Object> sendTempLoginPwToEmail(Member actor) {
+	public ResultData sendTempLoginPwToEmail(Member actor) {
 		// 메일 제목과 내용
 		String siteName = App.getSite();
 		String siteLoginUrl = App.getLoginUrl();
@@ -56,18 +57,16 @@ public class MemberService {
 		// 메일 발송
 		int sendRs = emailService.send(actor.getEmail(), title, body);
 
-		if (sendRs == 1) {
-			rs.put("resultCode", "S-1");
-			rs.put("msg", String.format("%s (으)로 임시 비밀번호가 발송되었습니다.", actor.getEmail()));
-
-			// 고객의 비번을 임시비번으로 변경
-			setTempPassword(actor, tempPassword);
-		} else {
-			rs.put("resultCode", "F-1");
-			rs.put("msg", "메일 발송에 실패하였습니다. 다시 시도해주십시오.");
+		if (sendRs != 1) {
+			return new ResultData("F-1", "메일 발송에 실패하였습니다. 다시 시도해주십시오.");
 		}
 
-		return rs;
+		// 고객의 비번을 임시비번으로 변경
+		setTempPassword(actor, tempPassword);
+
+		String resultMsg = String.format("%s (으)로 임시 비밀번호가 발송되었습니다.", actor.getEmail());
+
+		return new ResultData("S-1", resultMsg, "email", actor.getEmail());
 	}
 
 	private void setTempPassword(Member actor, String tempPassword) {
