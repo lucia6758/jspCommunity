@@ -34,8 +34,8 @@
 				if ( data.msg ) {
 					alert(data.msg);
 				}
-				if ( data.sucess ) {
-					checkJoinForm_checkedLoginId = data.loginId;
+				if ( data.success ) {
+					checkJoinForm_checkedLoginId = data.body.loginId;
 				}
 			},
 			"json"
