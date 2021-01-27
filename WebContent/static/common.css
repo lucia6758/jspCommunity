@@ -52,6 +52,10 @@ a {
   justify-content:flex-end;
 }
 
+* > .flex-jc-c {
+  justify-content:center;
+}
+
 * > .flex-jc-sb {
   justify-content:space-between;
 }

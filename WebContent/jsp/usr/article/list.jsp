@@ -67,14 +67,21 @@
 				<li class="list_date">${article.regDate}</li>
 			</ul>
 		</c:forEach>
-		<div class="list-paging">
+		<div class="list-paging flex flex-jc-c">
+			<c:if test="${pageBeforeBtnNeedToShow}">
+				<a
+					href="?boardId=${param.boardId}&page=${pageBefore}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}">이전</a>
+			</c:if>
 			<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
 				<c:set var="aClass" value="${currentPage == i ? 'currentPage' : ''}" />
 				<c:set var="aUrl"
 					value="?boardId=${param.boardId}&page=${i}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}" />
 				<a class="${aClass}" href="${aUrl}">${i}</a>
 			</c:forEach>
-
+			<c:if test="${pageAfterBtnNeedToShow}">
+				<a
+					href="?boardId=${param.boardId}&page=${pageAfter}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}">다음</a>
+			</c:if>
 		</div>
 		<div class="write-btn flex flex-jc-e">
 			<a href="write?memberId=1&boardId=${param.boardId}">글쓰기</a>
