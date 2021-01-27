@@ -32,7 +32,7 @@
 			  checkSearchForm_submited = true;
 			}
 			</script>
-			<form action="" onsubmit="checkSearchForm_submit(this); return false">
+			<form onsubmit="checkSearchForm_submit(this); return false">
 				<input type="hidden" name="boardId" value="${param.boardId}" />
 				<select name="searchKeywordType">
 					<option value="title">제목</option>
@@ -67,6 +67,15 @@
 				<li class="list_date">${article.regDate}</li>
 			</ul>
 		</c:forEach>
+		<div class="list-paging">
+			<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+				<c:set var="aClass" value="${currentPage == i ? 'currentPage' : ''}" />
+				<c:set var="aUrl"
+					value="?boardId=${param.boardId}&page=${i}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}" />
+				<a class="${aClass}" href="${aUrl}">${i}</a>
+			</c:forEach>
+
+		</div>
 		<div class="write-btn flex flex-jc-e">
 			<a href="write?memberId=1&boardId=${param.boardId}">글쓰기</a>
 		</div>

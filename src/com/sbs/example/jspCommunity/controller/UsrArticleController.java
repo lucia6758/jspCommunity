@@ -11,6 +11,7 @@ import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dto.Article;
 import com.sbs.example.jspCommunity.dto.Board;
 import com.sbs.example.jspCommunity.service.ArticleService;
+import com.sbs.example.jspCommunity.util.Util;
 
 public class UsrArticleController {
 	private ArticleService articleService;
@@ -23,12 +24,51 @@ public class UsrArticleController {
 		String searchKeyword = req.getParameter("searchKeyword");
 		String searchKeywordType = req.getParameter("searchKeywordType");
 
+		int itemsInAPage = 20;
+		int page = Util.getAsInt(req.getParameter("page"), 1);
+		int limitStart = (page - 1) * itemsInAPage;
+
 		int boardId = Integer.parseInt(req.getParameter("boardId"));
 
 		Board board = articleService.getBoardById(boardId);
 
 		int totalCount = articleService.getArticlesCountByBoardId(boardId, searchKeyword, searchKeywordType);
-		List<Article> articles = articleService.getForPrintArticlesByBoardId(boardId, searchKeyword, searchKeywordType);
+		List<Article> articles = articleService.getForPrintArticlesByBoardId(boardId, limitStart, itemsInAPage,
+				searchKeyword, searchKeywordType);
+
+		int totalPage = (int) Math.ceil(totalCount / (double) itemsInAPage);
+		int pagesInAList = 10;
+		int pageBoundary = page / pagesInAList;
+		if (page % pagesInAList == 0) {
+			pageBoundary = page / pagesInAList - 1;
+		}
+		int startPage = 1 + pagesInAList * pageBoundary;
+		int endPage = startPage + pagesInAList - 1;
+		if (endPage >= totalPage) {
+			endPage = totalPage;
+		}
+
+		int pageBefore = startPage - 1;
+		if (pageBefore < 1) {
+			pageBefore = 1;
+		}
+
+		int pageAfter = endPage + 1;
+		if (pageAfter > totalPage) {
+			pageAfter = totalPage;
+		}
+
+		boolean pageBeforeBtnNeedToShow = pageBefore != startPage;
+		boolean pageAfterBtnNeedToShow = pageAfter != endPage;
+
+		req.setAttribute("currentPage", page);
+		req.setAttribute("totalPage", totalPage);
+		req.setAttribute("startPage", startPage);
+		req.setAttribute("endPage", endPage);
+		req.setAttribute("pageBefore", pageBefore);
+		req.setAttribute("pageAfter", pageAfter);
+		req.setAttribute("pageBeforeBtnNeedToShow", pageBeforeBtnNeedToShow);
+		req.setAttribute("pageAfterBtnNeedToShow", pageAfterBtnNeedToShow);
 
 		req.setAttribute("board", board);
 		req.setAttribute("articles", articles);
