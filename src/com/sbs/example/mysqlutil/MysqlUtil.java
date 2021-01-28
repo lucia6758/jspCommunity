@@ -320,4 +320,24 @@ public class MysqlUtil {
 		return -1;
 	}
 
+	public static String selectRowStringValue(SecSql sql) {
+		Map<String, Object> row = selectRow(sql);
+
+		for (String key : row.keySet()) {
+			return (String) row.get(key);
+		}
+
+		return "";
+	}
+
+	public static boolean selectRowBooleanValue(SecSql sql) {
+		Map<String, Object> row = selectRow(sql);
+
+		for (String key : row.keySet()) {
+			return ((int) row.get(key)) == 1;
+		}
+
+		return false;
+	}
+
 }
