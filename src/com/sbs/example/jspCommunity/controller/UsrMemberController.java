@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.sbs.example.jspCommunity.App;
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dto.Member;
 import com.sbs.example.jspCommunity.dto.ResultData;
@@ -59,6 +60,19 @@ public class UsrMemberController {
 		joinArgs.put("cellphoneNo", cellphoneNo);
 
 		int newMemberId = memberService.join(joinArgs);
+
+		String siteName = App.getSite();
+		String siteLoginUrl = App.getLoginUrl();
+		String siteMainUrl = App.getMainUrl();
+		String title = "[" + siteName + "] 회원가입이 완료되었습니다.";
+		String body = siteName + " 회원이 되신것을 환영합니다.<br/><br/>";
+		body += "가입정보<br/>";
+		body += "아이디 : " + loginId;
+		body += "<br/>이름 : " + name;
+		body += "<br/>닉네임 : " + nickname;
+		body += "<br/><br/><a href=\"" + siteMainUrl + "\" target=\"_blank\">" + siteName + " 바로가기</a>";
+
+		Container.emailService.send(email, title, body);
 
 		req.setAttribute("alertMsg", newMemberId + "번 회원으로 가입되었습니다.");
 		req.setAttribute("replaceUrl", "../home/main");
