@@ -40,34 +40,47 @@
 	  checkLoginForm_submited = true;
 	}
 	</script>
-	<div class="con">
-		<form action="doLogin" method="POST"
+	<div class="login-box con">
+		<form class="con" action="doLogin" method="POST"
 			onsubmit="checkLoginForm_submit(this); return false;">
 			<input type="hidden" name="loginPwReal" />
-			<div>
-				<div>아이디</div>
-				<div>
-					<input type="text" name="loginId" placeholder="ID" maxlength="30">
-				</div>
+			<table>
+				<colgroup>
+					<col width="150">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th>
+							<span> 아이디 </span>
+						</th>
+						<td>
+							<div>
+								<input type="text" name="loginId" placeholder="ID"
+									maxlength="30">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<th>
+							<span> 비밀번호 </span>
+						</th>
+						<td>
+							<div>
+								<input type="password" name="loginPw" placeholder="Password"
+									maxlength="50">
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="btn-wrap flex flex-jc-c">
+				<input class="submit" type="submit" value="로그인" />
+				<button type="button" onclick="history.back();">뒤로가기</button>
 			</div>
-			<div>
-				<div>비밀번호</div>
-				<div>
-					<input type="password" name="loginPw" placeholder="Password"
-						maxlength="50">
-				</div>
-			</div>
-			<div>
-				<div class="login-btn">
-					<input class="submit" type="submit" value="로그인" />
-					<button type="button" onclick="history.back();">뒤로가기</button>
-				</div>
-			</div>
-			<div>
-				<div class="forget">
-					<a href="findLoginId">아이디 찾기</a>
-					<a href="findLoginPw">비밀번호 찾기</a>
-				</div>
+			<div class="forget flex flex-jc-c">
+				<a href="findLoginId">아이디 찾기</a>
+				<span>/</span>
+				<a href="findLoginPw">비밀번호 찾기</a>
 			</div>
 		</form>
 	</div>

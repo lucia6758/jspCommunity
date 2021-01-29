@@ -13,7 +13,6 @@ import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dto.Member;
 import com.sbs.example.jspCommunity.dto.ResultData;
 import com.sbs.example.jspCommunity.service.MemberService;
-import com.sbs.example.jspCommunity.util.Util;
 
 public class UsrMemberController {
 	private MemberService memberService;
