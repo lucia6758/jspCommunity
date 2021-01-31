@@ -3,12 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="pageTitle" value="회원가입" />
 <%@ include file="../../part/head.jspf"%>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/join.css" />
-<section class="pageTitle con-min-width">
-	<h1 class="con">${pageTitle}</h1>
-</section>
+
 <section class="member-join con-min-width">
 	<script>
 	let checkJoinForm_submited = false;
@@ -116,65 +115,100 @@
 	  checkJoinForm_submited = true;
 	}
 	</script>
-	<div class="con">
+	<div class="join-box con">
+	<h1 class="flex flex-jc-c">${pageTitle}</h1>
 		<form action="doJoin" method="POST"
 			onsubmit="checkJoinForm_submit(this); return false;">
-			<input type="hidden" name="loginPwReal"/>
-			<div>
-				<div>아이디</div>
-				<div>
-					<input type="text" name="loginId" placeholder="ID" maxlength="30">
-					<button type="button" name="btnLoginIdDupCheck"
-						onclick="checkJoinForm_checkLoginIdDup(this);">중복확인</button>
-				</div>
-			</div>
-			<div>
-				<div>비밀번호</div>
-				<div>
-					<input type="password" name="loginPw" placeholder="Password"
-						maxlength="50">
-				</div>
-			</div>
-			<div>
-				<div>비밀번호 확인</div>
-				<div>
-					<input type="password" name="loginPwConfirm"
-						placeholder="Password Confirm" maxlength="50">
-				</div>
-			</div>
-			<div>
-				<div>이름</div>
-				<div>
-					<input type="text" name="name" placeholder="Name" maxlength="50">
-				</div>
-			</div>
-			<div>
-				<div>별명</div>
-				<div>
-					<input type="text" name="nickname" placeholder="Nickname"
-						maxlength="50">
-				</div>
-			</div>
-			<div>
-				<div>이메일</div>
-				<div>
-					<input type="email" name="email" placeholder="E-Mail address"
-						maxlength="100">
-				</div>
-			</div>
-			<div>
-				<div>핸드폰 번호</div>
-				<div>
-					<input type="tel" name="cellphoneNo" placeholder="Cellphone Number"
-						maxlength="20">
-				</div>
-			</div>
-			<hr>
-			<div>
-				<div>
-					<input class="submit" type="submit" value="가입" />
-					<button type="button" onclick="history.back();">뒤로가기</button>
-				</div>
+			<input type="hidden" name="loginPwReal" />
+			<table>
+				<colgroup>
+					<col width="150">
+				</colgroup>
+				<tr>
+					<th>
+						<span>아이디</span>
+					</th>
+					<td>
+						<div>
+							<input type="text" name="loginId" placeholder="ID" maxlength="30">
+						</div>
+					</td>
+					<td>
+						<div class="btn-wrap">
+							<button type="button" name="btnLoginIdDupCheck"
+								onclick="checkJoinForm_checkLoginIdDup(this);">중복확인</button>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<span>비밀번호</span>
+					</th>
+					<td>
+						<div>
+							<input type="password" name="loginPw" placeholder="Password"
+								maxlength="50">
+						</div>
+					</td>
+
+				</tr>
+				<tr>
+					<th>
+						<span>비밀번호 확인</span>
+					</th>
+					<td>
+						<div>
+							<input type="password" name="loginPwConfirm"
+								placeholder="Password Confirm" maxlength="50">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<span>이름</span>
+					</th>
+					<td>
+						<div>
+							<input type="text" name="name" placeholder="Name" maxlength="50">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<span>별명</span>
+					</th>
+					<td>
+						<div>
+							<input type="text" name="nickname" placeholder="Nickname"
+								maxlength="50">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<span>이메일</span>
+					</th>
+					<td>
+						<div>
+							<input type="email" name="email" placeholder="E-Mail address"
+								maxlength="100">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<span>핸드폰 번호</span>
+					</th>
+					<td>
+						<div>
+							<input type="tel" name="cellphoneNo"
+								placeholder="Cellphone Number" maxlength="20">
+						</div>
+					</td>
+				</tr>
+			</table>
+			<div class="btn-wrap flex flex-jc-c">
+				<input class="submit" type="submit" value="가입" />
 			</div>
 		</form>
 	</div>
