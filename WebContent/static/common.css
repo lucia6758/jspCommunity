@@ -111,6 +111,11 @@ a {
 .con-min-width {
 	min-width: 320px;
 }
+
+::selection{
+  color: white;
+  background: #71B280;
+}
 /* 커스텀 끝 */
 
 /* 탑바 시작 */

@@ -5,14 +5,69 @@
 <%@ include file="../../part/head.jspf"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/list.css" />
-<section class="pageTitle con-min-width">
+<section class="pageTitle con-min-width padding-0-10">
 	<h1 class="con">${pageTitle}</h1>
 </section>
 
-<section class="article-list con-min-width">
+<section class="article-list con-min-width padding-0-10">
 	<div class="con">
 		<div class="articlesCount">게시물 수 : ${totalCount}</div>
-		<div>
+		<table>
+            <colgroup>
+              <col width="50">
+              </col>
+              <col width="">
+              </col>
+              <col width="150">
+              </col>
+              <col width="100">
+              </col>
+              <col width="50">
+              </col>
+            </colgroup>
+            <thead>
+              <tr>
+                <th>번호</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>날짜</th>
+                <th>추천수</th>
+              </tr>
+            </thead>
+            <tbody>
+		<c:forEach items="${articles}" var="article">
+			<tr>
+				<td>${article.id}</td>
+				<td class="list-title">
+					<a href="detail?id=${article.id}">${article.title}</a>
+				</td>
+				<td>${article.extra__writer}</td>
+				<td>${article.regDate}</td>
+				<td>0</td>
+			</tr>
+		</c:forEach>
+		 </tbody>
+          </table>
+		<div class="list-paging flex flex-jc-c">
+			<c:if test="${pageBeforeBtnNeedToShow}">
+				<a
+					href="?boardId=${param.boardId}&page=${pageBefore}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}">이전</a>
+			</c:if>
+			<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+				<c:set var="aClass" value="${currentPage == i ? 'currentPage' : ''}" />
+				<c:set var="aUrl"
+					value="?boardId=${param.boardId}&page=${i}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}" />
+				<a class="${aClass}" href="${aUrl}">${i}</a>
+			</c:forEach>
+			<c:if test="${pageAfterBtnNeedToShow}">
+				<a
+					href="?boardId=${param.boardId}&page=${pageAfter}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}">다음</a>
+			</c:if>
+		</div>
+		<div class="write-btn flex flex-jc-e">
+			<a href="write?memberId=1&boardId=${param.boardId}">글쓰기</a>
+		</div>
+		<div class="list-search flex flex-jc-c">
 			<script>
 			let checkSearchForm_submited = false;
 			function checkSearchForm_submit(form) {
@@ -32,7 +87,7 @@
 			  checkSearchForm_submited = true;
 			}
 			</script>
-			<form onsubmit="checkSearchForm_submit(this); return false">
+			<form class="flex flex-ai-c" onsubmit="checkSearchForm_submit(this); return false">
 				<input type="hidden" name="boardId" value="${param.boardId}" />
 				<select name="searchKeywordType">
 					<option value="title">제목</option>
@@ -50,41 +105,6 @@
 					name="searchKeyword" placeholder="검색어를 입력해주세요" />
 				<input type="submit" value="검색" />
 			</form>
-		</div>
-		<ul class="list_top flex">
-			<li class="list_id">번호</li>
-			<li class="list_title">제목</li>
-			<li class="list_writer">작성자</li>
-			<li class="list_date">작성일</li>
-		</ul>
-		<c:forEach items="${articles}" var="article">
-			<ul class="list_article flex">
-				<li class="list_id">${article.id}</li>
-				<li class="list_title">
-					<a href="detail?id=${article.id}">${article.title}</a>
-				</li>
-				<li class="list_writer">${article.extra__writer}</li>
-				<li class="list_date">${article.regDate}</li>
-			</ul>
-		</c:forEach>
-		<div class="list-paging flex flex-jc-c">
-			<c:if test="${pageBeforeBtnNeedToShow}">
-				<a
-					href="?boardId=${param.boardId}&page=${pageBefore}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}">이전</a>
-			</c:if>
-			<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-				<c:set var="aClass" value="${currentPage == i ? 'currentPage' : ''}" />
-				<c:set var="aUrl"
-					value="?boardId=${param.boardId}&page=${i}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}" />
-				<a class="${aClass}" href="${aUrl}">${i}</a>
-			</c:forEach>
-			<c:if test="${pageAfterBtnNeedToShow}">
-				<a
-					href="?boardId=${param.boardId}&page=${pageAfter}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}">다음</a>
-			</c:if>
-		</div>
-		<div class="write-btn flex flex-jc-e">
-			<a href="write?memberId=1&boardId=${param.boardId}">글쓰기</a>
 		</div>
 	</div>
 </section>

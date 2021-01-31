@@ -4,48 +4,112 @@
 }
 /* 페이지 타이틀 끝 */
 
-/* 게시판 */
-.article-list ul > li {
+/* 게시판 리스트 */
+.article-list > ul > li {
   text-align:center;
 }
-.article-list .list_top {
+.article-list table {
   padding:2px;
   border-bottom:2px solid black;
-}
-.article-list .list_article {
-  padding:2px;
-  margin:5px 0;
-}
-
-.list_id {
-  width: 100px;
+  border-top: 2px solid black;
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
 }
 
-.list_title {
-  width: 500px;
+.article-list table tr {
+  border-bottom:1px solid lightgray;
 }
 
-.list_writer {
-  width: 200px;
+.article-list table th, .article-list table td {
+  padding:5px 0;
 }
 
-.list_date {
-  width:200px;
+.article-list table td:not(.list-title){
+  text-align:center;
 }
 
+.article-list table .list-title > a{
+  display:block;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  margin-left:10px;
+}
+
+.article-list table .list-title > a:hover {
+  text-decoration:underline;
+  color:#71B280;
+}
+
+/* 게시판 리스트 끝 */
+
+/* 게시판 버튼 */
 .write-btn {
-  margin-top:20px;
+  margin-top:10px;
 }
 
 .write-btn > a {
-  padding:5px;
-  border: 1px solid black;
-  border-radius:5px;
-}
-
-.write-btn > a:hover {
-  background-color:black;
+  display:block;
+  padding:7px 10px;
+  background-color: #134E5E;
   color:white;
+  border-radius:10px;
 }
-/* 게시판 끝 */
 
+/* 게시판 버튼 끝 */
+
+/* 게시판 페이징 */
+.list-paging {
+  padding:5px 0;
+}
+
+.list-paging > a {
+  display: block;
+  padding: 2px 8px;
+  box-sizing:border-box;
+}
+
+.list-paging > a:hover:not(.currentPage) {
+  display: block;
+  text-decoration:underline;
+  box-sizing:border-box;
+  color: #134E5E;
+}
+
+.list-paging > .currentPage{
+  background-color:#134E5E;
+  border-radius:20px;
+  color: white;
+  
+}
+/* 게시판 페이징 끝 */
+
+/* 게시판 검색폼 */
+.list-search form {
+  height: 30px;
+  width: 320px;
+  border: 2px solid #134E5E;
+}
+
+.list-search form > * {
+  border:none;
+  outline:none;
+  font-family: 'S-CoreDream-4Regular';
+  flex:1 0 0 ;
+}
+
+.list-search form > input[type="submit"]{
+  background-color:#134E5E;
+  color:white;
+  height:32px;
+  font-size:1rem;
+  cursor:pointer;  
+}
+
+.list-search form > select > option {
+  background-color:#134E5E;
+  color:white;
+  height:30px;
+}
+/* 게시판 검색폼 끝 */
