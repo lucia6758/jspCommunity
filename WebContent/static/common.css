@@ -83,6 +83,10 @@ a {
 	justify-content: space-between;
 }
 
+* > .flex-jc-a {
+  justify-content:space-around;
+}
+
 *>.flex-ai-c {
 	align-items: center;
 }

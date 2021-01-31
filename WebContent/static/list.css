@@ -5,6 +5,10 @@
 /* 페이지 타이틀 끝 */
 
 /* 게시판 리스트 */
+.article-list .articlesCount{
+	padding:5px 0;
+}
+
 .article-list > ul > li {
   text-align:center;
 }
@@ -40,6 +44,17 @@
 .article-list table .list-title > a:hover {
   text-decoration:underline;
   color:#71B280;
+}
+
+.empty-list {
+  padding:5px 0;
+  font-size: 1rem;
+  color: #71B280;
+}
+
+.empty-list i {
+  font-size:1.2rem;
+  margin-right:3px;
 }
 
 /* 게시판 리스트 끝 */

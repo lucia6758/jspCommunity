@@ -171,4 +171,26 @@ public class ArticleDao {
 		return MysqlUtil.update(sql);
 	}
 
+	public List<Article> getArticlesForMainByBoardId(int boardId) {
+		List<Article> articles = new ArrayList<>();
+		
+		SecSql sql = new SecSql();
+		sql.append("SELECT A.*");
+		sql.append(", M.nickname AS extra__writer");
+		sql.append("FROM article AS A");
+		sql.append("INNER JOIN `member` AS M");
+		sql.append("ON A.memberId = M.id");
+		sql.append("WHERE A.boardId = ?", boardId);
+		sql.append("ORDER BY A.id DESC");
+		sql.append("LIMIT 10");
+		
+		List<Map<String, Object>> articleMapList = MysqlUtil.selectRows(sql);
+
+		for (Map<String, Object> articleMap : articleMapList) {
+			articles.add(new Article(articleMap));
+		}
+
+		return articles;
+	}
+
 }

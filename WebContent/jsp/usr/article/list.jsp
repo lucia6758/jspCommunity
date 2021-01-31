@@ -11,47 +11,55 @@
 
 <section class="article-list con-min-width padding-0-10">
 	<div class="con">
-		<div class="articlesCount">게시물 수 : ${totalCount}</div>
+		<div class="articlesCount flex flex-jc-e">게시물 수 : ${totalCount}</div>
 		<table>
-            <colgroup>
-              <col width="60">
-              </col>
-              <col width="">
-              </col>
-              <col width="150">
-              </col>
-              <col width="100">
-              </col>
-              <col width="60">
-              </col>
-              <col width="60">
-              </col>
-            </colgroup>
-            <thead>
-              <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>날짜</th>
-                <th>조회수</th>
-                <th>추천수</th>
-              </tr>
-            </thead>
-            <tbody>
-		<c:forEach items="${articles}" var="article">
-			<tr>
-				<td>${article.id}</td>
-				<td class="list-title">
-					<a href="detail?id=${article.id}">${article.title}</a>
-				</td>
-				<td>${article.extra__writer}</td>
-				<td>${article.regDate}</td>
-				<td>${article.hitsCount}</td>
-				<td>0</td>
-			</tr>
-		</c:forEach>
-		 </tbody>
-          </table>
+			<colgroup>
+				<col width="60">
+				</col>
+				<col width="">
+				</col>
+				<col width="150">
+				</col>
+				<col width="100">
+				</col>
+				<col width="60">
+				</col>
+				<col width="60">
+				</col>
+			</colgroup>
+			<thead>
+				<tr>
+					<th>번호</th>
+					<th>제목</th>
+					<th>작성자</th>
+					<th>날짜</th>
+					<th>조회수</th>
+					<th>추천수</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${articles}" var="article">
+					<tr>
+						<td>${article.id}</td>
+						<td class="list-title">
+							<a href="detail?id=${article.id}">${article.title}</a>
+						</td>
+						<td>${article.extra__writer}</td>
+						<td>${article.regDate}</td>
+						<td>${article.hitsCount}</td>
+						<td>0</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+		<c:if test="${empty articles}">
+			<div class="empty-list">
+				<span class="flex flex-jc-c">
+					<i class="fas fa-exclamation-circle"></i>
+					등록된 게시물이 없습니다
+				</span>
+			</div>
+		</c:if>
 		<div class="list-paging flex flex-jc-c">
 			<c:if test="${pageBeforeBtnNeedToShow}">
 				<a
@@ -91,7 +99,8 @@
 			  checkSearchForm_submited = true;
 			}
 			</script>
-			<form class="flex flex-ai-c" onsubmit="checkSearchForm_submit(this); return false">
+			<form class="flex flex-ai-c"
+				onsubmit="checkSearchForm_submit(this); return false">
 				<input type="hidden" name="boardId" value="${param.boardId}" />
 				<select name="searchKeywordType">
 					<option value="title">제목</option>

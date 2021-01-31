@@ -49,4 +49,8 @@ public class ArticleService {
 		return articleDao.increaseHitsCount(id);
 	}
 
+	public List<Article> getArticlesForMainByBoardId(int boardId) {
+		return articleDao.getArticlesForMainByBoardId(boardId);
+	}
+
 }
