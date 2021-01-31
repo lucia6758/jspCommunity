@@ -36,10 +36,6 @@
   border-bottom: 2px solid white;
 }
 
-.join-box form table tr td .dup-btn {
-  
-}
-
 .join-box form table input:not([type="submit"]) {
   display:block;
   width:100%;

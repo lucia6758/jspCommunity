@@ -8,12 +8,9 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/myPage.css" />
 
-<section class="pageTitle con-min-width">
-	<h1 class="con">${pageTitle}</h1>
-</section>
-
 <section class="myPage con-min-width">
-	<div class="con">
+	<div class="myPage-box con">
+		<h1 class="flex flex-jc-c">${pageTitle}</h1>
 		<script>
 		let checkModifyForm_submited = false;
 		
@@ -81,35 +78,87 @@
 		<form action="doModify" method="POST"
 			onsubmit="checkModifyForm_submit(this); return false;">
 			<input type="hidden" name="loginPwReal" />
-			<div>아이디 : ${loginedMember.loginId}</div>
-			<div>
-				비밀번호 :
-				<input type="password" name="loginPw" />
-			</div>
-			<div>
-				비밀번호 확인 :
-				<input type="password" name="loginPwConfirm" />
-			</div>
-			<div>
-				이름 :
-				<input type="text" name="name" value="${loginedMember.name}" />
-			</div>
-			<div>
-				닉네임 :
-				<input type="text" name="nickname" value="${loginedMember.nickname}" />
-			</div>
-			<div>
-				이메일 :
-				<input type="email" name="email" value="${loginedMember.email}" />
-			</div>
-			<div>
-				핸드폰 번호 :
-				<input type="tel" name="cellphoneNo" value="${loginedMember.cellphoneNo}" />
-			</div>
-			<div>가입일 : ${loginedMember.regDate}</div>
-			<div class="myPage-btn">
+			<table>
+				<colgroup>
+					<col width="150">
+				</colgroup>
+				<tr>
+					<th>
+						<span>아이디</span>
+					</th>
+					<td>
+						<div>${loginedMember.loginId}</div>
+					</td>
+					<td>
+				</tr>
+				<tr>
+					<th>
+						<span>비밀번호</span>
+					</th>
+					<td>
+						<div>
+							<input type="password" name="loginPw" placeholder="Password"
+								maxlength="50">
+						</div>
+					</td>
+
+				</tr>
+				<tr>
+					<th>
+						<span>비밀번호 확인</span>
+					</th>
+					<td>
+						<div>
+							<input type="password" name="loginPwConfirm"
+								placeholder="Password Confirm" maxlength="50">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<span>이름</span>
+					</th>
+					<td>
+						<div>
+							<input type="text" name="name" value="${loginedMember.name}" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<span>닉네임</span>
+					</th>
+					<td>
+						<div>
+							<input type="text" name="nickname"
+								value="${loginedMember.nickname}" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<span>이메일</span>
+					</th>
+					<td>
+						<div>
+							<input type="email" name="email" value="${loginedMember.email}" />
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<span>핸드폰 번호</span>
+					</th>
+					<td>
+						<div>
+							<input type="tel" name="cellphoneNo"
+								value="${loginedMember.cellphoneNo}" />
+						</div>
+					</td>
+				</tr>
+			</table>
+			<div class="btn-wrap flex flex-jc-c">
 				<input type="submit" value="회원정보 변경" />
-				<button type="button" onclick="history.back();">뒤로</button>
 			</div>
 		</form>
 	</div>

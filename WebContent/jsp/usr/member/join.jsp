@@ -175,7 +175,7 @@
 				</tr>
 				<tr>
 					<th>
-						<span>별명</span>
+						<span>닉네임</span>
 					</th>
 					<td>
 						<div>
