@@ -12,8 +12,13 @@ CREATE TABLE `member` (
     `email` VARCHAR(100) NOT NULL,
     loginId CHAR(50) NOT NULL UNIQUE,
     loginPw VARCHAR(200) NOT NULL,
-    adminLevel TINYINT(1) UNSIGNED NOT NULL DEFAULT 2 COMMENT '0=탈퇴/1=로그인정지/2=일반/3=인증된,4=관리자'
+    authLevel TINYINT(1) UNSIGNED NOT NULL DEFAULT 2 COMMENT '0=탈퇴/1=로그인정지/2=일반/3=인증된,4=관리자'
 );
+
+# cellphoneNo 추가 및 칼럼 순서 재정렬
+ALTER TABLE `member` CHANGE `loginId` `loginId` CHAR(50) NOT NULL AFTER `updateDate`,
+                     CHANGE `loginPw` `loginPw` VARCHAR(200) NOT NULL AFTER `loginId`,
+                     ADD COLUMN `cellphoneNo` CHAR(20) NOT NULL AFTER `email`;
 
 # 회원1 생성
 INSERT INTO `member`
@@ -21,9 +26,11 @@ SET regDate = NOW(),
 updateDate = NOW(),
 `name` = "김민수",
 `nickname` = "강바람",
-`email` = "jangka512@gmail.com",
+`email` = "test1@test.com",
 loginId = "user1",
-loginPw = "user1";
+loginPw = "user1",
+cellphoneNo = "01000000000";
+
 
 # 회원2 생성
 INSERT INTO `member`
@@ -31,9 +38,14 @@ SET regDate = NOW(),
 updateDate = NOW(),
 `name` = "김미소",
 `nickname` = "이또한지나가리라",
-`email` = "jangka512@gmail.com",
+`email` = "test2@test.com",
 loginId = "user2",
-loginPw = "user2";
+loginPw = "user2",
+cellphoneNo = "01000000000";
+
+# 기존회원들 비밀번호 암호화
+UPDATE `member`
+SET loginPw = SHA2(loginPw, 256);
 
 # 게시판 테이블 생성
 CREATE TABLE board (
@@ -51,19 +63,30 @@ updateDate = NOW(),
 `code` = 'notice',
 `name` = '공지사항';
 
-# 방명록 게시판 생성
-INSERT INTO board
-SET regDate = NOW(),
-updateDate = NOW(),
-`code` = 'guestBook',
-`name` = '방명록';
-
 # 자유게시판 생성
 INSERT INTO board
 SET regDate = NOW(),
 updateDate = NOW(),
 `code` = 'free',
-`name` = '자유';
+`name` = '자유게시판';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'tip',
+`name` = '정보게시판';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'trade',
+`name` = '교환해요';
+
+INSERT INTO board
+SET regDate = NOW(),
+updateDate = NOW(),
+`code` = 'qna',
+`name` = '묻고답하고';
 
 # 게시물 테이블 생성
 CREATE TABLE article (
@@ -82,7 +105,7 @@ INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
 memberId = 1,
-boardId = 1,
+boardId = 2,
 title = '제목1',
 `body` = '내용1';
 
@@ -90,7 +113,7 @@ INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
 memberId = 1,
-boardId = 1,
+boardId = 2,
 title = '제목2',
 `body` = '내용2';
 
@@ -98,7 +121,7 @@ INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
 memberId = 1,
-boardId = 1,
+boardId = 2,
 title = '제목3',
 `body` = '내용3';
 
@@ -106,7 +129,7 @@ INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
 memberId = 2,
-boardId = 1,
+boardId = 2,
 title = '제목4',
 `body` = '내용4';
 
@@ -114,21 +137,11 @@ INSERT INTO article
 SET regDate = NOW(),
 updateDate = NOW(),
 memberId = 2,
-boardId = 1,
+boardId = 2,
 title = '제목5',
-`body` = '내용5'; 
+`body` = '내용5';
 
-# adminLevel 칼럼이름을 authLevel 로 변경
-ALTER TABLE `member` CHANGE `adminLevel` `authLevel` TINYINT(1) UNSIGNED DEFAULT 2 NOT NULL COMMENT '0=탈퇴/1=로그인정지/2=일반/3=인증된,4=관리자';
-
-# cellphoneNo 추가 및 칼럼 순서 재정렬
-ALTER TABLE `member` CHANGE `loginId` `loginId` CHAR(50) NOT NULL AFTER `updateDate`,
-                     CHANGE `loginPw` `loginPw` VARCHAR(200) NOT NULL AFTER `loginId`,
-                     ADD COLUMN `cellphoneNo` CHAR(20) NOT NULL AFTER `email`;
-
-# 기존회원의 비번을 암호화
-UPDATE `member`
-SET loginPw = SHA2(loginPw, 256);
+SELECT * FROM article;
 
 # 부가정보테이블
 CREATE TABLE attr(
