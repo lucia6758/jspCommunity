@@ -173,7 +173,8 @@ a {
 
 .top-bar .menu-box-1>ul>li:hover>a {
 	background-color: white;
-	color: #005809;
+	color: #134E5E;
+	cursor:pointer;
 }
 
 .top-bar .menu-box-1 ul>li {

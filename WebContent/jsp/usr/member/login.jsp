@@ -7,9 +7,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/login.css" />
-<section class="pageTitle con-min-width">
-	<h1 class="con">${pageTitle}</h1>
-</section>
 <section class="login con-min-width">
 	<script>
 	let checkLoginForm_submited = false;
@@ -41,12 +38,13 @@
 	}
 	</script>
 	<div class="login-box con">
+	<h1 class="flex flex-jc-c">${pageTitle}</h1>
 		<form class="con" action="doLogin" method="POST"
 			onsubmit="checkLoginForm_submit(this); return false;">
 			<input type="hidden" name="loginPwReal" />
 			<table>
 				<colgroup>
-					<col width="150">
+					<col width="100">
 				</colgroup>
 				<tbody>
 					<tr>
@@ -56,7 +54,7 @@
 						<td>
 							<div>
 								<input type="text" name="loginId" placeholder="ID"
-									maxlength="30">
+									maxlength="30" autocomplete="off">
 							</div>
 						</td>
 					</tr>
@@ -75,7 +73,6 @@
 			</table>
 			<div class="btn-wrap flex flex-jc-c">
 				<input class="submit" type="submit" value="로그인" />
-				<button type="button" onclick="history.back();">뒤로가기</button>
 			</div>
 			<div class="forget flex flex-jc-c">
 				<a href="findLoginId">아이디 찾기</a>

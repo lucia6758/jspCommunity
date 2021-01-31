@@ -119,7 +119,8 @@
   color:white;
   height:32px;
   font-size:1rem;
-  cursor:pointer;  
+  cursor:pointer;
+  margin-right:-1px;  
 }
 
 .list-search form > select > option {
