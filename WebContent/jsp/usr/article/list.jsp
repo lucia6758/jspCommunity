@@ -14,7 +14,7 @@
 		<div class="articlesCount">게시물 수 : ${totalCount}</div>
 		<table>
             <colgroup>
-              <col width="50">
+              <col width="60">
               </col>
               <col width="">
               </col>
@@ -22,7 +22,9 @@
               </col>
               <col width="100">
               </col>
-              <col width="50">
+              <col width="60">
+              </col>
+              <col width="60">
               </col>
             </colgroup>
             <thead>
@@ -31,6 +33,7 @@
                 <th>제목</th>
                 <th>작성자</th>
                 <th>날짜</th>
+                <th>조회수</th>
                 <th>추천수</th>
               </tr>
             </thead>
@@ -43,6 +46,7 @@
 				</td>
 				<td>${article.extra__writer}</td>
 				<td>${article.regDate}</td>
+				<td>${article.hitsCount}</td>
 				<td>0</td>
 			</tr>
 		</c:forEach>

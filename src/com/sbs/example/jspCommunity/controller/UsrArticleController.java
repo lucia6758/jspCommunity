@@ -88,6 +88,8 @@ public class UsrArticleController {
 			req.setAttribute("historyBack", true);
 			return "common/redirect";
 		}
+		
+		articleService.increaseHitsCount(id);
 
 		req.setAttribute("article", article);
 
