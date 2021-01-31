@@ -105,8 +105,13 @@ public class UsrMemberController {
 		}
 
 		session.setAttribute("loginedMemberId", member.getId());
+		boolean isUsingTempPassword = memberService.isUsingTempPassword(member.getId());
 
 		req.setAttribute("alertMsg", String.format("%s님 환영합니다.", member.getNickname()));
+
+		if (isUsingTempPassword) {
+			req.setAttribute("alertMsg", "현재 임시비밀번호를 사용중입니다. 비밀번호를 변경해주십시오.");
+		}
 		req.setAttribute("replaceUrl", "../home/main");
 
 		return "common/redirect";
@@ -218,6 +223,10 @@ public class UsrMemberController {
 
 		if (loginPw != null && loginPw.length() == 0) {
 			loginPw = null;
+		}
+		
+		if (loginPw != null ) {
+			Container.attrService.remove("member__" + loginedMemberId + "__extra__isUsingTempPassword");
 		}
 
 		String name = req.getParameter("name");

@@ -43,9 +43,15 @@
 </head>
 <body>
 	<div class="body-content min-height-100vh">
-
+		<c:if test="${loginedMember.attr.isUsingTempPassword}">
+			<div class="warning">
+				<span>현재 임시비밀번호를 사용중입니다. 보안을 위해 비밀번호를 변경해주세요.</span>
+				<a href="../member/myPage">👉변경하러가기👈</a>
+			</div>
+		</c:if>
 		<header class="con-min-width">
 			<div class="con">
+
 				<nav class="top-bar-member">
 					<ul class="flex flex-jc-e">
 						<c:if test="${isLogined}">

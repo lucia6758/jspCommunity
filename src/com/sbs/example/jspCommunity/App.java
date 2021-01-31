@@ -3,7 +3,7 @@ package com.sbs.example.jspCommunity;
 public class App {
 
 	public static String getSite() {
-		return "JSP Community";
+		return "GREEN AROUND";
 	}
 
 	public static String getLoginUrl() {

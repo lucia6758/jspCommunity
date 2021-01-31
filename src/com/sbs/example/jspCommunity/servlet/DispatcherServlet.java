@@ -67,7 +67,7 @@ public abstract class DispatcherServlet extends HttpServlet {
 
 		String actionUrl = "/" + controllerTypeName + "/" + controllerName + "/" + actionMethodName;
 
-		// 데이터 추가 인터셉션 시작
+		// 데이터 추가 인터셉터 시작
 		boolean isLogined = false;
 		int loginedMemberId = 0;
 		Member loginedMember = null;
@@ -77,7 +77,7 @@ public abstract class DispatcherServlet extends HttpServlet {
 		if (session.getAttribute("loginedMemberId") != null) {
 			isLogined = true;
 			loginedMemberId = (int) session.getAttribute("loginedMemberId");
-			loginedMember = Container.memberService.getMemberById(loginedMemberId);
+			loginedMember = Container.memberService.getMemberIncludeAttrById(loginedMemberId);
 		}
 
 		req.setAttribute("isLogined", isLogined);

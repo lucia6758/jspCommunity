@@ -118,6 +118,19 @@ a {
 }
 /* 커스텀 끝 */
 
+/* 경고바 */
+.warning {
+  height:25px;
+  background-color:#6B1058;
+  text-align:center;
+  color:white;
+}
+
+.warning > a {
+  color:#71B280;
+}
+/* 경고바 끝 */
+
 /* 탑바 시작 */
 .top-bar-member {
 	background-color: white;

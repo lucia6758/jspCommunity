@@ -1,5 +1,6 @@
 package com.sbs.example.jspCommunity.dto;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import lombok.Data;
@@ -17,6 +18,7 @@ public class Member {
 	private String email;
 	private String cellphoneNo;
 	private int authLevel;
+	private Map<String, Object> attr;
 
 	public Member(Map<String, Object> map) {
 		this.id = (int) map.get("id");
@@ -29,6 +31,7 @@ public class Member {
 		this.email = (String) map.get("email");
 		this.cellphoneNo = (String) map.get("cellphoneNo");
 		this.authLevel = (int) map.get("authLevel");
+		this.attr = new HashMap<>();
 	}
 
 }
