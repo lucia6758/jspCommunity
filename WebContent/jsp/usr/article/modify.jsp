@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="pageTitle" value="${board.name} 게시물 수정" />
 <%@ include file="../../part/head.jspf"%>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/static/modify.css" />
 <section class="pageTitle con-min-width">
 	<h1 class="con">${pageTitle}</h1>
 </section>
@@ -43,18 +45,16 @@
 			<input type="hidden" name="id" value="${article.id}">
 			<input type="hidden" name="body" />
 			<div>
-				제목
 				<input type="text" name="title" placeholder="제목을 입력해주세요"
 					value="${article.title}" maxlength="50">
 			</div>
 			<hr />
 			<div>
-				내용
 				<script type="text/x-template">${article.body}</script>
 				<div class="toast-ui-editor"></div>
 			</div>
 			<br>
-			<div>
+			<div class="btn-wrap flex flex-jc-c">
 				<input type="submit" value="수정">
 				<button type="button" onclick="history.back();">뒤로가기</button>
 			</div>

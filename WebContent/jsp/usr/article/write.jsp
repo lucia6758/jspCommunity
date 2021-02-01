@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="pageTitle" value="${board.name} 게시물 작성" />
+<c:set var="pageTitle" value="${board.name} 글쓰기" />
 <%@ include file="../../part/head.jspf"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/write.css" />
@@ -45,18 +45,16 @@
 			<input type="hidden" name="body" />
 			<div>
 				<div>
-					제목
 					<input type="text" name="title" placeholder="제목을 입력해주세요"
 						maxlength="50">
 				</div>
 				<hr />
 				<div>
-					내용
 					<script type="text/x-template"></script>
 					<div class="toast-ui-editor"></div>
 				</div>
 				<br>
-				<div>
+				<div class="btn-wrap flex flex-jc-c">
 					<input class="submit" type="submit" value="작성">
 					<button type="button" onclick="history.back();">취소</button>
 				</div>
