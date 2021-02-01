@@ -7,7 +7,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/login.css" />
-<section class="login con-min-width">
+<section class="login con-min-width padding-0-10">
 	<script>
 	let checkLoginForm_submited = false;
 	function checkLoginForm_submit(form) {

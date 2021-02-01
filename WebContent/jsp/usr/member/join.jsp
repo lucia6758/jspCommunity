@@ -8,7 +8,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/join.css" />
 
-<section class="member-join con-min-width">
+<section class="member-join con-min-width padding-0-10">
 	<script>
 	let checkJoinForm_submited = false;
 	let checkJoinForm_checkedLoginId = "";

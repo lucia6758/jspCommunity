@@ -5,11 +5,11 @@
 <%@ include file="../../part/head.jspf"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/modify.css" />
-<section class="pageTitle con-min-width">
+<section class="pageTitle con-min-width padding-0-10">
 	<h1 class="con">${pageTitle}</h1>
 </section>
 
-<section class="article-modify con-min-width">
+<section class="article-modify con-min-width padding-0-10">
 	<div class="con">
 		<script>
 		let checkModifyForm_submited = false;

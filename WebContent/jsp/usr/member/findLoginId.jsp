@@ -5,7 +5,7 @@
 <%@ include file="../../part/head.jspf"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/find.css" />
-<section class="findLoginId con-min-width">
+<section class="findLoginId con-min-width padding-0-10">
 	<script>
 	let doFindLoginIdForm_submited = false;
 	function doFindLoginIdForm_submit(form) {

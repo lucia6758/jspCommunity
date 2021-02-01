@@ -5,11 +5,11 @@
 <%@ include file="../../part/head.jspf"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/detail.css" />
-<section class="pageTitle con-min-width">
+<section class="pageTitle con-min-width padding-0-10">
 	<h1 class="con">${pageTitle}</h1>
 </section>
 
-<section class="article-detail con-min-width">
+<section class="article-detail con-min-width padding-0-10">
 	<div class="con">
 		<div class="detail-title">${article.title}</div>
 		<div class="detail-info flex">
