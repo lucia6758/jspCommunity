@@ -27,6 +27,6 @@ public class ConfigServlet extends HttpServlet {
 		String gmailPw = (String) configMap.get("gmailPw");
 
 		EmailService emailService = Container.emailService;
-		emailService.init(gmailId, gmailPw, "GREEN AROUND", "GREEN AROUND");
+		emailService.init(gmailId, gmailPw, "GREENAROUND", "GREENAROUND");
 	}
 }

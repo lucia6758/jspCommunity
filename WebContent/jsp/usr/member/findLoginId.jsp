@@ -4,11 +4,8 @@
 <c:set var="pageTitle" value="아이디 찾기" />
 <%@ include file="../../part/head.jspf"%>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/static/login.css" />
-<section class="pageTitle con-min-width">
-	<h1 class="con">${pageTitle}</h1>
-</section>
-<section class="login con-min-width">
+	href="${pageContext.request.contextPath}/static/find.css" />
+<section class="findLoginId con-min-width">
 	<script>
 	let doFindLoginIdForm_submited = false;
 	function doFindLoginIdForm_submit(form) {
@@ -35,27 +32,40 @@
 	  doFindLoginIdForm_submited = true;
 	}
 	</script>
-	<div class="con">
+	<div class="find-box con">
+		<h1 class="flex flex-jc-c">${pageTitle}</h1>
 		<form action="doFindLoginId" method="POST"
 			onsubmit="doFindLoginIdForm_submit(this); return false;">
-			<div>
-				<div>이름</div>
-				<div>
-					<input type="text" name="name" placeholder="Name" maxlength="30">
-				</div>
-			</div>
-			<div>
-				<div>이메일</div>
-				<div>
-					<input type="email" name="email" placeholder="E-mail address"
-						maxlength="50">
-				</div>
-			</div>
-			<div>
-				<div class="find-btn">
-					<input class="submit" type="submit" value="아이디찾기" />
-					<button type="button" onclick="history.back();">뒤로가기</button>
-				</div>
+			<table>
+				<colgroup>
+					<col width="100">
+				</colgroup>
+				<tr>
+					<th>
+						<span>이름</span>
+					</th>
+					<td>
+						<div>
+							<input type="text" name="name" placeholder="Name" maxlength="30">
+						</div>
+					</td>
+
+				</tr>
+				<tr>
+					<th>
+						<span>이메일</span>
+					</th>
+					<td>
+						<div>
+							<input type="email" name="email" placeholder="E-mail address"
+								maxlength="50">
+						</div>
+					</td>
+				</tr>
+			</table>
+			<div class="btn-wrap flex flex-jc-c">
+				<input class="submit" type="submit" value="아이디찾기" />
+				<button type="button" onclick="history.back();">뒤로가기</button>
 			</div>
 		</form>
 	</div>

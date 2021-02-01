@@ -1,0 +1,75 @@
+/* 아이디찾기 */
+.find-box {
+  max-width:500px;
+  background-color:#134E5E;
+  border-radius:15px;
+  color:white;
+  margin-top:100px;
+}
+
+.find-box > h1 {
+  padding:20px 0;
+}
+
+.find-box form {
+  display:block;
+  width:90%;
+  margin-left:20px;
+}
+
+.find-box form > table {
+  width:100%;
+  border-collapse:collapse;
+}
+
+.find-box form > table > tbody > tr > th, .find-box form > table > tbody > tr > td {
+  padding:10px 0;
+}
+
+.find-box form > table > tbody > tr > td > div {
+  border-bottom: 2px solid white;
+}
+
+.find-box form > table > tbody > tr > td > div > input[type="text"], .find-box form > table > tbody > tr > td > div > input[type="email"]{
+  display:block;
+  width:100%;
+  box-sizing:border-box;
+  padding:10px;
+  outline:none;
+  border:none;
+  background-color: #134E5E;
+  font-family: 'S-CoreDream-4Regular';
+  color:white;
+}
+
+input::placeholder {
+  font-family: 'S-CoreDream-4Regular';
+  color:lightgray;
+}
+
+.btn-wrap {
+  margin-top: 20px;
+  padding-bottom:20px;
+}
+
+.btn-wrap > * {
+  font-size: 1rem;
+  line-height: 1rem;
+  padding: 10px 15px 7px 15px;
+  display: inline-flex;
+  font-weight: bold;
+  border-radius: 5px;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background-color: #71B280;
+  color: white;
+  text-decoration: none;
+  box-sizing: border-box;
+  justify-content: center;
+  text-align: center;
+  margin-left: 10px;
+  font-family: 'S-CoreDream-4Regular';
+}
+
+/* 아이디찾기 끝 */
