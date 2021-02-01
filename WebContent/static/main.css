@@ -3,9 +3,8 @@
 /* 메인 사진 끝 */
 .home_photo > div {
   width:100%;
-  height:400px;
+  max-height:400px;
   overflow: hidden;
-  background-color:gray;
 }
 
 .home_photo > div > img {

@@ -11,6 +11,9 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+<!-- 반응형 필수 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <!-- 하이라이트 라이브러리 추가, 토스트 UI 에디터에서 사용됨 -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.4.1/highlight.min.js"></script>
@@ -52,7 +55,7 @@
 		<header class="con-min-width">
 			<div class="con">
 
-				<nav class="top-bar-member">
+				<nav class="top-bar-member visible-on-md-up">
 					<ul class="flex flex-jc-e">
 						<c:if test="${isLogined}">
 							<li>
@@ -80,7 +83,7 @@
 				</nav>
 			</div>
 
-			<div class="top-bar">
+			<div class="top-bar visible-on-md-up">
 				<div class="con flex flex-jc-sb height-100p">
 					<a href="${pageContext.request.contextPath}/usr/home/main"
 						class="logo flex flex-ai-c">
@@ -120,6 +123,47 @@
 					</nav>
 				</div>
 			</div>
+
+			<!-- 모바일버전 -->
+			<div class="mobile-top-bar visible-on-sm-down flex">
+				<a href="#" class="btn-toggle-mobile-side-bar flex flex-ai-c">
+					<i class="fas fa-bars"></i>
+					<i class="fas fa-times"></i>
+				</a>
+				<a href="../home/main"
+					class="logo absolute-middle absolute-right flex flex-ai-c">
+					GREEN AROUND
+					<i class="fab fa-pagelines"></i>
+				</a>
+			</div>
+			<div class="mobile-side-bar flex flex-ai-c visible-on-sm-down">
+				<nav class="menu-box-1 flex-grow-1">
+					<ul>
+						<li>
+							<a href="../article/list?boardId=1" class="block">공지사항</a>
+						</li>
+						<li>
+							<a href="../article/list?boardId=2" class="block">자유게시판</a>
+						</li>
+						<li>
+							<a href="../article/list?boardId=3" class="block">정보게시판</a>
+						</li>
+						<li>
+							<a href="../article/list?boardId=4" class="block">교환해요</a>
+						</li>
+						<li>
+							<a href="../article/list?boardId=5" class="block">묻고답하고</a>
+						</li>
+						<li>
+							<a href="#" class="block">갤러리</a>
+						</li>
+						<li>
+							<a href="#" class="block">한마디</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<!-- 모바일버전 끝 -->
 		</header>
 
 		<main>

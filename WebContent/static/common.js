@@ -69,3 +69,21 @@ function EditorViewer__init() {
 }
 EditorViewer__init();
 
+// 모바일사이드바
+function MobileSideBar__init() {
+	$(".mobile-top-bar .btn-toggle-mobile-side-bar").click(function() {
+		var $this = $(this);
+
+		if ($this.hasClass("active")) {
+			$this.removeClass("active");
+			$(".mobile-side-bar").removeClass("active");
+		} else {
+			$this.addClass("active");
+			$(".mobile-side-bar").addClass("active");
+		}
+	});
+}
+
+$(function() {
+	MobileSideBar__init();
+});

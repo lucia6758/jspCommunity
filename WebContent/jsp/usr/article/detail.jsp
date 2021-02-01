@@ -17,17 +17,17 @@
 			<div>작성자 : ${article.extra__writer}</div>
 			<div>작성일 : ${article.regDate}</div>
 			<div>수정일 : ${article.updateDate}</div>
-			<div>조회수 : ${article.hitsCount}</div>
+			<div>조회수 : ${article.hitsCount+1}</div>
 		</div>
 		<script type="text/x-template">${article.body}</script>
 		<div class="detail-body toast-ui-viewer"></div>
-		<div class="detail-btn">
-			<a href="list?boardId=${article.boardId}">목록</a>
+		<div class="btn-wrap flex flex-jc-e">
 			<c:if test="${sessionScope.loginedMemberId == article.memberId}">
 				<a href="modify?memberId=1&id=${article.id}">수정</a>
 				<a onclick="if (confirm('정말 삭제하시겠습니까?') == false) {return false;}"
 					href="doDelete?memberId=1&id=${article.id}">삭제</a>
 			</c:if>
+			<a href="list?boardId=${article.boardId}">목록</a>
 		</div>
 	</div>
 </section>
