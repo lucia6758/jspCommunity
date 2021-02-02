@@ -13,7 +13,7 @@ import com.sbs.example.jspCommunity.dto.Board;
 import com.sbs.example.jspCommunity.service.ArticleService;
 import com.sbs.example.jspCommunity.util.Util;
 
-public class UsrArticleController {
+public class UsrArticleController extends Controller {
 	private ArticleService articleService;
 
 	public UsrArticleController() {
@@ -79,16 +79,18 @@ public class UsrArticleController {
 	}
 
 	public String showDetail(HttpServletRequest req, HttpServletResponse resp) {
-		int id = Integer.parseInt(req.getParameter("id"));
+		int id = Util.getAsInt(req.getParameter("id"), 0);
+
+		if (id == 0) {
+			return msgAndBack(req, "게시물 번호를 입력해주세요.");
+		}
 
 		Article article = articleService.getForPrintArticle(id);
 
 		if (article == null) {
-			req.setAttribute("alertMsg", id + "번 게시물이 존재하지 않습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
+			return msgAndBack(req, id + "번 게시물이 존재하지 않습니다.");
 		}
-		
+
 		articleService.increaseHitsCount(id);
 
 		req.setAttribute("article", article);
@@ -97,9 +99,17 @@ public class UsrArticleController {
 	}
 
 	public String write(HttpServletRequest req, HttpServletResponse resp) {
-		int boardId = Integer.parseInt(req.getParameter("boardId"));
+		int boardId = Util.getAsInt(req.getParameter("boardId"), 0);
+
+		if (boardId == 0) {
+			return msgAndBack(req, "게시판 번호를 입력해주세요.");
+		}
 
 		Board board = articleService.getBoardById(boardId);
+
+		if (board == null) {
+			return msgAndBack(req, boardId + "번 게시판이 존재하지 않습니다.");
+		}
 
 		req.setAttribute("board", board);
 
@@ -110,33 +120,48 @@ public class UsrArticleController {
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
-		int boardId = Integer.parseInt(req.getParameter("boardId"));
+		int boardId = Util.getAsInt(req.getParameter("boardId"), 0);
+
+		if (Util.isEmpty(title)) {
+			return msgAndBack(req, "제목을 입력해주세요.");
+		}
+
+		if (Util.isEmpty(body)) {
+			return msgAndBack(req, "내용을 입력해주세요.");
+		}
+
+		if (boardId == 0) {
+			return msgAndBack(req, "게시판 번호를 입력해주세요.");
+		}
+
+		Board board = articleService.getBoardById(boardId);
+
+		if (board == null) {
+			return msgAndBack(req, boardId + "번 게시판이 존재하지 않습니다.");
+		}
 
 		int id = articleService.doWrite(loginedMemberId, title, body, boardId);
 
-		req.setAttribute("alertMsg", id + "번 게시물이 생성되었습니다.");
-		req.setAttribute("replaceUrl", String.format("detail?id=%d", id));
-
-		return "common/redirect";
+		return magAndReplace(req, id + "번 게시물이 생성되었습니다.", String.format("detail?id=%d", id));
 	}
 
 	public String modify(HttpServletRequest req, HttpServletResponse resp) {
-		int id = Integer.parseInt(req.getParameter("id"));
+		int id = Util.getAsInt(req.getParameter("id"), 0);
+
+		if (id == 0) {
+			return msgAndBack(req, "게시물 번호를 입력해주세요.");
+		}
 
 		Article article = articleService.getForPrintArticle(id);
 
 		if (article == null) {
-			req.setAttribute("alertMsg", id + "번 게시물이 존재하지 않습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
+			return msgAndBack(req, id + "번 게시물이 존재하지 않습니다.");
 		}
 
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
 		if (article.getMemberId() != loginedMemberId) {
-			req.setAttribute("alertMsg", "수정할 권한이 없습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
+			return msgAndBack(req, "수정할 권한이 없습니다.");
 		}
 
 		req.setAttribute("article", article);
@@ -145,26 +170,34 @@ public class UsrArticleController {
 	}
 
 	public String doModify(HttpServletRequest req, HttpServletResponse resp) {
-		int id = Integer.parseInt(req.getParameter("id"));
+		int id = Util.getAsInt(req.getParameter("id"), 0);
+
+		if (id == 0) {
+			return msgAndBack(req, "게시물 번호를 입력해주세요.");
+		}
 
 		Article article = articleService.getForPrintArticle(id);
 
 		if (article == null) {
-			req.setAttribute("alertMsg", id + "번 게시물이 존재하지 않습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
+			return msgAndBack(req, id + "번 게시물이 존재하지 않습니다.");
 		}
 
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
 		if (article.getMemberId() != loginedMemberId) {
-			req.setAttribute("alertMsg", "수정할 권한이 없습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
+			return msgAndBack(req, "수정할 권한이 없습니다.");
 		}
 
 		String title = req.getParameter("title");
 		String body = req.getParameter("body");
+
+		if (Util.isEmpty(title)) {
+			return msgAndBack(req, "제목을 입력해주세요.");
+		}
+
+		if (Util.isEmpty(body)) {
+			return msgAndBack(req, "내용을 입력해주세요.");
+		}
 
 		Map<String, Object> modifyArgs = new HashMap<>();
 		modifyArgs.put("id", id);
@@ -173,37 +206,31 @@ public class UsrArticleController {
 
 		articleService.doModify(modifyArgs);
 
-		req.setAttribute("alertMsg", id + "번 게시물이 수정되었습니다.");
-		req.setAttribute("replaceUrl", String.format("detail?id=%d", id));
-
-		return "common/redirect";
+		return magAndReplace(req, id + "번 게시물이 수정되었습니다.", String.format("detail?id=%d", id));
 	}
 
 	public String doDelete(HttpServletRequest req, HttpServletResponse resp) {
-		int id = Integer.parseInt(req.getParameter("id"));
+		int id = Util.getAsInt(req.getParameter("id"), 0);
+
+		if (id == 0) {
+			return msgAndBack(req, "게시물 번호를 입력해주세요.");
+		}
 
 		Article article = Container.articleService.getForPrintArticle(id);
 
 		if (article == null) {
-			req.setAttribute("alertMsg", id + "번 게시물이 존재하지 않습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
+			return msgAndBack(req, id + "번 게시물이 존재하지 않습니다.");
 		}
 
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
 		if (article.getMemberId() != loginedMemberId) {
-			req.setAttribute("alertMsg", "삭제할 권한이 없습니다.");
-			req.setAttribute("historyBack", true);
-			return "common/redirect";
+			return msgAndBack(req, "삭제할 권한이 없습니다.");
 		}
 
 		articleService.delete(id);
 
-		req.setAttribute("alertMsg", id + "번 게시물이 삭제되었습니다.");
-		req.setAttribute("replaceUrl", String.format("list?boardId=%d", article.getBoardId()));
-
-		return "common/redirect";
+		return magAndReplace(req, id + "번 게시물이 삭제되었습니다.", String.format("list?boardId=%d", article.getBoardId()));
 	}
 
 }
