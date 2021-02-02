@@ -123,13 +123,13 @@ a {
 
 /* 커스텀 */
 @media ( max-width:799px ) {
-  .visible-on-md-up {
+  .visible-md-up {
     display:none !important;
   }
 }
 
 @media ( min-width:800px ) {
-  .visible-on-sm-down {
+  .visible-sm-down {
     display:none !important;
   }
 }
@@ -157,6 +157,7 @@ a {
   background-color:#6B1058;
   text-align:center;
   color:white;
+  width:100%;
 }
 
 .warning > a {
@@ -190,7 +191,7 @@ a {
 	font-family: 'Cafe24Danjunghae';
 }
 
-.logo>i {
+.top-bar .logo>i {
 	margin-left: 5px;
 }
 
@@ -269,7 +270,6 @@ a {
 .mobile-top-bar .logo {
   font-size:1.7rem;
   white-space:nowrap;
-  margin-right:3%;
 }
 /* 모바일 탑바 끝 */
 

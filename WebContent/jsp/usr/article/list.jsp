@@ -9,8 +9,8 @@
 	<h1 class="con">${pageTitle}</h1>
 </section>
 
-<section class="article-list con-min-width padding-0-10">
-	<div class="con">
+<section class="article-list con-min-width">
+	<div class="con padding-0-10">
 		<div class="articlesCount flex flex-jc-e">게시물 수 : ${totalCount}</div>
 		<table>
 			<colgroup>
@@ -48,6 +48,21 @@
 						<td>${article.regDate}</td>
 						<td>${article.hitsCount}</td>
 						<td>0</td>
+						<td class="visible-sm-down">
+							<div class="flex">
+								<span class="list-id--mobile">${article.id}</span>
+								<a href="detail?id=${article.id}" class="list-title--mobile flex-grow-1">${article.title}</a>
+							</div>
+							<div class="flex">
+								<span class="list-writer--mobile">${article.extra__writer}</span>
+								<span class="vertical">|</span>
+								<span class="list-reg-date--mobile">${article.regDate}</span>
+								<span class="vertical">|</span>
+								<span>조회 ${article.hitsCount}</span>
+								<span class="vertical">|</span>
+								<span>추천 0</span>
+							</div>
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -76,10 +91,10 @@
 					href="?boardId=${param.boardId}&page=${pageAfter}&searchKeywordType=${param.searchKeywordType}&searchKeyword=${param.searchKeyword}">다음</a>
 			</c:if>
 		</div>
-		<div class="write-btn flex flex-jc-e">
+		<div class="write-btn btn-full-sm-down flex flex-jc-e">
 			<a href="write?memberId=1&boardId=${param.boardId}">글쓰기</a>
 		</div>
-		<div class="list-search flex flex-jc-c">
+		<div class="list-search search-full-sm-down flex flex-jc-c">
 			<script>
 			let checkSearchForm_submited = false;
 			function checkSearchForm_submit(form) {

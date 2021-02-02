@@ -53,9 +53,8 @@
 			</div>
 		</c:if>
 		<header class="con-min-width">
-			<div class="con">
-
-				<nav class="top-bar-member visible-on-md-up">
+			<div class="con visible-md-up">
+				<nav class="top-bar-member">
 					<ul class="flex flex-jc-e">
 						<c:if test="${isLogined}">
 							<li>
@@ -83,7 +82,7 @@
 				</nav>
 			</div>
 
-			<div class="top-bar visible-on-md-up">
+			<div class="top-bar visible-md-up">
 				<div class="con flex flex-jc-sb height-100p">
 					<a href="${pageContext.request.contextPath}/usr/home/main"
 						class="logo flex flex-ai-c">
@@ -125,19 +124,20 @@
 			</div>
 
 			<!-- 모바일버전 -->
-			<div class="mobile-top-bar visible-on-sm-down flex">
+			<div class="mobile-top-bar visible-sm-down flex con">
 				<a href="#" class="btn-toggle-mobile-side-bar flex flex-ai-c">
 					<i class="fas fa-bars"></i>
 					<i class="fas fa-times"></i>
 				</a>
 				<a href="../home/main"
-					class="logo absolute-middle absolute-right flex flex-ai-c">
+					class="logo absolute-middle absolute-center">
 					GREEN AROUND
 					<i class="fab fa-pagelines"></i>
 				</a>
 			</div>
-			<div class="mobile-side-bar flex flex-ai-c visible-on-sm-down">
+			<div class="mobile-side-bar flex flex-ai-c visible-sm-down">
 				<nav class="menu-box-1 flex-grow-1">
+				<div></div>
 					<ul>
 						<li>
 							<a href="../article/list?boardId=1" class="block">공지사항</a>

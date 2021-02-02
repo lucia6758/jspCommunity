@@ -59,6 +59,59 @@
 
 /* 게시판 리스트 끝 */
 
+/* 게시물 리스트 - MOBILE 시작 */
+@media ( max-width:800px ) {
+  .article-list > .con > table > thead,
+  .article-list > .con > table > tbody > tr > td:not(.visible-sm-down) {
+    display:none;
+  }
+
+  .article-list > .con > table > tbody > tr {
+    width:100%;
+  }
+
+  .article-list > .con > table > colgroup > col {
+    width:auto;
+  }
+
+  .article-list > .con > table > colgroup > col:first-child {
+    width: 100%;
+  }
+
+  .list-id--mobile {
+    background-color:#71B280;
+    color:white;
+    font-weight:bold;
+    padding:0 7px;
+    border-radius:10px;
+  }
+
+  .list-title--mobile {
+    margin-left:5px;
+    display:block;
+  	white-space:nowrap;
+  	overflow:hidden;
+  	text-overflow:ellipsis;
+  	text-align:left;
+  }
+  
+  .list-title--mobile:hover{
+    text-decoration:underline;
+  color:#71B280;
+  }
+
+  .article-list > .con > table > tbody > tr > td.visible-sm-down > .flex:nth-child(2) {
+    margin-top:10px;
+  }
+
+  .article-list > .con > table > tbody > tr > td.visible-sm-down > .flex:nth-child(2) > .vertical {
+    margin-left:5px;
+    margin-right:5px;
+  }
+}
+
+/* 게시물 리스트 MOBILE 끝 */
+
 /* 게시판 버튼 */
 .write-btn {
   margin-top:10px;
@@ -72,7 +125,18 @@
   border-radius:10px;
 }
 
+@media (max-width: 800px) {
+  .btn-full-sm-down {
+    display: block;
+    width: 100%;
+    margin-left: 0 !important;
+    border-radius: 4px;
+    text-align:center;
+  }
+}
+
 /* 게시판 버튼 끝 */
+
 
 /* 게시판 페이징 */
 .list-paging {
@@ -131,5 +195,13 @@
   background-color:#134E5E;
   color:white;
   height:30px;
+}
+
+@media (max-width: 800px) {
+  .search-full-sm-down {
+    width: 100%;
+    margin-left: 0 !important;
+    margin-top:10px;
+  }
 }
 /* 게시판 검색폼 끝 */

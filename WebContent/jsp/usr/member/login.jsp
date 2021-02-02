@@ -38,10 +38,11 @@
 	}
 	</script>
 	<div class="login-box con">
-	<h1 class="flex flex-jc-c">${pageTitle}</h1>
+		<h1 class="flex flex-jc-c">${pageTitle}</h1>
 		<form class="con" action="doLogin" method="POST"
 			onsubmit="checkLoginForm_submit(this); return false;">
 			<input type="hidden" name="loginPwReal" />
+			<input type="hidden" name="afterLoginUrl" value="${param.afterLoginUrl}" />
 			<table>
 				<colgroup>
 					<col width="100">
