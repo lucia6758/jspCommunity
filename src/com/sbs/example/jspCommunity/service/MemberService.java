@@ -27,7 +27,16 @@ public class MemberService {
 	}
 
 	public int join(Map<String, Object> joinArgs) {
-		return memberDao.join(joinArgs);
+		int id = memberDao.join(joinArgs);
+
+		setLoginPwModifiedNow(id);
+
+		return id;
+	}
+
+	private void setLoginPwModifiedNow(int id) {
+		attrService.setValue("member__\" + id + \"__extra__isUsingTempPassword", Util.getNowDateStr(), null);
+
 	}
 
 	public Member getMemberByLoginId(String loginId) {
@@ -80,8 +89,11 @@ public class MemberService {
 	}
 
 	public void modify(Map<String, Object> param) {
-		memberDao.modify(param);
+		if (param.get("loginPw") != null) {
+			setLoginPwModifiedNow((int) param.get("id"));
+		}
 
+		memberDao.modify(param);
 	}
 
 	public boolean isUsingTempPassword(int id) {
@@ -98,6 +110,28 @@ public class MemberService {
 		member.getAttr().put("isUsingTempPassword", isUsingTempPassword);
 
 		return member;
+	}
+
+	public boolean isNeedToChangeLoginPw(int id) {
+		String date = attrService.getValue("member__\" + id + \"__extra__loginPwChangeDate");
+
+		if (Util.isEmpty(date)) {
+			return true;
+		}
+
+		int pass = Util.getPassedSecondFrom(date);
+
+		int oldPasswordDays = getOldPasswordDays();
+
+		if (pass > oldPasswordDays * 60 * 60 * 24) {
+			return true;
+		}
+
+		return false;
+	}
+
+	public int getOldPasswordDays() {
+		return 90;
 	}
 
 }

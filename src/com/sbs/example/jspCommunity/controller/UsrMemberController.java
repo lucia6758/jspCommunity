@@ -143,6 +143,14 @@ public class UsrMemberController extends Controller {
 			replaceUrl = "../member/myPage";
 		}
 
+		boolean isNeedToChangeLoginPw = memberService.isNeedToChangeLoginPw(member.getId());
+
+		if (isNeedToChangeLoginPw) {
+			int oldPasswordDays = memberService.getOldPasswordDays();
+			alertMsg = "비밀번호를 변경한지" + oldPasswordDays + "일이 경과하였습니다. 비밀번호를 변경해주세요.";
+			replaceUrl = "../member/myPage";
+		}
+
 		return magAndReplace(req, alertMsg, replaceUrl);
 	}
 
