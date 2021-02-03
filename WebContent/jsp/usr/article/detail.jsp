@@ -21,6 +21,32 @@
 		</div>
 		<script type="text/x-template">${article.body}</script>
 		<div class="detail-body toast-ui-viewer"></div>
+		<div class="detail-reply">
+			<form action="doWriteReply" method="POST">
+				<input type="hidden" name="relTypeCode" value="article" />
+				<input type="hidden" name="relId" value="${param.id}" />
+				<div>
+					<input type="text" name="body" placeholder="댓글을 입력해주세요" />
+					<input type="submit" value="등록" />
+				</div>
+			</form>
+			<div class="showReply">
+				<table>
+					<colgroup>
+						<col width="150"></col>
+						<col width=""></col>
+						<col width="150"></col>
+					</colgroup>
+					<c:forEach items="${replies}" var="reply">
+						<tr>
+							<td>${reply.extra__writer}</td>
+							<td>${reply.body}</td>
+							<td>${reply.regDate}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+		</div>
 		<div class="btn-wrap flex flex-jc-e">
 			<c:if test="${sessionScope.loginedMemberId == article.memberId}">
 				<a href="modify?memberId=1&id=${article.id}">수정</a>

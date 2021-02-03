@@ -11,7 +11,7 @@ public class Controller {
 		return "common/redirect";
 	}
 
-	protected String magAndReplace(HttpServletRequest req, String msg, String replaceUrl) {
+	protected String msgAndReplace(HttpServletRequest req, String msg, String replaceUrl) {
 		req.setAttribute("alertMsg", msg);
 		req.setAttribute("replaceUrl", replaceUrl);
 		return "common/redirect";

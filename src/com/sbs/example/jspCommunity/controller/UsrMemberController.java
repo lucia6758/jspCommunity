@@ -96,7 +96,7 @@ public class UsrMemberController extends Controller {
 
 		Container.emailService.send(email, title, body);
 
-		return magAndReplace(req, newMemberId + "번 회원으로 가입되었습니다.", "../home/main");
+		return msgAndReplace(req, newMemberId + "번 회원으로 가입되었습니다.", "../home/main");
 	}
 
 	public String login(HttpServletRequest req, HttpServletResponse resp) {
@@ -151,14 +151,14 @@ public class UsrMemberController extends Controller {
 			replaceUrl = "../member/myPage";
 		}
 
-		return magAndReplace(req, alertMsg, replaceUrl);
+		return msgAndReplace(req, alertMsg, replaceUrl);
 	}
 
 	public String doLogout(HttpServletRequest req, HttpServletResponse resp) {
 		HttpSession session = req.getSession();
 		session.removeAttribute("loginedMemberId");
 
-		return magAndReplace(req, "로그아웃되었습니다.", "../home/main");
+		return msgAndReplace(req, "로그아웃되었습니다.", "../home/main");
 	}
 
 	public String getLoginIdDup(HttpServletRequest req, HttpServletResponse resp) {
@@ -213,7 +213,7 @@ public class UsrMemberController extends Controller {
 			return msgAndBack(req, "일치하는 회원이 존재하지 않습니다.");
 		}
 
-		return magAndReplace(req, String.format("로그인 아이디는 %s 입니다.", member.getLoginId()), "../member/login");
+		return msgAndReplace(req, String.format("로그인 아이디는 %s 입니다.", member.getLoginId()), "../member/login");
 	}
 
 	public String findLoginPw(HttpServletRequest req, HttpServletResponse resp) {
@@ -248,7 +248,7 @@ public class UsrMemberController extends Controller {
 			return msgAndBack(req, sendTempLoginPwToEmailRs.getMsg());
 		}
 
-		return magAndReplace(req, sendTempLoginPwToEmailRs.getMsg(), "../member/login");
+		return msgAndReplace(req, sendTempLoginPwToEmailRs.getMsg(), "../member/login");
 	}
 
 	public String doModify(HttpServletRequest req, HttpServletResponse resp) {
@@ -294,7 +294,7 @@ public class UsrMemberController extends Controller {
 
 		memberService.modify(modifyParam);
 
-		return magAndReplace(req, "회원정보가 수정되었습니다.", "../home/main");
+		return msgAndReplace(req, "회원정보가 수정되었습니다.", "../home/main");
 	}
 
 }

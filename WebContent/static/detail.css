@@ -1,54 +1,73 @@
 /* 페이지 타이틀 */
 .pageTitle {
-  margin:20px 0;
+	margin: 20px 0;
 }
 /* 페이지 타이틀 끝 */
 
 /* 게시글 상세 */
 .detail-title {
-  font-size:1.5rem;
-  font-weight:bold;
-  padding:2px;
-  margin:5px 0;
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding: 2px;
+	margin: 5px 0;
 }
 
 .detail-info {
-  border-bottom:2px solid black;
+	border-bottom: 2px solid black;
 }
 
-.detail-info > div {
-  padding:2px;
-  margin-right:5px;
+.detail-info>div {
+	padding: 2px;
+	margin-right: 5px;
 }
 
 .detail-body {
-  margin-top:10px;
-  padding-bottom:10px;
-  border-bottom:2px solid black;
+	margin-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 2px solid black;
 }
 
 .btn-wrap {
-  margin-top: 20px;
+	margin-top: 20px;
 }
 
-.btn-wrap > * {
-  font-size: 1rem;
-  line-height: 1rem;
-  padding: 10px 15px 7px 15px;
-  display: inline-flex;
-  font-weight: bold;
-  border-radius: 5px;
-  outline: 0;
-  border: 0;
-  cursor: pointer;
-  background-color: #71B280;
-  color: white;
-  text-decoration: none;
-  box-sizing: border-box;
-  justify-content: center;
-  text-align: center;
-  margin-left: 10px;
-  font-family: 'S-CoreDream-4Regular';
+.btn-wrap>* {
+	font-size: 1rem;
+	line-height: 1rem;
+	padding: 10px 15px 7px 15px;
+	display: inline-flex;
+	font-weight: bold;
+	border-radius: 5px;
+	outline: 0;
+	border: 0;
+	cursor: pointer;
+	background-color: #71B280;
+	color: white;
+	text-decoration: none;
+	box-sizing: border-box;
+	justify-content: center;
+	text-align: center;
+	margin-left: 10px;
+	font-family: 'S-CoreDream-4Regular';
 }
 
 /* 게시글 상세 끝 */
+
+/* 게시물 댓글 */
+.detail-reply {
+  width:100%;
+}
+
+.detail-reply > form {
+	width: 100%;
+}
+
+.detail-reply > form > div > input[type="text"] {
+	width: 90%;
+  height:25px;
+}
+
+.detail-reply table {
+  width: 100%;
+}
+/* 게시물 댓글 */

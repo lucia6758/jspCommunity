@@ -7,6 +7,7 @@ import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dao.ArticleDao;
 import com.sbs.example.jspCommunity.dto.Article;
 import com.sbs.example.jspCommunity.dto.Board;
+import com.sbs.example.jspCommunity.dto.Reply;
 
 public class ArticleService {
 	private ArticleDao articleDao;
@@ -51,6 +52,14 @@ public class ArticleService {
 
 	public List<Article> getArticlesForMainByBoardId(int boardId) {
 		return articleDao.getArticlesForMainByBoardId(boardId);
+	}
+
+	public int doWriteReply(String relTypeCode, int relId, int loginedMemberId, String body) {
+		return articleDao.doWriteReply(relTypeCode, relId, loginedMemberId, body);
+	}
+
+	public List<Reply> getForPrintRepliesByRTCAndRelId(String relTypeCode, int relId) {
+		return articleDao.getForPrintRepliesByRTCAndRelId(relTypeCode, relId);
 	}
 
 }
