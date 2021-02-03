@@ -21,7 +21,7 @@
 		</div>
 		<script type="text/x-template">${article.body}</script>
 		<div class="detail-body toast-ui-viewer"></div>
-		<div class="detail-like">
+		<div class="detail-like flex flex-jc-c">
 			<c:if test="${article.extra.actorCanLike}">
 				<a class="like-btn" href="../like/doLike?relTypeCode=article&relId=${article.id}&redirectUrl=${encodedCurrentUrl}" onclick="if ( !confirm('좋아요를 누르시겠습니까?') ) return false;">
 					<span>😍</span>
