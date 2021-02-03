@@ -108,7 +108,10 @@ public abstract class DispatcherServlet extends HttpServlet {
 		needToLoginActionUrls.add("/usr/article/doDelete");
 		needToLoginActionUrls.add("/usr/member/myPage");
 		needToLoginActionUrls.add("/usr/member/doModify");
-		needToLoginActionUrls.add("/usr/article/doWriteReply");
+		needToLoginActionUrls.add("/usr/reply/doWrite");
+		needToLoginActionUrls.add("/usr/reply/doDelete");
+		needToLoginActionUrls.add("/usr/reply/modify");
+		needToLoginActionUrls.add("/usr/reply/doModify");
 
 		if (needToLoginActionUrls.contains(actionUrl)) {
 			if ((boolean) req.getAttribute("isLogined") == false) {

@@ -54,12 +54,4 @@ public class ArticleService {
 		return articleDao.getArticlesForMainByBoardId(boardId);
 	}
 
-	public int doWriteReply(String relTypeCode, int relId, int loginedMemberId, String body) {
-		return articleDao.doWriteReply(relTypeCode, relId, loginedMemberId, body);
-	}
-
-	public List<Reply> getForPrintRepliesByRTCAndRelId(String relTypeCode, int relId) {
-		return articleDao.getForPrintRepliesByRTCAndRelId(relTypeCode, relId);
-	}
-
 }

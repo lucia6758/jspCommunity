@@ -22,7 +22,7 @@
 		<script type="text/x-template">${article.body}</script>
 		<div class="detail-body toast-ui-viewer"></div>
 		<div class="detail-reply">
-			<form action="doWriteReply" method="POST">
+			<form action="../reply/doWrite" method="POST">
 				<input type="hidden" name="relTypeCode" value="article" />
 				<input type="hidden" name="relId" value="${param.id}" />
 				<div>
@@ -36,12 +36,21 @@
 						<col width="150"></col>
 						<col width=""></col>
 						<col width="150"></col>
+						<col width="30"></col>
 					</colgroup>
 					<c:forEach items="${replies}" var="reply">
 						<tr>
 							<td>${reply.extra__writer}</td>
 							<td>${reply.body}</td>
 							<td>${reply.regDate}</td>
+							<td class="flex">
+								<a href="../reply/modify?id=${reply.id}">
+									<i class="fas fa-edit"></i>
+								</a>
+								<a href="../reply/doDelete?id=${reply.id}">
+									<i class="fas fa-trash-alt"></i>
+								</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>

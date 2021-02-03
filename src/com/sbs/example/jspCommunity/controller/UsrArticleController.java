@@ -92,7 +92,7 @@ public class UsrArticleController extends Controller {
 			return msgAndBack(req, id + "번 게시물이 존재하지 않습니다.");
 		}
 
-		List<Reply> replies = articleService.getForPrintRepliesByRTCAndRelId("article", id);
+		List<Reply> replies = Container.replyService.getForPrintRepliesByRTCAndRelId("article", id);
 
 		articleService.increaseHitsCount(id);
 
@@ -235,31 +235,6 @@ public class UsrArticleController extends Controller {
 		articleService.delete(id);
 
 		return msgAndReplace(req, id + "번 게시물이 삭제되었습니다.", String.format("list?boardId=%d", article.getBoardId()));
-	}
-
-	public String doWriteReply(HttpServletRequest req, HttpServletResponse resp) {
-		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
-		String relTypeCode = req.getParameter("relTypeCode");
-		int relId = Util.getAsInt(req.getParameter("relId"), 0);
-		String body = req.getParameter("body");
-
-		if (Util.isEmpty(body)) {
-			return msgAndBack(req, "내용을 입력해주세요.");
-		}
-
-		if (relId == 0) {
-			return msgAndBack(req, "게시글 번호를 입력해주세요.");
-		}
-
-		Article article = articleService.getForPrintArticle(relId);
-
-		if (article == null) {
-			return msgAndBack(req, relId + "번 게시물이 존재하지 않습니다.");
-		}
-
-		int id = articleService.doWriteReply(relTypeCode, relId, loginedMemberId, body);
-
-		return msgAndReplace(req, id + "번 댓글이 작성되었습니다.", String.format("detail?id=%d", relId));
 	}
 
 }

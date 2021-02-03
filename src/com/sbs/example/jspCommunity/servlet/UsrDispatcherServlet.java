@@ -9,6 +9,7 @@ import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.controller.UsrArticleController;
 import com.sbs.example.jspCommunity.controller.UsrHomeController;
 import com.sbs.example.jspCommunity.controller.UsrMemberController;
+import com.sbs.example.jspCommunity.controller.UsrReplyController;
 
 @WebServlet("/usr/*")
 public class UsrDispatcherServlet extends DispatcherServlet {
@@ -70,8 +71,18 @@ public class UsrDispatcherServlet extends DispatcherServlet {
 				jspPath = articleController.doModify(req, resp);
 			} else if (actionMethodName.equals("doDelete")) {
 				jspPath = articleController.doDelete(req, resp);
-			} else if (actionMethodName.equals("doWriteReply")) {
-				jspPath = articleController.doWriteReply(req, resp);
+			}
+		} else if (controllerName.equals("reply")) {
+			UsrReplyController replyController = Container.replyController;
+
+			if (actionMethodName.equals("doWrite")) {
+				jspPath = replyController.doWrite(req, resp);
+			} else if (actionMethodName.equals("doDelete")) {
+				jspPath = replyController.doDelete(req, resp);
+			} else if (actionMethodName.equals("modify")) {
+				jspPath = replyController.modify(req, resp);
+			} else if (actionMethodName.equals("doModify")) {
+				jspPath = replyController.doModify(req, resp);
 			}
 		}
 
