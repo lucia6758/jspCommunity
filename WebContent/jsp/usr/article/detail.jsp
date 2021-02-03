@@ -21,6 +21,32 @@
 		</div>
 		<script type="text/x-template">${article.body}</script>
 		<div class="detail-body toast-ui-viewer"></div>
+		<div class="detail-like">
+			<c:if test="${article.extra.actorCanLike}">
+				<a class="like-btn" href="../like/doLike?relTypeCode=article&relId=${article.id}&redirectUrl=${encodedCurrentUrl}" onclick="if ( !confirm('좋아요를 누르시겠습니까?') ) return false;">
+					<span>😍</span>
+					<span>좋아요</span>
+				</a>
+			</c:if>
+			<c:if test="${article.extra.actorCanCancelLike}">
+				<a class="like-btn" href="../like/doCancelLike?relTypeCode=article&relId=${article.id}&redirectUrl=${encodedCurrentUrl}" onclick="if ( !confirm('좋아요를 취소하시겠습니까?') ) return false;">
+					<span>😍</span>
+					<span>좋아요 취소</span>
+				</a>
+			</c:if>
+			<c:if test="${article.extra.actorCanDislike}">
+				<a class="like-btn" href="../like/doDislike?relTypeCode=article&relId=${article.id}&redirectUrl=${encodedCurrentUrl}" onclick="if ( !confirm('싫어요를 누르시겠습니까?') ) return false;">
+					<span>🙁</span>
+					<span>싫어요</span>
+				</a>
+			</c:if>
+			<c:if test="${article.extra.actorCanCancelDislike}">
+				<a class="like-btn" href="../like/doCancelDislike?relTypeCode=article&relId=${article.id}&redirectUrl=${encodedCurrentUrl}" onclick="if ( !confirm('싫어요를 취소하시겠습니까?') ) return false;">
+					<span>🙁</span>
+					<span>싫어요 취소</span>
+				</a>
+			</c:if>
+		</div>
 		<div class="detail-reply">
 			<form action="../reply/doWrite" method="POST">
 				<input type="hidden" name="relTypeCode" value="article" />

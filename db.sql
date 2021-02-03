@@ -174,12 +174,12 @@ updateDate DATETIME NOT NULL,
 relTypeCode CHAR(30) NOT NULL,
 relId INT(10) UNSIGNED NOT NULL,
 memberId INT(10) UNSIGNED NOT NULL,
-`point` TINYINT(2) NOT NULL
+`point` TINYINT(1) NOT NULL
 );
 
 ALTER TABLE article ADD COLUMN likesCount INT(10) UNSIGNED NOT NULL AFTER `hitsCount`;
 
-ALTER TABLE `like` ADD UNIQUE INDEX (`relTypeCode` , `relId` , `memberId`); 
+ALTER TABLE `like` ADD INDEX (`relTypeCode` , `relId` , `memberId`); 
 
 #댓글테이블
 CREATE TABLE reply(

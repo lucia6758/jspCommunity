@@ -1,5 +1,7 @@
 package com.sbs.example.mysqlutil;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -113,6 +115,10 @@ public class MysqlUtil {
 						String dateValue = value.toString();
 						dateValue = dateValue.substring(0, dateValue.length() - 2);
 						row.put(columnName, dateValue);
+					} else if (value instanceof BigDecimal) {
+						row.put(columnName, ((BigDecimal) value).intValue());
+					} else if (value instanceof BigInteger) {
+						row.put(columnName, ((BigInteger) value).intValue());
 					} else {
 						row.put(columnName, value);
 					}

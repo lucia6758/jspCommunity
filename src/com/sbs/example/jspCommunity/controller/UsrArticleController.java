@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dto.Article;
 import com.sbs.example.jspCommunity.dto.Board;
+import com.sbs.example.jspCommunity.dto.Member;
 import com.sbs.example.jspCommunity.dto.Reply;
 import com.sbs.example.jspCommunity.service.ArticleService;
 import com.sbs.example.jspCommunity.util.Util;
@@ -86,7 +87,8 @@ public class UsrArticleController extends Controller {
 			return msgAndBack(req, "게시물 번호를 입력해주세요.");
 		}
 
-		Article article = articleService.getForPrintArticle(id);
+		Member loginedMember = (Member) req.getAttribute("loginedMember");
+		Article article = articleService.getForPrintArticle(id, loginedMember);
 
 		if (article == null) {
 			return msgAndBack(req, id + "번 게시물이 존재하지 않습니다.");

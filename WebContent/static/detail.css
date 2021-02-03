@@ -53,6 +53,16 @@
 
 /* 게시글 상세 끝 */
 
+/* 게시물 좋아요 싫어요 */
+.detail-like a {
+  display:block;
+  padding: 3px;
+  margin: 5px;
+  border: 2px solid #134E5E;
+  border-radius:5px;
+}
+/* 게시물 좋아요 싫어요 끝 */
+
 /* 게시물 댓글 */
 .detail-reply {
   width:100%;

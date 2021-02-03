@@ -7,13 +7,16 @@ import com.sbs.example.jspCommunity.container.Container;
 import com.sbs.example.jspCommunity.dao.ArticleDao;
 import com.sbs.example.jspCommunity.dto.Article;
 import com.sbs.example.jspCommunity.dto.Board;
+import com.sbs.example.jspCommunity.dto.Member;
 import com.sbs.example.jspCommunity.dto.Reply;
 
 public class ArticleService {
 	private ArticleDao articleDao;
+	private LikeService likeService;
 
 	public ArticleService() {
 		articleDao = Container.articleDao;
+		likeService = Container.likeService;
 	}
 
 	public List<Article> getForPrintArticlesByBoardId(int boardId, int limitStart, int limitCount, String searchKeyword,
@@ -23,7 +26,7 @@ public class ArticleService {
 	}
 
 	public Article getForPrintArticle(int id) {
-		return articleDao.getForPrintArticle(id);
+		return getForPrintArticle(id, null);
 	}
 
 	public int doWrite(int memberId, String title, String body, int boardId) {
@@ -52,6 +55,31 @@ public class ArticleService {
 
 	public List<Article> getArticlesForMainByBoardId(int boardId) {
 		return articleDao.getArticlesForMainByBoardId(boardId);
+	}
+
+	public Article getForPrintArticle(int id, Member actor) {
+		Article article = articleDao.getForPrintArticle(id);
+
+		if (article == null) {
+			return null;
+		}
+		if (actor != null) {
+			updateInfoForPrint(article, actor);
+		}
+		return article;
+	}
+
+	private void updateInfoForPrint(Article article, Member actor) {
+		boolean actorCanLike = likeService.actorCanLike(article, actor);
+		boolean actorCanCancelLike = likeService.actorCanCancelLike(article, actor);
+		boolean actorCanDislike = likeService.actorCanDislike(article, actor);
+		boolean actorCanCancelDisiike = likeService.actorCanCancelDisiike(article, actor);
+
+		article.getExtra().put("actorCanLike", actorCanLike);
+		article.getExtra().put("actorCanCancelLike", actorCanCancelLike);
+		article.getExtra().put("actorCanDislike", actorCanDislike);
+		article.getExtra().put("actorCanCancelDisiike", actorCanCancelDisiike);
+
 	}
 
 }
