@@ -35,7 +35,7 @@ public class MemberService {
 	}
 
 	private void setLoginPwModifiedNow(int id) {
-		attrService.setValue("member__" + id + "__extra__isUsingTempPassword", Util.getNowDateStr(), null);
+		attrService.setValue("member__" + id + "__extra__loginPwModifiedDate", Util.getNowDateStr(), null);
 
 	}
 
@@ -113,7 +113,7 @@ public class MemberService {
 	}
 
 	public boolean isNeedToChangeLoginPw(int id) {
-		String date = attrService.getValue("member__" + id + "__extra__loginPwChangeDate");
+		String date = attrService.getValue("member__" + id + "__extra__loginPwModifiedDate");
 
 		if (Util.isEmpty(date)) {
 			return true;

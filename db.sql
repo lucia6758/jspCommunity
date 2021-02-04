@@ -191,3 +191,19 @@ relId INT(10) UNSIGNED NOT NULL,
 memberId INT(10) UNSIGNED NOT NULL,
 `body` CHAR(250) NOT NULL
 );
+
+INSERT INTO reply
+SET regDate = NOW(),
+updateDate = NOW(),
+relTypeCode = 'article',
+relId = 1,
+memberId = 2,
+`body` = '댓글1';
+
+INSERT INTO reply
+SET regDate = NOW(),
+updateDate = NOW(),
+relTypeCode = 'article',
+relId = 1,
+memberId = 1,
+`body` = '댓글2222';
