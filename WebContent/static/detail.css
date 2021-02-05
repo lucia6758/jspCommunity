@@ -14,11 +14,7 @@
 
 .detail-info {
 	border-bottom: 2px solid black;
-}
-
-.detail-info>div {
-	padding: 2px;
-	margin-right: 5px;
+	font-size:0.9rem;
 }
 
 .detail-body {

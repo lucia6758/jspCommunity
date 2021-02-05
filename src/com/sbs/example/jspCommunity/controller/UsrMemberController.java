@@ -83,7 +83,7 @@ public class UsrMemberController extends Controller {
 
 		int newMemberId = memberService.join(joinArgs);
 
-		String siteName = App.getSite();
+		String siteName = App.getSiteName();
 		String siteLoginUrl = App.getLoginUrl();
 		String siteMainUrl = App.getMainUrl();
 		String title = "[" + siteName + "] 회원가입이 완료되었습니다.";

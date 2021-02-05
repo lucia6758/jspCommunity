@@ -13,11 +13,23 @@
 	<div class="con">
 		<div class="detail-title">${article.title}</div>
 		<div class="detail-info flex">
-			<div>번호 : ${article.id}</div>
-			<div>작성자 : ${article.extra__writer}</div>
-			<div>작성일 : ${article.regDate}</div>
-			<div>수정일 : ${article.updateDate}</div>
-			<div>조회수 : ${article.hitsCount+1}</div>
+			<table>
+				<colgroup>
+					<col width=200px>
+					<col width=400px>
+					<col width=200px>
+				</colgroup>
+				<tr>
+					<td>번호 : ${article.id}</td>
+					<td>작성일 : ${article.regDate}</td>
+					<td>조회수 : ${article.hitsCount+1}</td>
+				</tr>
+				<tr>
+					<td>작성자: ${article.extra__writer}</td>
+					<td>수정일 : ${article.updateDate}</td>
+					<td><i class="far fa-grin-hearts"></i> 0 <i class="far fa-frown"></i> 0 </td>
+				</tr>
+			</table>
 		</div>
 		<script type="text/x-template">${article.body}</script>
 		<div class="detail-body toast-ui-viewer"></div>
