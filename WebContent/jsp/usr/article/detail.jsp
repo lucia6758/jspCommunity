@@ -27,7 +27,12 @@
 				<tr>
 					<td>작성자: ${article.extra__writer}</td>
 					<td>수정일 : ${article.updateDate}</td>
-					<td><i class="far fa-grin-hearts"></i> ${article.extra__likeOnlyPoint} <i class="far fa-frown"></i> ${article.extra__dislikeOnlyPoint} </td>
+					<td>
+						<i class="far fa-grin-hearts"></i>
+						${article.extra__likeOnlyPoint}
+						<i class="far fa-frown"></i>
+						${article.extra__dislikeOnlyPoint}
+					</td>
 				</tr>
 			</table>
 		</div>
@@ -93,14 +98,19 @@
 					</c:forEach>
 				</table>
 			</div>
-			<form action="../reply/doWrite" method="POST">
-				<input type="hidden" name="relTypeCode" value="article" />
-				<input type="hidden" name="relId" value="${param.id}" />
-				<div>
-					<input type="text" name="body" placeholder="댓글을 입력해주세요" />
-					<input type="submit" value="등록" />
-				</div>
-			</form>
+			<c:if test="${isLogined == false}">
+			<span><i class="fas fa-exclamation-circle"></i> 로그인 후에 댓글을 작성할 수 있습니다.</span>
+			</c:if>
+			<c:if test="${isLogined}">
+				<form action="../reply/doWrite" method="POST">
+					<input type="hidden" name="relTypeCode" value="article" />
+					<input type="hidden" name="relId" value="${param.id}" />
+					<div>
+						<input type="text" name="body" placeholder="댓글을 입력해주세요" />
+						<input type="submit" value="등록" />
+					</div>
+				</form>
+			</c:if>
 		</div>
 		<div class="btn-wrap flex flex-jc-e">
 			<c:if test="${sessionScope.loginedMemberId == article.memberId}">
