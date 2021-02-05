@@ -47,20 +47,20 @@
 						<td>${article.extra__writer}</td>
 						<td>${article.regDate}</td>
 						<td>${article.hitsCount}</td>
-						<td>0</td>
+						<td>${article.extra__likePoint}</td>
 						<td class="visible-sm-down">
 							<div class="flex">
 								<span class="list-id--mobile">${article.id}</span>
 								<a href="detail?id=${article.id}" class="list-title--mobile flex-grow-1">${article.title}</a>
 							</div>
-							<div class="flex">
+							<div class="list-articleInfo--mobile flex">
 								<span class="list-writer--mobile">${article.extra__writer}</span>
 								<span class="vertical">|</span>
 								<span class="list-reg-date--mobile">${article.regDate}</span>
 								<span class="vertical">|</span>
 								<span>조회 ${article.hitsCount}</span>
 								<span class="vertical">|</span>
-								<span>추천 0</span>
+								<span>추천 ${article.extra__likePoint}</span>
 							</div>
 						</td>
 					</tr>

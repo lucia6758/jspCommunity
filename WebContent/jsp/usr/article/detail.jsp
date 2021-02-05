@@ -27,7 +27,7 @@
 				<tr>
 					<td>작성자: ${article.extra__writer}</td>
 					<td>수정일 : ${article.updateDate}</td>
-					<td><i class="far fa-grin-hearts"></i> 0 <i class="far fa-frown"></i> 0 </td>
+					<td><i class="far fa-grin-hearts"></i> ${article.extra__likeOnlyPoint} <i class="far fa-frown"></i> ${article.extra__dislikeOnlyPoint} </td>
 				</tr>
 			</table>
 		</div>

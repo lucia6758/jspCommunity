@@ -24,7 +24,7 @@ public class LikeService {
 		return likeDao.getPoint("article", article.getId(), actor.getId()) == 0;
 	}
 
-	public boolean actorCanCancelDisiike(Article article, Member actor) {
+	public boolean actorCanCancelDislike(Article article, Member actor) {
 		return likeDao.getPoint("article", article.getId(), actor.getId()) < 0;
 	}
 

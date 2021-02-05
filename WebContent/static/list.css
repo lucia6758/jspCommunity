@@ -100,6 +100,10 @@
   color:#71B280;
   }
 
+.list-articleInfo--mobile{
+    font-size:0.9rem;
+  }
+
   .article-list > .con > table > tbody > tr > td.visible-sm-down > .flex:nth-child(2) {
     margin-top:10px;
   }

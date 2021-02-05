@@ -73,12 +73,12 @@ public class ArticleService {
 		boolean actorCanLike = likeService.actorCanLike(article, actor);
 		boolean actorCanCancelLike = likeService.actorCanCancelLike(article, actor);
 		boolean actorCanDislike = likeService.actorCanDislike(article, actor);
-		boolean actorCanCancelDisiike = likeService.actorCanCancelDisiike(article, actor);
+		boolean actorCanCancelDislike = likeService.actorCanCancelDislike(article, actor);
 
 		article.getExtra().put("actorCanLike", actorCanLike);
 		article.getExtra().put("actorCanCancelLike", actorCanCancelLike);
 		article.getExtra().put("actorCanDislike", actorCanDislike);
-		article.getExtra().put("actorCanCancelDisiike", actorCanCancelDisiike);
+		article.getExtra().put("actorCanCancelDislike", actorCanCancelDislike);
 
 	}
 
