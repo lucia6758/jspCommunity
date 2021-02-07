@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="pageTitle" value="${board.name} 게시물 상세페이지" />
+<c:set var="pageTitle" value="${article.extra__boardName}" />
 <%@ include file="../../part/head.jspf"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/detail.css" />
@@ -12,11 +12,11 @@
 <section class="article-detail con-min-width padding-0-10">
 	<div class="con">
 		<div class="detail-title">${article.title}</div>
-		<div class="detail-info flex">
+		<div class="detail-info visible-md-up flex">
 			<table>
 				<colgroup>
 					<col width=200px>
-					<col width=400px>
+					<col width=300px>
 					<col width=200px>
 				</colgroup>
 				<tr>
@@ -35,6 +35,24 @@
 					</td>
 				</tr>
 			</table>
+		</div>
+		<div class="detail-info-mobile visible-sm-down">
+			<div>${article.extra__writer}</div>
+			<div>${article.regDate}</div>
+			<div>
+				<span>
+					<i class="far fa-eye"></i>
+					${article.hitsCount+1}
+				</span>
+				<span>
+					<i class="far fa-grin-hearts"></i>
+					${article.extra__likeOnlyPoint}
+				</span>
+				<span>
+					<i class="far fa-frown"></i>
+					${article.extra__dislikeOnlyPoint}
+				</span>
+			</div>
 		</div>
 		<script type="text/x-template">${article.body}</script>
 		<div class="detail-body toast-ui-viewer"></div>
@@ -73,42 +91,55 @@
 			</c:if>
 		</div>
 		<div class="detail-reply">
+			<div class="replyCnt flex">
+				<span>댓글 ${article.extra__replyCount}</span>
+			</div>
 			<div class="showReply">
-				<table>
-					<colgroup>
-						<col width="150"></col>
-						<col width=""></col>
-						<col width="150"></col>
-						<col width="30"></col>
-					</colgroup>
-					<c:forEach items="${replies}" var="reply">
-						<tr>
-							<td>${reply.extra__writer}</td>
-							<td>${reply.body}</td>
-							<td class="reply-regDate">${reply.regDate}</td>
-							<td class="flex">
-								<a href="../reply/modify?id=${reply.id}">
-									<i class="fas fa-edit"></i>
-								</a>
-								<a href="../reply/doDelete?id=${reply.id}">
-									<i class="fas fa-trash-alt"></i>
-								</a>
-							</td>
-						</tr>
-					</c:forEach>
-				</table>
+				<c:forEach items="${replies}" var="reply">
+					<div class="reply1">
+						<span class="reply-writer">${reply.extra__writer}</span>
+						<br />
+						${reply.body}
+						<br />
+						<span class="reply-regDate">${reply.regDate}</span>
+						<c:if test="${sessionScope.loginedMemberId == reply.memberId}">
+							<a href="../reply/modify?id=${reply.id}">
+								<i class="fas fa-edit"></i>
+							</a>
+							<a
+								onclick="if (confirm('정말 삭제하시겠습니까?') == false) {return false;}"
+								href="../reply/doDelete?id=${reply.id}">
+								<i class="fas fa-trash-alt"></i>
+							</a>
+						</c:if>
+					</div>
+				</c:forEach>
 			</div>
 			<c:if test="${isLogined == false}">
-			<span><i class="fas fa-exclamation-circle"></i> 로그인 후에 댓글을 작성할 수 있습니다.</span>
+				<span>
+					<i class="fas fa-exclamation-circle"></i>
+					로그인 후에 댓글을 작성할 수 있습니다.
+				</span>
 			</c:if>
 			<c:if test="${isLogined}">
 				<form action="../reply/doWrite" method="POST">
 					<input type="hidden" name="relTypeCode" value="article" />
 					<input type="hidden" name="relId" value="${param.id}" />
-					<div>
-						<input type="text" name="body" placeholder="댓글을 입력해주세요" />
-						<input type="submit" value="등록" />
-					</div>
+					<table>
+						<colgroup>
+							<col width="" />
+							<col width="45" />
+						</colgroup>
+						<tr>
+							<td>
+								<input type="text" name="body" placeholder="댓글을 입력해주세요" />
+							</td>
+							<td>
+								<input type="submit" value="등록" />
+							</td>
+						</tr>
+					</table>
+
 				</form>
 			</c:if>
 		</div>

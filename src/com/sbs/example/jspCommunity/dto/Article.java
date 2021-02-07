@@ -23,6 +23,7 @@ public class Article {
 	private int extra__likePoint;
 	private int extra__likeOnlyPoint;
 	private int extra__dislikeOnlyPoint;
+	private int extra__replyCount;
 
 	public Article(Map<String, Object> map) {
 		this.id = (int) map.get("id");
@@ -55,6 +56,9 @@ public class Article {
 
 		if (map.containsKey("extra__dislikeOnlyPoint")) {
 			this.extra__dislikeOnlyPoint = (int) map.get("extra__dislikeOnlyPoint");
+		}
+		if (map.containsKey("extra__replyCount")) {
+			this.extra__replyCount = (int) map.get("extra__replyCount");
 		}
 
 		this.extra = new LinkedHashMap<>();

@@ -246,8 +246,11 @@ a {
   height:50px;
   position:fixed;
   top:0;
-  left:0;
   width:100%;
+}
+
+.mobile-top-bar-padding {
+	height:70px;
 }
 
 .mobile-top-bar .btn-toggle-mobile-side-bar {

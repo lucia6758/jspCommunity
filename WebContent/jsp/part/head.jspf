@@ -129,41 +129,43 @@
 					<i class="fas fa-bars"></i>
 					<i class="fas fa-times"></i>
 				</a>
-				<a href="../home/main"
-					class="logo absolute-middle absolute-center">
+				<a href="../home/main" class="logo absolute-middle absolute-center">
 					GREEN AROUND
 					<i class="fab fa-pagelines"></i>
 				</a>
 			</div>
-			<div class="mobile-side-bar flex flex-ai-c visible-sm-down">
-				<nav class="menu-box-1 flex-grow-1">
-				<div></div>
-					<ul>
-						<li>
-							<a href="../article/list?boardId=1" class="block">공지사항</a>
-						</li>
-						<li>
-							<a href="../article/list?boardId=2" class="block">자유게시판</a>
-						</li>
-						<li>
-							<a href="../article/list?boardId=3" class="block">정보게시판</a>
-						</li>
-						<li>
-							<a href="../article/list?boardId=4" class="block">교환해요</a>
-						</li>
-						<li>
-							<a href="../article/list?boardId=5" class="block">묻고답하고</a>
-						</li>
-						<li>
-							<a href="#" class="block">갤러리</a>
-						</li>
-						<li>
-							<a href="#" class="block">한마디</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-			<!-- 모바일버전 끝 -->
 		</header>
+		<div class= "mobile-top-bar-padding visible-sm-down"></div>
+
+		<div class="mobile-side-bar flex flex-ai-c visible-sm-down">
+			<nav class="menu-box-1 flex-grow-1">
+				<div></div>
+				<ul>
+					<li>
+						<a href="../article/list?boardId=1" class="block">공지사항</a>
+					</li>
+					<li>
+						<a href="../article/list?boardId=2" class="block">자유게시판</a>
+					</li>
+					<li>
+						<a href="../article/list?boardId=3" class="block">정보게시판</a>
+					</li>
+					<li>
+						<a href="../article/list?boardId=4" class="block">교환해요</a>
+					</li>
+					<li>
+						<a href="../article/list?boardId=5" class="block">묻고답하고</a>
+					</li>
+					<li>
+						<a href="#" class="block">갤러리</a>
+					</li>
+					<li>
+						<a href="#" class="block">한마디</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<!-- 모바일버전 끝 -->
+
 
 		<main>

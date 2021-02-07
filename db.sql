@@ -192,6 +192,9 @@ memberId INT(10) UNSIGNED NOT NULL,
 `body` CHAR(250) NOT NULL
 );
 
+#댓글에 인덱스걸기
+ALTER TABLE reply ADD INDEX (`relTypeCode`, `relId`);
+
 INSERT INTO reply
 SET regDate = NOW(),
 updateDate = NOW(),

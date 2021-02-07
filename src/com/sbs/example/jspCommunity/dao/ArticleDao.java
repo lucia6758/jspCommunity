@@ -24,6 +24,7 @@ public class ArticleDao {
 		sql.append(", IFNULL(SUM(L.point), 0) AS extra__likePoint");
 		sql.append(", IFNULL(SUM(IF(L.point > 0, L.point, 0)), 0) AS extra__likeOnlyPoint");
 		sql.append(", IFNULL(SUM(IF(L.point < 0, L.point * -1, 0)), 0) extra__dislikeOnlyPoint");
+		sql.append(", IFNULL(COUNT(R.body), 0) AS extra__replyCount");
 		sql.append("FROM article AS A");
 		sql.append("INNER JOIN `member` AS M");
 		sql.append("ON A.memberId = M.id");
@@ -32,6 +33,9 @@ public class ArticleDao {
 		sql.append("LEFT JOIN `like` AS L");
 		sql.append("ON L.relTypeCode = 'article'");
 		sql.append("AND A.id = L.relId");
+		sql.append("LEFT JOIN `reply` AS R");
+		sql.append("ON R.relTypeCode = 'article'");
+		sql.append("AND A.id = R.relId");
 		if (boardId != 0) {
 			sql.append("WHERE A.boardId = ?", boardId);
 		}
@@ -70,6 +74,7 @@ public class ArticleDao {
 		sql.append(", IFNULL(SUM(L.point), 0) AS extra__likePoint");
 		sql.append(", IFNULL(SUM(IF(L.point > 0, L.point, 0)), 0) AS extra__likeOnlyPoint");
 		sql.append(", IFNULL(SUM(IF(L.point < 0, L.point * -1, 0)), 0) extra__dislikeOnlyPoint");
+		sql.append(", IFNULL(COUNT(R.body), 0) AS extra__replyCount");
 		sql.append("FROM article AS A");
 		sql.append("INNER JOIN `member` AS M");
 		sql.append("ON A.memberId = M.id");
@@ -78,6 +83,9 @@ public class ArticleDao {
 		sql.append("LEFT JOIN `like` AS L");
 		sql.append("ON L.relTypeCode = 'article'");
 		sql.append("AND A.id = L.relId");
+		sql.append("LEFT JOIN `reply` AS R");
+		sql.append("ON R.relTypeCode = 'article'");
+		sql.append("AND A.id = R.relId");
 		sql.append("WHERE A.id = ?", id);
 		sql.append("GROUP BY A.id");
 

@@ -14,7 +14,18 @@
 
 .detail-info {
 	border-bottom: 2px solid black;
-	font-size:0.9rem;
+	font-size: 0.9rem;
+}
+
+.detail-info-mobile {
+	border-bottom: 2px solid black;
+	font-size: 0.9rem;
+	padding-bottom:5px;
+	color:#39393B;
+}
+
+.detail-info-mobile > div > span {
+	padding: 0 5px;
 }
 
 .detail-body {
@@ -51,57 +62,79 @@
 
 /* 게시물 좋아요 싫어요 */
 .detail-like a {
-  display:block;
-  padding: 4px;
-  margin: 5px;
-  border-radius:5px;
+	display: block;
+	padding: 4px;
+	margin: 5px;
+	border-radius: 5px;
 }
 
-.detail-like .like-btn{
-  background-color:#134E5E;
-  color:white;
+.detail-like .like-btn {
+	background-color: #134E5E;
+	color: white;
 }
 
-.detail-like .dislike-btn{
-  background-color:#6B1058;
-  color:white;
+.detail-like .dislike-btn {
+	background-color: #6B1058;
+	color: white;
 }
 /* 게시물 좋아요 싫어요 끝 */
 
 /* 게시물 댓글 */
 .detail-reply {
-  width:100%;
-}
-
-.detail-reply > form {
 	width: 100%;
+	border: 2px solid black;
 }
 
-.detail-reply > form > div > input[type="text"] {
-	width: 90%;
-  height:25px;
+.detail-reply .replyCnt {
+	font-weight:bold;
+	padding: 5px;
+	border-bottom: 1px solid black;
 }
 
-.detail-reply > form > div > input[type="submit"]{
-  height:29px;
-  border: 0;
-  outline: 0;
-  background-color:#71B280;
-  color:white;
-  border-radius:5px;
-  cursor:pointer;
+.detail-reply form {
+	padding: 0 5px;
+	margin: 10px 0;
 }
 
-.detail-reply table {
-  width: 100%;
+.detail-reply form table {
+	width:100%;
 }
 
-.detail-reply table tr td a {
-  display:block;
-  padding:0 5px;
+.detail-reply form input[type="text"] {
+	width: 98%;
+	height: 25px;
+}
+
+.detail-reply form input[type="submit"] {
+	height: 29px; 
+	border : 0;
+	outline: 0;
+	background-color: #71B280;
+	color: white;
+	border-radius: 5px;
+	cursor: pointer;
+	border: 0;
+}
+
+.detail-reply .showReply {
+	padding:0 5px;
+}
+
+.detail-reply .showReply .reply1 {
+	padding: 5px 0;
+	border-bottom: 1px solid black;
+}
+
+.detail-reply .reply-writer {
+	font-weight: bold;
+	color: #134E5E;
+}
+
+.detail-reply i {
+	padding: 0 5px;
 }
 
 .reply-regDate {
-  font-size:0.9rem;
+	font-size: 0.9rem;
 }
 /* 게시물 댓글 */
