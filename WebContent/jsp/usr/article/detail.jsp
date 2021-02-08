@@ -22,14 +22,22 @@
 				</colgroup>
 				<tr>
 					<td>번호 : ${article.id}</td>
-					<td>작성일 : <fmt:parseDate value="${article.regDate}" var="regDate" pattern="yyyy-MM-dd HH:mm:ss" />
-							<fmt:formatDate value="${regDate}" pattern="yyyy.MM.dd HH:mm" /></td>
+					<td>
+						작성일 :
+						<fmt:parseDate value="${article.regDate}" var="regDate"
+							pattern="yyyy-MM-dd HH:mm:ss" />
+						<fmt:formatDate value="${regDate}" pattern="yyyy.MM.dd HH:mm" />
+					</td>
 					<td>조회수 : ${article.hitsCount+1}</td>
 				</tr>
 				<tr>
 					<td>작성자: ${article.extra__writer}</td>
-					<td>수정일 : <fmt:parseDate value="${article.updateDate}" var="updateDate" pattern="yyyy-MM-dd HH:mm:ss" />
-							<fmt:formatDate value="${updateDate}" pattern="yyyy.MM.dd HH:mm" /></td>
+					<td>
+						수정일 :
+						<fmt:parseDate value="${article.updateDate}" var="updateDate"
+							pattern="yyyy-MM-dd HH:mm:ss" />
+						<fmt:formatDate value="${updateDate}" pattern="yyyy.MM.dd HH:mm" />
+					</td>
 					<td>
 						<i class="far fa-grin-hearts"></i>
 						${article.extra__likeOnlyPoint}
@@ -41,7 +49,9 @@
 		</div>
 		<div class="detail-info-mobile visible-sm-down">
 			<div>${article.extra__writer}</div>
-			<div><fmt:formatDate value="${regDate}" pattern="yyyy.MM.dd HH:mm" /></div>
+			<div>
+				<fmt:formatDate value="${regDate}" pattern="yyyy.MM.dd HH:mm" />
+			</div>
 			<div>
 				<span>
 					<i class="far fa-eye"></i>
@@ -104,7 +114,12 @@
 						<br />
 						${reply.body}
 						<br />
-						<span class="reply-regDate">${reply.regDate}</span>
+						<span class="reply-regDate">
+							<fmt:parseDate value="${reply.regDate}" var="replyRegDate"
+								pattern="yyyy-MM-dd HH:mm:ss" />
+							<fmt:formatDate value="${replyRegDate}"
+								pattern="yyyy.MM.dd HH:mm" />
+						</span>
 						<c:if test="${sessionScope.loginedMemberId == reply.memberId}">
 							<a href="../reply/modify?id=${reply.id}">
 								<i class="fas fa-edit"></i>

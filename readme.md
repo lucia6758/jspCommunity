@@ -23,10 +23,11 @@
 
 # 당장 할일 리스트
 - [ ] 게시물 블라인드
+- [ ] 마이페이지에서 내 글, 댓글 볼 수 있게
+- [ ] 댓글 좋아요, 싫어요
 
 # 추후 할일 리스트
 - [ ] 댓글, ajax화
-- [ ] 마이페이지에서 내 글, 댓글 볼 수 있게
 - [ ] 내 글에 새 댓글 알림
 - [ ] 내 댓글에 추가 댓글 알림
 - [ ] 댓글멘션
@@ -36,3 +37,18 @@
 - [ ] 회원인증
 - [ ] 관리자페이지
 - [ ] 1:1 쪽지
+
+
+# 메이븐 settings.xml 템플릿
+```
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <servers>
+        <server>
+            <id>서버ID</id>
+            <username>톰캣웹관리자계정(배포관리자)의 로그인아이디</username>
+            <password>톰캣웹관리자계정(배포관리자)의 비빌번호</password>
+        </server>
+    </servers>
+</settings>
+```
