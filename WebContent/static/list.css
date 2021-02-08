@@ -12,6 +12,7 @@
 .article-list > ul > li {
   text-align:center;
 }
+
 .article-list table {
   padding:2px;
   border-bottom:2px solid black;
@@ -44,6 +45,16 @@
 .article-list table .list-title > a:hover {
   text-decoration:underline;
   color:#71B280;
+}
+
+.article-list table .list-title > span {
+	display:block;
+	margin-left: 10px;
+	padding: 2px 5px 0 5px;
+	border: 1px solid lightgray;
+	color: #134E5E;
+	border-radius: 5px;
+	font-size: 0.7rem;
 }
 
 .empty-list {
@@ -99,6 +110,16 @@
     text-decoration:underline;
   color:#71B280;
   }
+  
+  .list-reply--moblie {
+  display: block;
+  padding: 1px 6px 0 6px;
+  border: 1px solid lightgray;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  margin-right: 5px;
+  color: #134E5E;
+ }
 
 .list-articleInfo--mobile{
     font-size:0.9rem;

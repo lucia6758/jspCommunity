@@ -42,8 +42,9 @@
 				<c:forEach items="${articles}" var="article">
 					<tr>
 						<td>${article.id}</td>
-						<td class="list-title">
+						<td class="list-title flex">
 							<a href="detail?id=${article.id}">${article.title}</a>
+							<span>${article.extra__replyCount}</span>
 						</td>
 						<td>${article.extra__writer}</td>
 						<td>
@@ -58,6 +59,7 @@
 								<span class="list-id--mobile">${article.id}</span>
 								<a href="detail?id=${article.id}"
 									class="list-title--mobile flex-grow-1">${article.title}</a>
+									<span class="list-reply--moblie flex flex-jc-e">${article.extra__replyCount}</span>
 							</div>
 							<div class="list-articleInfo--mobile flex">
 								<span class="list-writer--mobile">${article.extra__writer}</span>
