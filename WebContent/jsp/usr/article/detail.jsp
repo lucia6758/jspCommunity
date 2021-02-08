@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="pageTitle" value="${article.extra__boardName}" />
 <%@ include file="../../part/head.jspf"%>
 <link rel="stylesheet"
@@ -21,12 +22,14 @@
 				</colgroup>
 				<tr>
 					<td>번호 : ${article.id}</td>
-					<td>작성일 : ${article.regDate}</td>
+					<td>작성일 : <fmt:parseDate value="${article.regDate}" var="regDate" pattern="yyyy-MM-dd HH:mm:ss" />
+							<fmt:formatDate value="${regDate}" pattern="yyyy.MM.dd HH:mm" /></td>
 					<td>조회수 : ${article.hitsCount+1}</td>
 				</tr>
 				<tr>
 					<td>작성자: ${article.extra__writer}</td>
-					<td>수정일 : ${article.updateDate}</td>
+					<td>수정일 : <fmt:parseDate value="${article.updateDate}" var="updateDate" pattern="yyyy-MM-dd HH:mm:ss" />
+							<fmt:formatDate value="${updateDate}" pattern="yyyy.MM.dd HH:mm" /></td>
 					<td>
 						<i class="far fa-grin-hearts"></i>
 						${article.extra__likeOnlyPoint}
@@ -38,7 +41,7 @@
 		</div>
 		<div class="detail-info-mobile visible-sm-down">
 			<div>${article.extra__writer}</div>
-			<div>${article.regDate}</div>
+			<div><fmt:formatDate value="${regDate}" pattern="yyyy.MM.dd HH:mm" /></div>
 			<div>
 				<span>
 					<i class="far fa-eye"></i>

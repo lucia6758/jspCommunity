@@ -35,7 +35,7 @@
 }
 
 .btn-wrap {
-	margin-top: 20px;
+	margin: 20px 0;
 }
 
 .btn-wrap>* {
@@ -83,6 +83,7 @@
 .detail-reply {
 	width: 100%;
 	border: 2px solid black;
+	margin-top:10px;
 }
 
 .detail-reply .replyCnt {

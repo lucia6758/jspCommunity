@@ -247,6 +247,7 @@ a {
   position:fixed;
   top:0;
   width:100%;
+  box-sizing:border-box;
 }
 
 .mobile-top-bar-padding {
@@ -303,12 +304,13 @@ a {
   color:white;
 }
 
-.mobile-side-bar .menu-box-1 > ul ul {
-  display:none;
-}
-
 .mobile-side-bar .menu-box-1 ul > li:hover > ul {
   display:block;
+}
+
+.mobile-side-bar .menu-box-1 > div {
+  text-align:center;
+  margin:30px 0;
 }
 /* 모바일 사이드바 끝 */
 
