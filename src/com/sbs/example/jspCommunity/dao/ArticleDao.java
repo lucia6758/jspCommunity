@@ -6,7 +6,6 @@ import java.util.Map;
 
 import com.sbs.example.jspCommunity.dto.Article;
 import com.sbs.example.jspCommunity.dto.Board;
-import com.sbs.example.jspCommunity.dto.Reply;
 import com.sbs.example.mysqlutil.MysqlUtil;
 import com.sbs.example.mysqlutil.SecSql;
 
@@ -18,7 +17,7 @@ public class ArticleDao {
 
 		SecSql sql = new SecSql();
 		sql.append("SELECT A.*");
-		sql.append(", M.name AS extra__writer");
+		sql.append(", M.nickname AS extra__writer");
 		sql.append(", B.name AS extra__boardName");
 		sql.append(", B.code AS extra__boardCode");
 		sql.append(", IFNULL(SUM(L.point), 0) AS extra__likePoint");
