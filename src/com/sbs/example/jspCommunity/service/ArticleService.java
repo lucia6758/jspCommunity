@@ -82,4 +82,8 @@ public class ArticleService {
 
 	}
 
+	public List<Article> getArticlesForMainOrderByLikeCnt() {
+		return articleDao.getArticlesForMainOrderByLikeCnt();
+	}
+
 }

@@ -215,4 +215,30 @@ public class ArticleDao {
 		return articles;
 	}
 
+	public List<Article> getArticlesForMainOrderByLikeCnt() {
+		List<Article> articles = new ArrayList<>();
+
+		SecSql sql = new SecSql();
+		sql.append("SELECT A.*");
+		sql.append(", M.nickname AS extra__writer");
+		sql.append(", IFNULL(SUM(L.point), 0) AS extra__likePoint");
+		sql.append("FROM article AS A");
+		sql.append("INNER JOIN `member` AS M");
+		sql.append("ON A.memberId = M.id");
+		sql.append("LEFT JOIN `like` AS L");
+		sql.append("ON L.relTypeCode = 'article'");
+		sql.append("AND A.id = L.relId");
+		sql.append("GROUP BY A.id");
+		sql.append("ORDER BY L.point");
+		sql.append("LIMIT 10");
+
+		List<Map<String, Object>> articleMapList = MysqlUtil.selectRows(sql);
+
+		for (Map<String, Object> articleMap : articleMapList) {
+			articles.add(new Article(articleMap));
+		}
+
+		return articles;
+	}
+
 }

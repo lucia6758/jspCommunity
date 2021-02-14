@@ -177,8 +177,6 @@ memberId INT(10) UNSIGNED NOT NULL,
 `point` TINYINT(1) NOT NULL
 );
 
-ALTER TABLE article ADD COLUMN likesCount INT(10) UNSIGNED NOT NULL AFTER `hitsCount`;
-
 ALTER TABLE `like` ADD INDEX (`relTypeCode` , `relId` , `memberId`); 
 
 #댓글테이블

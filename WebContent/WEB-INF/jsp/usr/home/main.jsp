@@ -36,8 +36,24 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="board2">
-				<i class="fas fa-seedling"></i>
+			<div class="popularArticles">
+				<span>인기글</span>
+				<table>
+					<colgroup>
+						<col width="70%"></col>
+						<col width="30%"></col>
+					</colgroup>
+					<tbody>
+						<c:forEach items="${popularArticles}" var="article">
+							<tr>
+								<td>
+									<a href="../article/detail?id=${article.id}">${article.title}</a>
+								</td>
+								<td class="writer">${article.extra__writer}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</section>

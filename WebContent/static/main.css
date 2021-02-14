@@ -1,75 +1,100 @@
 /* 메인 사진 */
 
 /* 메인 사진 끝 */
-.home_photo > div {
-  width:100%;
-  max-height:400px;
-  overflow: hidden;
+.home_photo>div {
+	width: 100%;
+	max-height: 400px;
+	overflow: hidden;
 }
 
-.home_photo > div > img {
-  max-width: 100%;
-  margin-top:-8%;
+.home_photo>div>img {
+	max-width: 100%;
+	margin-top: -8%;
 }
-/* 메인 최신글 */
-.lastest_article > div {
-  margin: 20px 0;
-  width:100%;
-  height:330px;
-  background: linear-gradient( to right, #134E5E, #71B280 );
+/* 메인 글 */
+.lastest_article>div {
+	margin: 20px 0;
+	width: 100%;
+	height: 330px;
+	background: linear-gradient(to right, #134E5E, #71B280);
 }
 
-.lastest_article > div > div {
-  width:48%;
-  height:96%;
-  background-color:white;
-  border-radius:10px;
+.lastest_article>div>div {
+	width: 48%;
+	height: 96%;
+	background-color: white;
+	border-radius: 10px;
 }
 
 /* 자게 최신 게시글 */
-
-.freeboard > span {
-  font-size:1.2rem;
-  font-weight:bold;
-  margin: 10px;
-  display:block;
+.freeboard>span {
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin: 10px;
+	display: block;
 }
 
-.freeboard > table {
-  border-collapse: collapse;
-  width: 94%;
-  margin: 10px;
-  table-layout:fixed;
+.freeboard>table {
+	border-collapse: collapse;
+	width: 94%;
+	margin: 10px;
+	table-layout: fixed;
 }
 
-.freeboard > table > tbody > tr {
-  border-bottom:1px solid lightgray;
+.freeboard>table>tbody>tr {
+	border-bottom: 1px solid lightgray;
 }
 
-.freeboard > table > tbody > tr > td {
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
+.freeboard>table>tbody>tr>td {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-.freeboard > table > tbody > tr > .writer {
-  text-align:center;
+.freeboard>table>tbody>tr>.writer {
+	text-align: center;
 }
 
-.freeboard > table > tbody > tr > td > a:hover {
-  background-color:#71B280;
-  color:white;
+.freeboard>table>tbody>tr>td>a:hover {
+	background-color: #71B280;
+	color: white;
 }
 
 /* 자게 최신 게시글 끝 */
 
 /* 게시판2 */
-.board2 > i {
-  color:#71B280;
-  font-size:5rem;
-  margin-left:45%;
-  margin-top: 20%;
+.popularArticles>span {
+	font-size: 1.2rem;
+	font-weight: bold;
+	margin: 10px;
+	display: block;
+}
+
+.popularArticles>table {
+	border-collapse: collapse;
+	width: 94%;
+	margin: 10px;
+	table-layout: fixed;
+}
+
+.popularArticles>table>tbody>tr {
+	border-bottom: 1px solid lightgray;
+}
+
+.popularArticles>table>tbody>tr>td {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.popularArticles>table>tbody>tr>.writer {
+	text-align: center;
+}
+
+.popularArticles>table>tbody>tr>td>a:hover {
+	background-color: #71B280;
+	color: white;
 }
 /* 게시판2 끝*/
 
-/* 메인 최신글 끝 */
+/* 메인 글 끝 */

@@ -13,8 +13,10 @@ public class UsrHomeController {
 	public String showMain(HttpServletRequest req, HttpServletResponse resp) {
 		int boardId = 2;
 		List<Article> articles = Container.articleService.getArticlesForMainByBoardId(boardId);
-		
+		List<Article> popularArticles = Container.articleService.getArticlesForMainOrderByLikeCnt();
+
 		req.setAttribute("articles", articles);
+		req.setAttribute("popularArticles", popularArticles);
 
 		return "usr/home/main";
 	}
