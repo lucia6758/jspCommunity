@@ -75,5 +75,11 @@ input::placeholder {
   text-align: center;
   margin-left: 10px;
   font-family: 'S-CoreDream-4Regular';
+  white-space:nowrap;
+}
+
+.dup-btn{
+  margin:0;
+  padding:0;
 }
 /* 회원가입 끝 */

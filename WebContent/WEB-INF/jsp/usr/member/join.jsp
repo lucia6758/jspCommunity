@@ -8,7 +8,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/join.css" />
 
-<section class="member-join con-min-width padding-0-10">
+<section class="member-join con-min-width">
 	<script>
 	let checkJoinForm_submited = false;
 	let checkJoinForm_checkedLoginId = "";
@@ -115,8 +115,8 @@
 	  checkJoinForm_submited = true;
 	}
 	</script>
-	<div class="join-box con">
-	<h1 class="flex flex-jc-c">${pageTitle}</h1>
+	<div class="join-box con padding-0-10">
+		<h1 class="flex flex-jc-c">${pageTitle}</h1>
 		<form action="doJoin" method="POST"
 			onsubmit="checkJoinForm_submit(this); return false;">
 			<input type="hidden" name="loginPwReal" />
@@ -129,14 +129,12 @@
 						<span>아이디</span>
 					</th>
 					<td>
-						<div>
+						<div class="flex">
 							<input type="text" name="loginId" placeholder="ID" maxlength="30">
-						</div>
-					</td>
-					<td>
-						<div class="btn-wrap">
-							<button type="button" name="btnLoginIdDupCheck"
-								onclick="checkJoinForm_checkLoginIdDup(this);">중복확인</button>
+							<div class="btn-wrap dup-btn">
+								<button type="button" name="btnLoginIdDupCheck"
+									onclick="checkJoinForm_checkLoginIdDup(this);">중복확인</button>
+							</div>
 						</div>
 					</td>
 				</tr>
