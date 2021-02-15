@@ -122,9 +122,11 @@
 					</nav>
 				</div>
 			</div>
-
-			<!-- 모바일버전 -->
-			<div class="mobile-top-bar visible-sm-down flex">
+		</header>
+		
+		<header class="visible-sm-down">
+		<!-- 모바일버전 -->
+			<div class="mobile-top-bar flex">
 				<a href="#" class="btn-toggle-mobile-side-bar flex flex-ai-c">
 					<i class="fas fa-bars"></i>
 					<i class="fas fa-times"></i>

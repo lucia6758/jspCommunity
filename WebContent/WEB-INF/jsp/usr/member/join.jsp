@@ -10,6 +10,15 @@
 
 <section class="member-join con-min-width">
 	<script>
+	$(function() {
+		$(".enAndNum").keyup(function(event) {
+			if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+				let inputVal = $(this).val();
+				$(this).val(inputVal.replace(/[^a-z0-9]/gi, ''));
+			}
+		});
+	});
+	
 	let checkJoinForm_submited = false;
 	let checkJoinForm_checkedLoginId = "";
 	
@@ -22,6 +31,12 @@
 	    alert("아이디를 입력해주세요");
 	    from.loginId.focus();
 	    return;
+	  }
+	  
+	  if(from.loginId.value.length < 5 || from.loginId.value.length > 15){
+		  alert("아이디를 5자이상 15자 이하로 입력해주세요.");
+		  from.loginId.focus();
+		  return;
 	  }
 		
 		$.get(
@@ -73,6 +88,14 @@
 	    form.loginPwConfirm.focus();
 	    return;
 	  }
+	  
+	  let loginPwCheck =  /^.*(?=.{8,12})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
+	  if(form.loginPw.value.length < 5 || form.loginPw.value.length > 20){
+		  alert("비밀번호를 5자이상 20자 이하로 입력해주세요.");
+		  form.loginIdPw.focus();
+		  return;
+	  }
+	  
 	  if (form.loginPw.value != form.loginPwConfirm.value) {
 	    alert("비밀번호가 일치하지 않습니다");
 	    form.loginPwConfirm.focus();
@@ -130,7 +153,8 @@
 					</th>
 					<td>
 						<div class="flex">
-							<input type="text" name="loginId" placeholder="ID" maxlength="30">
+							<input class="enAndNum" type="text" name="loginId"
+								placeholder="5~15자 사이의 영문이나 숫자" maxlength="15">
 							<div class="btn-wrap dup-btn">
 								<button type="button" name="btnLoginIdDupCheck"
 									onclick="checkJoinForm_checkLoginIdDup(this);">중복확인</button>
@@ -144,8 +168,8 @@
 					</th>
 					<td>
 						<div>
-							<input type="password" name="loginPw" placeholder="Password"
-								maxlength="50">
+							<input class="enAndNum" type="password" name="loginPw" placeholder="5~20자 사이의 영문이나 숫자"
+								maxlength="20">
 						</div>
 					</td>
 
@@ -156,8 +180,8 @@
 					</th>
 					<td>
 						<div>
-							<input type="password" name="loginPwConfirm"
-								placeholder="Password Confirm" maxlength="50">
+							<input class="enAndNum" type="password" name="loginPwConfirm"
+								placeholder="비밀번호를 한번 더 입력해주세요" maxlength="20">
 						</div>
 					</td>
 				</tr>
@@ -167,7 +191,7 @@
 					</th>
 					<td>
 						<div>
-							<input type="text" name="name" placeholder="Name" maxlength="50">
+							<input type="text" name="name" placeholder="Name" maxlength="15">
 						</div>
 					</td>
 				</tr>
@@ -178,7 +202,7 @@
 					<td>
 						<div>
 							<input type="text" name="nickname" placeholder="Nickname"
-								maxlength="50">
+								maxlength="30">
 						</div>
 					</td>
 				</tr>

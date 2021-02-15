@@ -9,40 +9,50 @@
 	href="${pageContext.request.contextPath}/static/login.css" />
 <section class="login con-min-width">
 	<script>
-	let checkLoginForm_submited = false;
-	function checkLoginForm_submit(form) {
-	  if (checkLoginForm_submited) {
-	    alert("처리중입니다.");
-	    return;
-	  }
-	
-	  form.loginId.value = form.loginId.value.trim();
-	  if (form.loginId.value == "") {
-	    alert("아이디를 입력해주세요");
-	    form.loginId.focus();
-	    return;
-	  }
-	
-	  form.loginPw.value = form.loginPw.value.trim();
-	  if (form.loginPw.value == "") {
-	    alert("비밀번호를 입력해주세요");
-	    form.loginPw.focus();
-	    return;
-	  }
-	  
-	  form.loginPwReal.value = sha256(form.loginPw.value);
-	  form.loginPw.value = "";
-	
-	  form.submit();
-	  checkLoginForm_submited = true;
-	}
+		$(function() {
+			$(".enAndNum").keyup(function(event) {
+				if (!(event.keyCode >= 37 && event.keyCode <= 40)) {
+					let inputVal = $(this).val();
+					$(this).val(inputVal.replace(/[^a-z0-9]/gi, ''));
+				}
+			});
+		});
+
+		let checkLoginForm_submited = false;
+		function checkLoginForm_submit(form) {
+			if (checkLoginForm_submited) {
+				alert("처리중입니다.");
+				return;
+			}
+
+			form.loginId.value = form.loginId.value.trim();
+			if (form.loginId.value == "") {
+				alert("아이디를 입력해주세요");
+				form.loginId.focus();
+				return;
+			}
+
+			form.loginPw.value = form.loginPw.value.trim();
+			if (form.loginPw.value == "") {
+				alert("비밀번호를 입력해주세요");
+				form.loginPw.focus();
+				return;
+			}
+
+			form.loginPwReal.value = sha256(form.loginPw.value);
+			form.loginPw.value = "";
+
+			form.submit();
+			checkLoginForm_submited = true;
+		}
 	</script>
 	<div class="login-box con padding-0-10">
 		<h1 class="flex flex-jc-c">${pageTitle}</h1>
 		<form class="con" action="doLogin" method="POST"
 			onsubmit="checkLoginForm_submit(this); return false;">
 			<input type="hidden" name="loginPwReal" />
-			<input type="hidden" name="afterLoginUrl" value="${param.afterLoginUrl}" />
+			<input type="hidden" name="afterLoginUrl"
+				value="${param.afterLoginUrl}" />
 			<table>
 				<colgroup>
 					<col width="100">
@@ -54,8 +64,8 @@
 						</th>
 						<td>
 							<div>
-								<input type="text" name="loginId" placeholder="ID"
-									maxlength="30" autocomplete="off">
+								<input class="enAndNum" type="text" name="loginId"
+									placeholder="ID" maxlength="15" autocomplete="off">
 							</div>
 						</td>
 					</tr>
@@ -65,8 +75,8 @@
 						</th>
 						<td>
 							<div>
-								<input type="password" name="loginPw" placeholder="Password"
-									maxlength="50">
+								<input class="enAndNum" type="password" name="loginPw" placeholder="Password"
+									maxlength="20">
 							</div>
 						</td>
 					</tr>
