@@ -15,7 +15,7 @@
 		</div>
 	</section>
 
-	<section class="lastest_article con">
+	<section class="main_article con">
 		<div class="flex flex-jc-a flex-ai-c">
 			<div class="freeboard">
 				<span>자유게시판 최신글</span>
