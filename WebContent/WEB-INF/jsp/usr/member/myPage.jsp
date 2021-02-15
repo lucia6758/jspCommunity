@@ -8,8 +8,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/myPage.css" />
 
-<section class="myPage con-min-width">
-	<div class="myPage-box con padding-0-10">
+<section class="myPage con-min-width padding-0-10">
+	<div class="myPage-box con">
 		<h1 class="flex flex-jc-c">${pageTitle}</h1>
 		<script>
 		let checkModifyForm_submited = false;

@@ -7,7 +7,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/login.css" />
-<section class="login con-min-width">
+<section class="login con-min-width padding-0-10">
 	<script>
 		$(function() {
 			$(".enAndNum").keyup(function(event) {
@@ -46,7 +46,7 @@
 			checkLoginForm_submited = true;
 		}
 	</script>
-	<div class="login-box con padding-0-10">
+	<div class="login-box con">
 		<h1 class="flex flex-jc-c">${pageTitle}</h1>
 		<form class="con" action="doLogin" method="POST"
 			onsubmit="checkLoginForm_submit(this); return false;">

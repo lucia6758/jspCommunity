@@ -76,6 +76,13 @@ a {
   right:0;
 }
 
+.absolute-middle.absolute-center {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translateX(-50%) translateY(-50%);
+}
+
 *>.flex {
 	display: flex;
 }
@@ -293,10 +300,16 @@ a {
   display:flex;
 }
 
+.mobile-side-bar .menu-box-1 {
+	position:relative;
+	top:-50px;
+}
+
 .mobile-side-bar .menu-box-1 ul > li > a {
-  font-size:1.2rem;
+  font-size:1.3rem;
   font-weight:bold;
   text-align:center;
+  padding: 5px 0;
 }
 
 .mobile-side-bar .menu-box-1 ul > li:hover > a {
@@ -311,6 +324,10 @@ a {
 .mobile-side-bar .menu-box-1 > div {
   text-align:center;
   margin:30px 0;
+}
+
+.member-menu {
+	font-size:1.1rem;
 }
 /* 모바일 사이드바 끝 */
 

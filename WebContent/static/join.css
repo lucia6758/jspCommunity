@@ -82,4 +82,9 @@ input::placeholder {
   margin:0;
   padding:0;
 }
+
+.dup-btn > * {
+	font-size: 0.9rem;
+	padding: 10px 7px 7px 7px;
+}
 /* 회원가입 끝 */

@@ -123,9 +123,9 @@
 				</div>
 			</div>
 		</header>
-		
-		<header class="visible-sm-down">
-		<!-- 모바일버전 -->
+
+		<header class="visible-sm-down con-min-width">
+			<!-- 모바일버전 -->
 			<div class="mobile-top-bar flex">
 				<a href="#" class="btn-toggle-mobile-side-bar flex flex-ai-c">
 					<i class="fas fa-bars"></i>
@@ -141,6 +141,24 @@
 
 		<div class="mobile-side-bar flex flex-ai-c visible-sm-down">
 			<nav class="menu-box-1 flex-grow-1">
+				<div class="member-menu flex">
+					<c:if test="${isLogined}">
+						<div class="flex-1-0-0">
+							<a href="../member/doLogout">로그아웃</a>
+						</div>
+					</c:if>
+					<c:if test="${isLogined == false}">
+						<div class="flex-1-0-0">
+							<a href="../member/login">로그인</a>
+						</div>
+					</c:if>
+					<div class="flex-1-0-0">
+						<a href="../member/join">회원가입</a>
+					</div>
+					<div class="flex-1-0-0">
+						<a href="../member/myPage">마이페이지</a>
+					</div>
+				</div>
 				<ul>
 					<li>
 						<a href="../article/list?boardId=1" class="block">공지사항</a>
@@ -164,24 +182,6 @@
 						<a href="#" class="block">한마디</a>
 					</li>
 				</ul>
-				<div>
-					<c:if test="${isLogined}">
-						<div>
-							<a href="../member/doLogout">로그아웃</a>
-						</div>
-					</c:if>
-					<c:if test="${isLogined == false}">
-						<div>
-							<a href="../member/login">로그인</a>
-						</div>
-					</c:if>
-					<div>
-						<a href="../member/join">회원가입</a>
-					</div>
-					<div>
-						<a href="../member/myPage">마이페이지</a>
-					</div>
-				</div>
 			</nav>
 		</div>
 		<!-- 모바일버전 끝 -->

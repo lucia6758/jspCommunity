@@ -8,7 +8,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/static/join.css" />
 
-<section class="member-join con-min-width">
+<section class="member-join con-min-width padding-0-10">
 	<script>
 	$(function() {
 		$(".enAndNum").keyup(function(event) {
@@ -138,14 +138,14 @@
 	  checkJoinForm_submited = true;
 	}
 	</script>
-	<div class="join-box con padding-0-10">
+	<div class="join-box con">
 		<h1 class="flex flex-jc-c">${pageTitle}</h1>
 		<form action="doJoin" method="POST"
 			onsubmit="checkJoinForm_submit(this); return false;">
 			<input type="hidden" name="loginPwReal" />
 			<table>
 				<colgroup>
-					<col width="150">
+					<col width="100">
 				</colgroup>
 				<tr>
 					<th>
