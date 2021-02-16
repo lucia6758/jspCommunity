@@ -126,6 +126,18 @@
 	border-bottom: 1px solid black;
 }
 
+.detail-reply .showReply .reply1 .modify-mode-visible > form {
+	display:block;
+}
+
+.detail-reply .showReply .reply1[data-modify-mode="off"] .modify-mode-visible {
+	display: none;
+}
+
+.detail-reply .showReply .reply1[data-modify-mode="on"] .modify-mode-invisible {
+	display: none;
+}
+
 .detail-reply .reply-writer {
 	font-weight: bold;
 	color: #134E5E;

@@ -255,6 +255,7 @@ a {
   top:0;
   width:100%;
   box-sizing:border-box;
+  z-index: 2;
 }
 
 .mobile-top-bar-padding {
@@ -294,6 +295,7 @@ a {
   background: linear-gradient(to right, #134E5E, #71B280);
   color:white;
   display:none;
+  z-index: 2;
 }
 
 .mobile-side-bar.active {

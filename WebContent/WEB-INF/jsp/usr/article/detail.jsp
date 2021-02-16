@@ -10,6 +10,51 @@
 	<h1 class="con">${pageTitle}</h1>
 </section>
 
+<script>
+function modifyReply(form){
+	form.body.value = form.body.value.trim();
+	if (form.body.value.length == 0) {
+		    alert("내용을 입력해주세요");
+		    form.body.focus();
+		    return;
+	}
+		  
+	let $div = $(form).closest('div.reply1');
+		  
+	$div.attr('data-modify-mode', 'off');
+		  
+	let newBody = form.body.value;
+	let id = parseInt(form.id.value);
+		  
+	$.post('../reply/doModify', {
+		id: id,
+		body: newBody
+	}, function(data){
+		if(data.resultCode.substr(0,2) == 'S-'){
+		  	$div.find('>.modify-mode-invisible').empty().append(newBody);
+		 } else {
+		  	alert(data.msg);
+		  	}
+		 }, 'json');
+}
+
+function replyModifyMode_off(el) {
+	let $div = $(el).closest('div.reply1');
+	
+	$div.attr('data-modify-mode', 'off');
+}
+
+function replyModifyMode_on(el) {
+	let $div = $(el).closest('div.reply1');
+	let body = $div.find('>.modify-mode-invisible').html().trim();
+	
+	$div.find('>.modify-mode-visible > form > input[type="text"]').val(body);
+	
+	$div.attr('data-modify-mode', 'on');
+	$div.siblings('[data-modify-mode="on"]').attr('data-modify-mode', 'off');
+}
+
+</script>
 <section class="article-detail con-min-width padding-0-10">
 	<div class="con">
 		<div class="detail-title">${article.title}</div>
@@ -109,27 +154,44 @@
 			</div>
 			<div class="showReply">
 				<c:forEach items="${replies}" var="reply">
-					<div class="reply1">
-						<span class="reply-writer">${reply.extra__writer}</span>
-						<br />
-						${reply.body}
-						<br />
-						<span class="reply-regDate">
-							<fmt:parseDate value="${reply.regDate}" var="replyRegDate"
-								pattern="yyyy-MM-dd HH:mm:ss" />
-							<fmt:formatDate value="${replyRegDate}"
-								pattern="yyyy.MM.dd HH:mm" />
-						</span>
-						<c:if test="${sessionScope.loginedMemberId == reply.memberId}">
-							<a href="../reply/modify?id=${reply.id}">
-								<i class="fas fa-edit"></i>
-							</a>
-							<a
-								onclick="if (confirm('정말 삭제하시겠습니까?') == false) {return false;}"
-								href="../reply/doDelete?id=${reply.id}">
-								<i class="fas fa-trash-alt"></i>
-							</a>
-						</c:if>
+					<div class="reply1" data-modify-mode="off">
+						<div>
+							<span class="reply-writer">${reply.extra__writer}</span>
+						</div>
+						<div class="modify-mode-invisible">${reply.body}</div>
+						<div class="modify-mode-visible">
+							<form action="doModify" method="POST"
+								onsubmit="modifyReply(this); return false;">
+								<input type="hidden" name="id" value="${reply.id}">
+								<div>
+									<input type="text" name="body" placeholder="내용을 입력해주세요"
+										value="${reply.body}">
+								</div>
+								<br>
+								<div class="btn-wrap flex flex-jc-c">
+									<input type="submit" value="수정">
+									<a href="javascript:;" onclick="replyModifyMode_off(this);">취소</a>
+								</div>
+							</form>
+						</div>
+						<div class="modify-mode-invisible">
+							<span class="reply-regDate">
+								<fmt:parseDate value="${reply.regDate}" var="replyRegDate"
+									pattern="yyyy-MM-dd HH:mm:ss" />
+								<fmt:formatDate value="${replyRegDate}"
+									pattern="yyyy.MM.dd HH:mm" />
+							</span>
+							<c:if test="${sessionScope.loginedMemberId == reply.memberId}">
+								<a href="javascript:;" onclick="replyModifyMode_on(this);">
+									<i class="fas fa-edit"></i>
+								</a>
+								<a
+									onclick="if (confirm('정말 삭제하시겠습니까?') == false) {return false;}"
+									href="../reply/doDelete?id=${reply.id}">
+									<i class="fas fa-trash-alt"></i>
+								</a>
+							</c:if>
+						</div>
 					</div>
 				</c:forEach>
 			</div>
@@ -157,7 +219,6 @@
 							</td>
 						</tr>
 					</table>
-
 				</form>
 			</c:if>
 		</div>
