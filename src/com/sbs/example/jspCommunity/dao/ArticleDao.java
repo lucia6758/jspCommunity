@@ -241,4 +241,54 @@ public class ArticleDao {
 		return articles;
 	}
 
+	public int getArticlesCountByMemberId(int loginedMemberId) {
+		SecSql sql = new SecSql();
+		sql.append("SELECT COUNT(*) AS cnt");
+		sql.append("FROM article");
+		sql.append("WHERE 1");
+		sql.append("AND memberId = ?", loginedMemberId);
+
+		return MysqlUtil.selectRowIntValue(sql);
+	}
+
+	public List<Article> getForPrintArticlesByMemberId(int loginedMemberId, int limitStart, int limitCount) {
+		List<Article> articles = new ArrayList<>();
+
+		SecSql sql = new SecSql();
+		sql.append("SELECT A.*");
+		sql.append(", M.nickname AS extra__writer");
+		sql.append(", B.name AS extra__boardName");
+		sql.append(", B.code AS extra__boardCode");
+		sql.append(", IFNULL(SUM(L.point), 0) AS extra__likePoint");
+		sql.append(", IFNULL(SUM(IF(L.point > 0, L.point, 0)), 0) AS extra__likeOnlyPoint");
+		sql.append(", IFNULL(SUM(IF(L.point < 0, L.point * -1, 0)), 0) extra__dislikeOnlyPoint");
+		sql.append(", IFNULL(COUNT(R.body), 0) AS extra__replyCount");
+		sql.append("FROM article AS A");
+		sql.append("INNER JOIN `member` AS M");
+		sql.append("ON A.memberId = M.id");
+		sql.append("INNER JOIN `board` AS B");
+		sql.append("ON A.boardId = B.id");
+		sql.append("LEFT JOIN `like` AS L");
+		sql.append("ON L.relTypeCode = 'article'");
+		sql.append("AND A.id = L.relId");
+		sql.append("LEFT JOIN `reply` AS R");
+		sql.append("ON R.relTypeCode = 'article'");
+		sql.append("AND A.id = R.relId");
+		sql.append("WHERE A.memberId = ?", loginedMemberId);
+		sql.append("GROUP BY A.id");
+		sql.append("ORDER BY A.id DESC");
+
+		if (limitCount != -1) {
+			sql.append("LIMIT ?, ?", limitStart, limitCount);
+		}
+
+		List<Map<String, Object>> articleMapList = MysqlUtil.selectRows(sql);
+
+		for (Map<String, Object> articleMap : articleMapList) {
+			articles.add(new Article(articleMap));
+		}
+
+		return articles;
+	}
+
 }

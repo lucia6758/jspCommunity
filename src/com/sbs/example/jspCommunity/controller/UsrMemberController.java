@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import com.sbs.example.jspCommunity.App;
 import com.sbs.example.jspCommunity.container.Container;
+import com.sbs.example.jspCommunity.dto.Article;
+import com.sbs.example.jspCommunity.dto.Board;
 import com.sbs.example.jspCommunity.dto.Member;
 import com.sbs.example.jspCommunity.dto.ResultData;
 import com.sbs.example.jspCommunity.service.MemberService;
@@ -140,7 +142,7 @@ public class UsrMemberController extends Controller {
 
 		if (isUsingTempPassword) {
 			alertMsg = "현재 임시비밀번호를 사용중입니다. 비밀번호를 변경해주십시오.";
-			replaceUrl = "../member/myPage";
+			replaceUrl = "../member/modify";
 		}
 
 		boolean isNeedToChangeLoginPw = memberService.isNeedToChangeLoginPw(member.getId());
@@ -148,7 +150,7 @@ public class UsrMemberController extends Controller {
 		if (isNeedToChangeLoginPw) {
 			int oldPasswordDays = memberService.getOldPasswordDays();
 			alertMsg = "비밀번호를 변경한지" + oldPasswordDays + "일이 경과하였습니다. 비밀번호를 변경해주세요.";
-			replaceUrl = "../member/myPage";
+			replaceUrl = "../member/modify";
 		}
 
 		return msgAndReplace(req, alertMsg, replaceUrl);
@@ -180,7 +182,7 @@ public class UsrMemberController extends Controller {
 		return json(req, new ResultData(resultCode, msg, "loginId", loginId));
 	}
 
-	public String myPage(HttpServletRequest req, HttpServletResponse resp) {
+	public String modify(HttpServletRequest req, HttpServletResponse resp) {
 
 		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
 
@@ -188,7 +190,7 @@ public class UsrMemberController extends Controller {
 
 		req.setAttribute("member", member);
 
-		return "usr/member/myPage";
+		return "usr/member/modify";
 	}
 
 	public String findLoginId(HttpServletRequest req, HttpServletResponse resp) {
@@ -295,6 +297,61 @@ public class UsrMemberController extends Controller {
 		memberService.modify(modifyParam);
 
 		return msgAndReplace(req, "회원정보가 수정되었습니다.", "../home/main");
+	}
+
+	public String myPage(HttpServletRequest req, HttpServletResponse resp) {
+		int loginedMemberId = (int) req.getAttribute("loginedMemberId");
+
+		Member member = memberService.getMemberById(loginedMemberId);
+
+		req.setAttribute("member", member);
+
+		int itemsInAPage = 20;
+		int page = Util.getAsInt(req.getParameter("page"), 1);
+		int limitStart = (page - 1) * itemsInAPage;
+
+		int totalCount = Container.articleService.getArticlesCountByMemberId(loginedMemberId);
+		List<Article> articles = Container.articleService.getForPrintArticlesByMemberId(loginedMemberId, limitStart,
+				itemsInAPage);
+
+		int totalPage = (int) Math.ceil(totalCount / (double) itemsInAPage);
+		int pagesInAList = 10;
+		int pageBoundary = page / pagesInAList;
+		if (page % pagesInAList == 0) {
+			pageBoundary = page / pagesInAList - 1;
+		}
+		int startPage = 1 + pagesInAList * pageBoundary;
+		int endPage = startPage + pagesInAList - 1;
+		if (endPage >= totalPage) {
+			endPage = totalPage;
+		}
+
+		int pageBefore = startPage - 1;
+		if (pageBefore < 1) {
+			pageBefore = 1;
+		}
+
+		int pageAfter = endPage + 1;
+		if (pageAfter > totalPage) {
+			pageAfter = totalPage;
+		}
+
+		boolean pageBeforeBtnNeedToShow = pageBefore != startPage;
+		boolean pageAfterBtnNeedToShow = pageAfter != endPage;
+
+		req.setAttribute("currentPage", page);
+		req.setAttribute("totalPage", totalPage);
+		req.setAttribute("startPage", startPage);
+		req.setAttribute("endPage", endPage);
+		req.setAttribute("pageBefore", pageBefore);
+		req.setAttribute("pageAfter", pageAfter);
+		req.setAttribute("pageBeforeBtnNeedToShow", pageBeforeBtnNeedToShow);
+		req.setAttribute("pageAfterBtnNeedToShow", pageAfterBtnNeedToShow);
+
+		req.setAttribute("articles", articles);
+		req.setAttribute("totalCount", totalCount);
+
+		return "usr/member/myPage";
 	}
 
 }

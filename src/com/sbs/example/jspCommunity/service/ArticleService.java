@@ -86,4 +86,12 @@ public class ArticleService {
 		return articleDao.getArticlesForMainOrderByLikeCnt();
 	}
 
+	public int getArticlesCountByMemberId(int loginedMemberId) {
+		return articleDao.getArticlesCountByMemberId(loginedMemberId);
+	}
+
+	public List<Article> getForPrintArticlesByMemberId(int loginedMemberId, int limitStart, int itemsInAPage) {
+		return articleDao.getForPrintArticlesByMemberId(loginedMemberId, limitStart, itemsInAPage);
+	}
+
 }

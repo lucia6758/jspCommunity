@@ -1,0 +1,79 @@
+/* 페이지 타이틀 */
+.pageTitle {
+  margin:20px 0;
+}
+/* 페이지 타이틀 끝 */
+
+/* 마이페이지 */
+.modify-box{
+  max-width:500px;
+  background-color:#134E5E;
+  border-radius:15px;
+  color:white;
+  margin-top:100px;
+}
+
+.modify-box > h1 {
+  padding:30px 0;
+}
+
+.modify-box form {
+  display:block;
+  width:90%;
+  margin-left:20px;
+}
+
+.modify-box form > table {
+  width:100%;
+  border-collapse:collapse;
+}
+
+.modify-box form > table > tr > th, .join-box form > table > tr > td {
+  padding:10px 0;
+}
+
+.modify-box form table tr td div:not(.btn-wrap) {
+  border-bottom: 2px solid white;
+}
+
+.modify-box form table input:not([type="submit"]) {
+  display:block;
+  width:100%;
+  box-sizing:border-box;
+  padding:10px;
+  outline:none;
+  border:none;
+  background-color: #134E5E;
+  font-family: 'S-CoreDream-4Regular';
+  color:white;
+}
+
+input::placeholder {
+  font-family: 'S-CoreDream-4Regular';
+  color:lightgray;
+}
+
+.btn-wrap {
+  margin-top: 20px;
+  padding-bottom:20px;
+}
+
+.btn-wrap > * {
+  font-size: 1rem;
+  line-height: 1rem;
+  padding: 10px 15px 7px 15px;
+  display: inline-flex;
+  border-radius: 5px;
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background-color: #71B280;
+  color: white;
+  text-decoration: none;
+  box-sizing: border-box;
+  justify-content: center;
+  text-align: center;
+  margin-left: 10px;
+  font-family: 'S-CoreDream-4Regular';
+}
+/* 마이페이지 끝 */
